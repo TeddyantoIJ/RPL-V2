@@ -5,6 +5,8 @@
  */
 package MainMenu;
 
+import CS.tambahCS;
+import CS.ubahCS;
 import JenisPaket.TambahJenisPaket;
 import Departemen.TambahDepartemen;
 import Departemen.UbahDepartemen;
@@ -13,7 +15,10 @@ import Driver.UbahDriver;
 import JenisPaket.UbahJenisPaket;
 import KantorCabang.TambahKantorCabang;
 import KantorCabang.UbahKantorCabang;
-import koneksi.Pelanggan;
+import Staff.Staff;
+import Staff.Ubah_Staff;
+import Pelanggan.Pelanggan;
+import TransaksiPengambilanBarang.TransaksiPemesanan;
 
 
 /**
@@ -86,6 +91,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         btnPengambilan.setText("Pengambilan Barang");
         btnPengambilan.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        btnPengambilan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPengambilanActionPerformed(evt);
+            }
+        });
 
         btnOlahData.setText("Pegolahan Data");
         btnOlahData.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +150,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         btnStaff.setText("Master Staff");
+        btnStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStaffActionPerformed(evt);
+            }
+        });
 
         btnCS.setText("Master Customer Service");
         btnCS.addActionListener(new java.awt.event.ActionListener() {
@@ -163,13 +178,12 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnCS, javax.swing.GroupLayout.PREFERRED_SIZE, 162, Short.MAX_VALUE)
-                    .addGroup(panelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnKC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                        .addComponent(btnStaff, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDriver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnJnsPaket, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnKC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(btnStaff, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDriver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnJnsPaket, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCreateLayout.setVerticalGroup(
@@ -303,6 +317,15 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSActionPerformed
         // TODO add your handling code here:
+        if(ubah){
+            ubahCS form = new ubahCS();
+            this.setVisible(false);
+            form.setVisible(true);
+        }else{
+            tambahCS form = new tambahCS();
+            this.setVisible(false);
+            form.setVisible(true);
+        }
     }//GEN-LAST:event_btnCSActionPerformed
 
     private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed
@@ -354,15 +377,36 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        Login login = new Login();
+        this.setVisible(false);
+        login.setVisible(true);
     }//GEN-LAST:event_btnKeluarActionPerformed
 
     private void btnPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPelangganActionPerformed
         // TODO add your handling code here:
-        Pelanggan form = new Pelanggan();
-        form.setVisible(true);
+        Pelanggan form = new Pelanggan(false);
         this.setVisible(false);
     }//GEN-LAST:event_btnPelangganActionPerformed
+
+    private void btnStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStaffActionPerformed
+        // TODO add your handling code here:
+        if(ubah){
+            Ubah_Staff staff = new Ubah_Staff();
+            staff.setVisible(true);
+        }else{
+            Staff staff = new Staff();
+            staff.setVisible(true);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_btnStaffActionPerformed
+
+    private void btnPengambilanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengambilanActionPerformed
+        // TODO add your handling code here:
+        TransaksiPemesanan transaksi = new TransaksiPemesanan();
+        this.setVisible(false);
+        transaksi.setVisible(true);
+               
+    }//GEN-LAST:event_btnPengambilanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,28 +445,20 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCS;
-    private javax.swing.JButton btnCS2;
     private javax.swing.JButton btnDepartment;
-    private javax.swing.JButton btnDepartment2;
     private javax.swing.JButton btnDriver;
-    private javax.swing.JButton btnDriver2;
     private javax.swing.JButton btnJnsPaket;
-    private javax.swing.JButton btnJnsPaket2;
     private javax.swing.JButton btnKC;
-    private javax.swing.JButton btnKC2;
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnOlahData;
     private javax.swing.JButton btnPelanggan;
-    private javax.swing.JButton btnPelanggan2;
     private javax.swing.JButton btnPenerimaan;
     private javax.swing.JButton btnPengambilan;
     private javax.swing.JButton btnPengiriman;
     private javax.swing.JButton btnStaff;
-    private javax.swing.JButton btnStaff2;
     private javax.swing.JButton btnTambahData;
     private javax.swing.JButton btnUbah;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelCreate;
-    private javax.swing.JPanel panelCreate1;
     // End of variables declaration//GEN-END:variables
 }

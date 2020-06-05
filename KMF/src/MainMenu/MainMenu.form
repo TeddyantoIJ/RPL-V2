@@ -122,6 +122,9 @@
             <Property name="text" type="java.lang.String" value="Pengambilan Barang"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPengambilanActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnOlahData">
           <Properties>
@@ -164,14 +167,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="btnCS" pref="162" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnKC" alignment="0" pref="162" max="32767" attributes="0"/>
-                              <Component id="btnStaff" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnDriver" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnJnsPaket" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnDepartment" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnPelanggan" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnKC" alignment="0" pref="162" max="32767" attributes="0"/>
+                          <Component id="btnStaff" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnDriver" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnJnsPaket" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnDepartment" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnPelanggan" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -236,6 +237,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Master Staff"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStaffActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCS">
               <Properties>

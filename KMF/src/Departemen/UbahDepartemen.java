@@ -222,16 +222,17 @@ public class UbahDepartemen extends javax.swing.JFrame {
         
         try{
             connection.stat = connection.conn.createStatement();
-            String query = "SELECT * FROM Departement WHERE id_dpt LIKE '%" +
+            String query = "SELECT * FROM Departement WHERE id_dept LIKE '%" +
                     txtid.getText() + "%'";
             connection.result = connection.stat.executeQuery(query);
             //lakukan perbaris data
-            while(connection.result.next()){
+            connection.result.next();
+            do{
                 Object[] obj = new Object[2];
-                obj[0] = connection.result.getString("id_dpt");
-                obj[1] = connection.result.getString("nama_dpt");
+                obj[0] = connection.result.getString("id_dept");
+                obj[1] = connection.result.getString("nama_dept");
                 model.addRow(obj);
-            }
+            }while(connection.result.next());
             //jika di table tidak ada data yg dicari
             if(model.getRowCount() == 0){
                 JOptionPane.showMessageDialog(this, "Data departement tidak ditemukan");
@@ -240,7 +241,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
             connection.result.close();
         }
         catch(Exception e){
-            System.out.println("Terjadi error saat load Data buku: "+e);
+            System.out.println("Terjadi error saat load Department: "+e.toString());
         }
     }//GEN-LAST:event_btnCariActionPerformed
 
@@ -256,7 +257,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
 
         try {
 
-            String query = "UPDATE Departement SET nama_dpt=? WHERE id_dpt=?";
+            String query = "UPDATE Departement SET nama_dept=? WHERE id_dept=?";
             connection.pstat = connection.conn.prepareStatement(query);
             connection.pstat.setString(1, nama);
             connection.pstat.setString(2, ID);
@@ -294,8 +295,8 @@ public class UbahDepartemen extends javax.swing.JFrame {
             // lakukan perbaris data
             while (connection.result.next()) {
                  Object[] obj = new Object[2];
-                obj[0] = connection.result.getString("id_dpt");
-                obj[1] = connection.result.getString("nama_dpt");
+                obj[0] = connection.result.getString("id_dept");
+                obj[1] = connection.result.getString("nama_dept");
                 model.addRow(obj);
             }
             connection.stat.close();
@@ -332,14 +333,14 @@ public class UbahDepartemen extends javax.swing.JFrame {
         
         try{
             connection.stat = connection.conn.createStatement();
-            String query = "SELECT * FROM Departement WHERE id_dpt LIKE '%" +
+            String query = "SELECT * FROM Departement WHERE id_dept LIKE '%" +
                     txtid.getText() + "%'";
             connection.result = connection.stat.executeQuery(query);
             //lakukan perbaris data
             while(connection.result.next()){
                 Object[] obj = new Object[2];
-                obj[0] = connection.result.getString("id_dpt");
-                obj[1] = connection.result.getString("nama_dpt");
+                obj[0] = connection.result.getString("id_dept");
+                obj[1] = connection.result.getString("nama_dept");
                 model.addRow(obj);
             }
             //jika di table tidak ada data yg dicari
@@ -350,7 +351,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
             connection.result.close();
         }
         catch(Exception e){
-            System.out.println("Terjadi error saat load Data buku: "+e);
+            System.out.println("Terjadi error saat load Data department: "+e);
         }
     }//GEN-LAST:event_btnCariMouseClicked
 

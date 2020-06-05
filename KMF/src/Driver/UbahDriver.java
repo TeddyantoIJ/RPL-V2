@@ -520,8 +520,8 @@ public class UbahDriver extends javax.swing.JFrame {
         }
 
         
-        txtEmail.setText((String) model.getValueAt(i, 4));
-        txtno_telepon.setText((String) model.getValueAt(i, 5));
+        txtEmail.setText((String) model.getValueAt(i, 5));
+        txtno_telepon.setText((String) model.getValueAt(i, 4));
         
         
         addDataColumn();
@@ -606,7 +606,7 @@ public class UbahDriver extends javax.swing.JFrame {
                 clear();
             }
             catch (Exception e) {
-                System.out.println("Terjadi error saat load data driver: " + e);
+                System.out.println("Terjadi error saat load data driver: " + e.toString());
             }
     }
     private void clear(){
