@@ -312,6 +312,7 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void penjemputan() {
         Object[] options = {"Yaa, simpan",
@@ -517,7 +518,7 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        JOptionPane.showMessageDialog(this, "Tidak dapat membatalkan transaksi pick-up!\n");
     }//GEN-LAST:event_btnBatalActionPerformed
     public void fillTableDetail(){
             model1.getDataVector().removeAllElements();
@@ -555,7 +556,7 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
         try {
             DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
-            String query = "select * from Driver";
+            String query = "select * from Driver where status_aktif = 'Aktif'";
             connection.result = connection.stat.executeQuery(query);
 
             while (connection.result.next()) {

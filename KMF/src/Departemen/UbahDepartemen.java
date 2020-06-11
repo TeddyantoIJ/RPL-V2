@@ -5,7 +5,7 @@
  */
 package Departemen;
 
-import MainMenu.MainMenu;
+import MainMenu.MainMenuStaffKelola;
 import connection.DBConnect;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +24,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
     private DefaultTableModel model;
     String ID;
     String nama;
+    String pass;
     
     public UbahDepartemen() {
         initComponents();
@@ -60,6 +61,8 @@ public class UbahDepartemen extends javax.swing.JFrame {
         btnUbah = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDataDepartemen = new javax.swing.JTable();
+        txtpass = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +158,14 @@ public class UbahDepartemen extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblDataDepartemen);
 
+        txtpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpassKeyTyped(evt);
+            }
+        });
+
+        jLabel4.setText("password");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,16 +178,22 @@ public class UbahDepartemen extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUbah)))
@@ -198,7 +215,11 @@ public class UbahDepartemen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnUbah)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -211,6 +232,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
@@ -228,9 +250,10 @@ public class UbahDepartemen extends javax.swing.JFrame {
             //lakukan perbaris data
             connection.result.next();
             do{
-                Object[] obj = new Object[2];
+                Object[] obj = new Object[3];
                 obj[0] = connection.result.getString("id_dept");
                 obj[1] = connection.result.getString("nama_dept");
+                obj[2] = connection.result.getString("pass_dept");
                 model.addRow(obj);
             }while(connection.result.next());
             //jika di table tidak ada data yg dicari
@@ -246,7 +269,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
-        MainMenu m = new MainMenu();
+        MainMenuStaffKelola m = new MainMenuStaffKelola();
         m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnKembaliActionPerformed
@@ -254,13 +277,14 @@ public class UbahDepartemen extends javax.swing.JFrame {
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         ID = txtid.getText();
         nama = txtNama.getText();
-
+        pass = txtpass.getText();
         try {
 
-            String query = "UPDATE Departement SET nama_dept=? WHERE id_dept=?";
+            String query = "UPDATE Departement SET nama_dept=?, pass_dept=? WHERE id_dept=?";
             connection.pstat = connection.conn.prepareStatement(query);
             connection.pstat.setString(1, nama);
-            connection.pstat.setString(2, ID);
+            connection.pstat.setString(2, pass);
+            connection.pstat.setString(3, ID);
 
             connection.pstat.executeUpdate();
             connection.result.close();
@@ -277,6 +301,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
     public void addColomn() {
         model.addColumn("ID Departement");
         model.addColumn("Nama Departement");
+        model.addColumn("Password");
     }
     
     public void loadData() {
@@ -294,9 +319,10 @@ public class UbahDepartemen extends javax.swing.JFrame {
             
             // lakukan perbaris data
             while (connection.result.next()) {
-                 Object[] obj = new Object[2];
+                 Object[] obj = new Object[3];
                 obj[0] = connection.result.getString("id_dept");
                 obj[1] = connection.result.getString("nama_dept");
+                obj[2] = connection.result.getString("pass_dept");
                 model.addRow(obj);
             }
             connection.stat.close();
@@ -309,6 +335,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
     public void clear() {
         txtid.setText("");
         txtNama.setText("");
+        txtpass.setText("");
     }
     
     private void btnNavTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavTambahActionPerformed
@@ -322,6 +349,7 @@ public class UbahDepartemen extends javax.swing.JFrame {
 
         txtid.setText((String) model.getValueAt(i, 0));
         txtNama.setText((String) model.getValueAt(i, 1));
+        txtpass.setText((String) model.getValueAt(i, 2));
     }//GEN-LAST:event_tblDataDepartemenMouseClicked
 
     private void btnCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseClicked
@@ -338,9 +366,10 @@ public class UbahDepartemen extends javax.swing.JFrame {
             connection.result = connection.stat.executeQuery(query);
             //lakukan perbaris data
             while(connection.result.next()){
-                Object[] obj = new Object[2];
+                Object[] obj = new Object[3];
                 obj[0] = connection.result.getString("id_dept");
                 obj[1] = connection.result.getString("nama_dept");
+                obj[2] = connection.result.getString("pass_dept");
                 model.addRow(obj);
             }
             //jika di table tidak ada data yg dicari
@@ -362,6 +391,10 @@ public class UbahDepartemen extends javax.swing.JFrame {
                 
             } 
     }//GEN-LAST:event_txtNamaKeyTyped
+
+    private void txtpassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpassKeyTyped
 
     /**
      * @param args the command line arguments
@@ -406,10 +439,12 @@ public class UbahDepartemen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDataDepartemen;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtpass;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,8 +5,9 @@
  */
 package KantorCabang;
 
-import MainMenu.MainMenu;
+import MainMenu.MainMenuStaffKelola;
 import connection.DBConnect;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,13 +17,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TambahKantorCabang extends javax.swing.JFrame {
     DBConnect connection = new DBConnect();
+     DBConnect c = new DBConnect();
     
     String kode_kantor_cabang;
     String nama_kantor;
-    String telepon;
+    String telphone;
     String alamat;
-    String provinsi;
-    String kotakab;
+    String status_aktif;
     /**
      * Creates new form TambahKantorCabang
      */
@@ -30,7 +31,8 @@ public class TambahKantorCabang extends javax.swing.JFrame {
         initComponents();
        // model = new DefaultTableModel();
      
-        txtKodeKC.setText("KC-"+getLastID());
+       txtKodeKC.setText(autoID());
+        
     }
     
      private void clear()
@@ -39,11 +41,56 @@ public class TambahKantorCabang extends javax.swing.JFrame {
         txtNamaKC.setText("");
         txtTeleponKC.setText("");
         txtAlamatKC.setText("");
-        txtProvinsi.setText("");
-        txtKotaKab.setText("");
+      
     }
      
-    
+     
+     private String autoID()
+    {
+        String maxID = null;
+        int idtr = 0;
+        String id = null;
+        try{
+            c.stat = c.conn.createStatement();
+            String query = "SELECT MAX(kode_kantor_cabang) as ID FROM KantorCabang";
+            c.result = c.stat.executeQuery(query);
+            
+            while(c.result.next()){
+                    maxID = c.result.getString("ID");
+                }
+           c.stat.close();
+           c.result.close();
+           
+           if(maxID != null)
+           {
+               idtr = Integer.parseInt(maxID.substring(2, 5))+1;
+                       if (idtr < 10)
+                       {
+                           id = "KC00" + idtr;
+                       }
+                       else if (idtr >= 10 && idtr < 100)
+                       {
+                           id = "KC0" + idtr;
+                       }
+                       else
+                       {
+                           id = "KC" + idtr;
+                       }
+           }
+           else
+           {
+               id = "KC001";
+           }
+
+        } catch(SQLException ex){
+                System.out.println("Terjadi Error Saat ambil id " + ex);
+        }
+        return id;
+        
+    }
+
+     
+     
      
 
     /**
@@ -69,11 +116,9 @@ public class TambahKantorCabang extends javax.swing.JFrame {
         txtKodeKC = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAlamatKC = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtProvinsi = new javax.swing.JTextField();
-        txtKotaKab = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        cmbStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +152,11 @@ public class TambahKantorCabang extends javax.swing.JFrame {
         });
 
         btnTambah.setText("Tambah");
+        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahActionPerformed(evt);
+            }
+        });
 
         btnUbah.setText("Ubah");
         btnUbah.addActionListener(new java.awt.event.ActionListener() {
@@ -135,23 +185,11 @@ public class TambahKantorCabang extends javax.swing.JFrame {
         txtAlamatKC.setRows(5);
         jScrollPane1.setViewportView(txtAlamatKC);
 
-        jLabel6.setText("Provinsi");
-
-        jLabel7.setText("Kota/Kabupaten");
-
-        txtProvinsi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtProvinsiKeyTyped(evt);
-            }
-        });
-
-        txtKotaKab.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtKotaKabKeyTyped(evt);
-            }
-        });
-
         jButton1.setText("Batal");
+
+        jLabel8.setText("Status");
+
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buka", "Tutup" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,37 +198,35 @@ public class TambahKantorCabang extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnTambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUbah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnKembali))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnTambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnUbah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKodeKC, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtNamaKC)
-                                        .addComponent(txtTeleponKC, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtProvinsi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtKotaKab, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnKembali)
-                        .addGap(111, 111, 111)
-                        .addComponent(btnSimpan)
-                        .addGap(47, 47, 47)
-                        .addComponent(jButton1)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtKodeKC, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNamaKC)
+                                .addComponent(txtTeleponKC, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSimpan)
+                .addGap(47, 47, 47)
+                .addComponent(jButton1)
+                .addGap(135, 135, 135))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnSimpan, jButton1});
@@ -210,12 +246,12 @@ public class TambahKantorCabang extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(btnUbah))
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel4)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel5)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel6))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(btnKembali))
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtKodeKC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17)
@@ -223,72 +259,40 @@ public class TambahKantorCabang extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(txtTeleponKC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtProvinsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtKotaKab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
-                .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpan)
-                    .addComponent(jButton1)
-                    .addComponent(btnKembali))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addComponent(jButton1))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private String getLastID(){
-        String kode_kantor_cabang = null;
-        try{
-            connection.stat = connection.conn.createStatement();
-                String query = "select count(kode_kantor_cabang) Total from KantorCabang";
-                connection.result = connection.stat.executeQuery(query);
-                int count = 0;
-                while (connection.result.next()) {
-                    
-                    count = Integer.parseInt(connection.result.getString("total"));
-                    }
-                connection.stat.close();
-                connection.result.close();
-                count++;
-                
-            if(Integer.toString(count).length() == 1)
-            {
-                kode_kantor_cabang = "000" + count;
-            }
-            else if (Integer.toString(count).length() == 2)
-            {
-                kode_kantor_cabang =  "00" + count;
-            }
-            else if (Integer.toString(count).length() == 3)
-            {
-                kode_kantor_cabang = "0" + count;
-            }
-            else
-            {
-                kode_kantor_cabang = Integer.toString(count);
-            }
-        }
-        catch (Exception ex)
-        {
-            JOptionPane.showMessageDialog(this, "Error!");
-        }
-        return String.valueOf(kode_kantor_cabang);
-    }
-
+   
+    
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         kode_kantor_cabang = txtKodeKC.getText();
         nama_kantor = txtNamaKC.getText();
-        telepon = txtTeleponKC.getText();
+        telphone = txtTeleponKC.getText();
         alamat = txtAlamatKC.getText();
-        provinsi = txtProvinsi.getText();
-        kotakab = txtKotaKab.getText();
+      
+        if(cmbStatus.getSelectedItem() == "Buka")
+        {
+            status_aktif = "1";
+        }
+        else
+        {
+            status_aktif = "0";
+        }
         
-        if(kode_kantor_cabang.equals("")|| nama_kantor.equals("")|| telepon.equals("") || alamat.equals("")|| provinsi.equals("") || kotakab.equals("")){
+        if(kode_kantor_cabang.equals("")|| nama_kantor.equals("")|| telphone.equals("") || alamat.equals("")){
             JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
         }
         else
@@ -298,14 +302,15 @@ public class TambahKantorCabang extends javax.swing.JFrame {
         //untuk memasukkan dalam ke dalam database
         try
         {
-            String query = "INSERT INTO KantorCabang VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO KantorCabang VALUES (?,?,?,?,?)";
             connection.pstat = connection.conn.prepareStatement(query);
             connection.pstat.setString(1, kode_kantor_cabang);
             connection.pstat.setString(2, nama_kantor);
-            connection.pstat.setString(3, telepon);
+            connection.pstat.setString(3, telphone);
             connection.pstat.setString(4, alamat);
-            connection.pstat.setString(5, provinsi);
-            connection.pstat.setString(6, kotakab);
+            connection.pstat.setString(5, status_aktif);
+            
+            
             
             //insert ke dalam database
             connection.pstat.executeUpdate();
@@ -318,7 +323,8 @@ public class TambahKantorCabang extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "insert data kantor cabang berhasil");
         clear();
-        txtKodeKC.setText("KC-"+getLastID());
+         txtKodeKC.setText(autoID());
+        
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
@@ -354,27 +360,16 @@ public class TambahKantorCabang extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_txtTeleponKCKeyTyped
 
-    private void txtProvinsiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProvinsiKeyTyped
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        char enter = evt.getKeyChar();
-            if(!Character.isLetter(enter) && !Character.isISOControl(enter) && !Character.isWhitespace(enter)){
-                evt.consume();
-            }
-    }//GEN-LAST:event_txtProvinsiKeyTyped
-
-    private void txtKotaKabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKotaKabKeyTyped
-        // TODO add your handling code here:
-        char enter = evt.getKeyChar();
-            if(!Character.isLetter(enter) && !Character.isISOControl(enter) && !Character.isWhitespace(enter)){
-                evt.consume();
-            }
-    }//GEN-LAST:event_txtKotaKabKeyTyped
+         txtKodeKC.setText(autoID());
+    }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
-        MainMenu main = new MainMenu();
-        this.setVisible(false);
-        main.setVisible(true);
+        MainMenuStaffKelola back = new MainMenuStaffKelola();
+        this.dispose();
+        back.setVisible(true);
     }//GEN-LAST:event_btnKembaliActionPerformed
 
     /**
@@ -417,20 +412,18 @@ public class TambahKantorCabang extends javax.swing.JFrame {
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
+    private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtAlamatKC;
     private javax.swing.JTextField txtKodeKC;
-    private javax.swing.JTextField txtKotaKab;
     private javax.swing.JTextField txtNamaKC;
-    private javax.swing.JTextField txtProvinsi;
     private javax.swing.JTextField txtTeleponKC;
     // End of variables declaration//GEN-END:variables
 }

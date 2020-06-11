@@ -89,7 +89,7 @@ public void reset() {
         tampilData();
         this.baru = baru;
   
-  hapusPelanggan.setEnabled(false);
+
   ubahPelanggan.setEnabled(false);
     }
 
@@ -104,7 +104,6 @@ public void reset() {
 
         tambahPelanggan = new javax.swing.JButton();
         ubahPelanggan = new javax.swing.JButton();
-        hapusPelanggan = new javax.swing.JButton();
         kembaliPelanggan = new javax.swing.JButton();
         cariPelanggan = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -135,14 +134,6 @@ public void reset() {
         ubahPelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ubahPelangganActionPerformed(evt);
-            }
-        });
-
-        hapusPelanggan.setText("HAPUS");
-        hapusPelanggan.setEnabled(false);
-        hapusPelanggan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hapusPelangganActionPerformed(evt);
             }
         });
 
@@ -240,11 +231,9 @@ public void reset() {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(tambahPelanggan)
-                        .addGap(18, 18, 18)
+                        .addGap(100, 100, 100)
                         .addComponent(ubahPelanggan)
                         .addGap(18, 18, 18)
-                        .addComponent(hapusPelanggan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(resetbtn))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -301,7 +290,6 @@ public void reset() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tambahPelanggan)
                     .addComponent(ubahPelanggan)
-                    .addComponent(hapusPelanggan)
                     .addComponent(resetbtn))
                 .addGap(25, 25, 25)
                 .addComponent(kembaliPelanggan)
@@ -313,6 +301,7 @@ public void reset() {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void kembaliPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliPelangganActionPerformed
@@ -448,22 +437,6 @@ private String getLastID(){
         reset();
     }//GEN-LAST:event_resetbtnActionPerformed
 
-    private void hapusPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusPelangganActionPerformed
-//        try {
-//    int jawab;
-//    
-//    if ((jawab = JOptionPane.showConfirmDialog(null, "Ingin menghapus data?", "konfirmasi", JOptionPane.YES_NO_OPTION)) == 0) {
-//      st = cn.createStatement();
-//      st.executeUpdate("DELETE FROM Pelanggan WHERE ID='"
-//          + tabModel.getValueAt(tabelPelanggan.getSelectedRow(), 0) + "'");
-//      tampilData("");
-//      reset();
-//    }
-//  } catch (Exception e) {
-//    e.printStackTrace();
-//  }
-    }//GEN-LAST:event_hapusPelangganActionPerformed
-
     private void noHpPelangganKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noHpPelangganKeyTyped
         // TODO add your handling code here:
         FilterAngka(evt);
@@ -579,7 +552,6 @@ private String getLastID(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alamatPelanggan;
     private javax.swing.JButton cariPelanggan;
-    private javax.swing.JButton hapusPelanggan;
     private javax.swing.JTextField idPelanggan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -5,7 +5,7 @@
  */
 package Departemen;
 
-import MainMenu.MainMenu;
+import MainMenu.MainMenuStaffKelola;
 import connection.DBConnect;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +22,7 @@ public class TambahDepartemen extends javax.swing.JFrame {
     private DefaultTableModel model;
     String ID;
     String nama;
+    String pass;
     
     public TambahDepartemen() {
         initComponents();
@@ -47,6 +48,8 @@ public class TambahDepartemen extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnKembali = new javax.swing.JButton();
         btnNavUbah = new javax.swing.JButton();
+        txtpass = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,6 +126,14 @@ public class TambahDepartemen extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnKembali, btnNavUbah});
 
+        txtpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpassKeyTyped(evt);
+            }
+        });
+
+        jLabel4.setText("password");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,16 +149,20 @@ public class TambahDepartemen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel3)
@@ -159,11 +174,17 @@ public class TambahDepartemen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(btnSimpan))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSimpan)
+                .addGap(47, 47, 47))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private String getLastID(){
@@ -216,19 +237,21 @@ public class TambahDepartemen extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         ID = txtid.getText();
         nama = txtNama.getText();
+        pass = txtpass.getText();
 
         if(ID.equals("")||nama.equals("")){
-            JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
+            JOptionPane.showMessageDialog(this, "nama tidak boleh kosong!");
         }
         else
         {
             try
             {
-                String query = "INSERT INTO Departement VALUES(?,?)";
+                String query = "INSERT INTO Departement VALUES(?,?,?)";
                 connection.pstat = connection.conn.prepareStatement(query);
                 connection.pstat.setString(1, ID);
                 connection.pstat.setString(2, nama);
-
+                connection.pstat.setString(3, pass);
+                
                 connection.pstat.executeUpdate();//insert ke database
                 connection.pstat.close();//menutup koneksi db
 
@@ -246,10 +269,11 @@ public class TambahDepartemen extends javax.swing.JFrame {
     public void clear() {
         txtid.setText("");
         txtNama.setText("");
+        txtpass.setText("");
     }
     
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
-        MainMenu m = new MainMenu();
+        MainMenuStaffKelola m = new MainMenuStaffKelola();
         m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnKembaliActionPerformed
@@ -261,6 +285,10 @@ public class TambahDepartemen extends javax.swing.JFrame {
                 
             }  
     }//GEN-LAST:event_txtNamaKeyTyped
+
+    private void txtpassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpassKeyTyped
 
     /**
      * @param args the command line arguments
@@ -304,9 +332,11 @@ public class TambahDepartemen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtpass;
     // End of variables declaration//GEN-END:variables
 }

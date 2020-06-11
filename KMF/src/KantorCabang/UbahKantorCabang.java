@@ -20,8 +20,8 @@ public class UbahKantorCabang extends javax.swing.JFrame {
     String nama_kantor;
     String telepon;
     String alamat;
-    String provinsi;
-    String kotakab;
+    String status_aktif;
+    
     /**
      * Creates new form UbahKantorCabang
      */
@@ -33,6 +33,24 @@ public class UbahKantorCabang extends javax.swing.JFrame {
         addcolumn();
          
     }
+    public void tampilStatus()
+    {
+        try{
+            DBConnect c = new DBConnect();
+            c.stat = c.conn.createStatement();
+            String sql = "SELECT status_aktif FROM KantorCabang";
+            c.result = c.stat.executeQuery(sql);
+            
+            while (c.result.next()){
+                cmbStatus.addItem(c.result.getString("status_aktif"));
+            }
+            c.stat.close();
+            c.result.close();
+          
+        }catch (Exception ex){
+            System.out.println("Terjadi erro saat load data status" + ex);
+        }
+    }
     
     public void addcolumn()
     {
@@ -40,9 +58,7 @@ public class UbahKantorCabang extends javax.swing.JFrame {
         model.addColumn("Nama Kantor Cabang");
         model.addColumn("Telepon");
         model.addColumn("Alamat Kantor Cabang");
-        model.addColumn("Provinsi");
-        model.addColumn("Kota/Kabupaten");
-        
+        model.addColumn("Status");
     }
     
     private void clear()
@@ -51,8 +67,7 @@ public class UbahKantorCabang extends javax.swing.JFrame {
         txtNamaKC.setText("");
         txtTeleponKC.setText("");
         txtAlamatKC.setText("");
-        txtProvinsi.setText("");
-        txtKotaKab.setText("");
+       
     }
     
     public void loaddata()
@@ -73,10 +88,9 @@ public class UbahKantorCabang extends javax.swing.JFrame {
                 Object[] obj = new Object[6];
                 obj[0] = connection.result.getString("kode_kantor_cabang");
                 obj[1] = connection.result.getString("nama_kantor");
-                obj[2] = connection.result.getString("telepon");
+                obj[2] = connection.result.getString("telphone");
                 obj[3] = connection.result.getString("alamat");
-                obj[4] = connection.result.getString("provinsi");
-                obj[5] = connection.result.getString("kotakab");
+                obj[4] = connection.result.getString("status_aktif");
                 
                 model.addRow(obj);
             }
@@ -109,10 +123,9 @@ public class UbahKantorCabang extends javax.swing.JFrame {
                 Object[] obj = new Object[6];
                 obj[0] = connection.result.getString("kode_kantor_cabang");
                 obj[1] = connection.result.getString("nama_kantor");
-                obj[2] = connection.result.getString("telepon");
+                obj[2] = connection.result.getString("telphone");
                 obj[3] = connection.result.getString("alamat");
-                obj[4] = connection.result.getString("provinsi");
-                obj[5] = connection.result.getString("kotakab");
+                obj[4] = connection.result.getString("status_aktif");
                 
                 model.addRow(obj);
             }
@@ -163,10 +176,8 @@ public class UbahKantorCabang extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnTambah = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtKotaKab = new javax.swing.JTextField();
-        txtProvinsi = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        cmbStatus = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -251,30 +262,18 @@ public class UbahKantorCabang extends javax.swing.JFrame {
 
         jLabel4.setText("Telepon");
 
-        jLabel6.setText("Provinsi");
+        jLabel8.setText("Status");
 
-        jLabel7.setText("Kota/Kabupaten");
-
-        txtKotaKab.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtKotaKabKeyTyped(evt);
-            }
-        });
-
-        txtProvinsi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtProvinsiKeyTyped(evt);
-            }
-        });
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buka", "Tutup" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(btnTambah)
-                .addGap(62, 62, 62)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -284,23 +283,23 @@ public class UbahKantorCabang extends javax.swing.JFrame {
                         .addComponent(btnUbah1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(73, 73, 73)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5))
-                                .addGap(28, 28, 28)))
+                                .addComponent(jLabel8)
+                                .addGap(75, 75, 75)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTeleponKC, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNamaKC, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProvinsi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKotaKab, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -327,18 +326,15 @@ public class UbahKantorCabang extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(41, 41, 41))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtKotaKab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtProvinsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jButton1.setText("Batal");
@@ -395,6 +391,7 @@ public class UbahKantorCabang extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
@@ -403,8 +400,15 @@ public class UbahKantorCabang extends javax.swing.JFrame {
        nama_kantor = txtNamaKC.getText();
        telepon = txtTeleponKC.getText();
        alamat = txtAlamatKC.getText();
-       provinsi = txtProvinsi.getText();
-       kotakab = txtKotaKab.getText();
+        if(cmbStatus.getSelectedItem() == "Aktif")
+        {
+            status_aktif = "1";
+        }
+        else
+        {
+            status_aktif = "0";
+        }
+       
        
 //       if(kode_kantor_cabang.equals("")|| nama_kantor.equals("")|| telepon.equals("") || alamat.equals("")|| provinsi.equals("") || kotakab.equals("")){
 //            JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
@@ -414,14 +418,13 @@ public class UbahKantorCabang extends javax.swing.JFrame {
 //            
        try
        {
-           String query = "UPDATE KantorCabang set nama_kantor=?, telepon=?, alamat=?, provinsi=?, kotakab =? WHERE kode_kantor_cabang=?";
+           String query = "UPDATE KantorCabang set nama_kantor=?, telphone=?, alamat=?, status_aktif=? WHERE kode_kantor_cabang=?";
            connection.pstat = connection.conn.prepareStatement(query);
            connection.pstat.setString(1, nama_kantor);
            connection.pstat.setString(2, telepon);
            connection.pstat.setString(3, alamat);
-           connection.pstat.setString(4, provinsi);
-           connection.pstat.setString(5, kotakab);
-           connection.pstat.setString(6, kode_kantor_cabang);
+           connection.pstat.setString(4, status_aktif);
+           connection.pstat.setString(5, kode_kantor_cabang);
            
            connection.pstat.executeUpdate(); //insert ke database
            connection.pstat.close(); //menutup koneksi database
@@ -455,8 +458,8 @@ public class UbahKantorCabang extends javax.swing.JFrame {
        txtNamaKC.setText((String) model.getValueAt(i, 1));
        txtTeleponKC.setText((String) model.getValueAt(i, 2));
        txtAlamatKC.setText((String) model.getValueAt(i, 3));
-       txtProvinsi.setText((String) model.getValueAt(i, 4));
-       txtKotaKab.setText((String) model.getValueAt(i, 5));
+       cmbStatus.setSelectedItem((String) model.getValueAt(i, 4));
+       
     }//GEN-LAST:event_tblKantorCabangMouseClicked
 
     private void btnUbah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbah1ActionPerformed
@@ -502,27 +505,8 @@ public class UbahKantorCabang extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_txtTeleponKCKeyTyped
 
-    private void txtProvinsiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProvinsiKeyTyped
-        // TODO add your handling code here:
-        char enter = evt.getKeyChar();
-            if(!Character.isLetter(enter) && !Character.isISOControl(enter) && !Character.isWhitespace(enter)){
-                evt.consume();
-            }
-    }//GEN-LAST:event_txtProvinsiKeyTyped
-
-    private void txtKotaKabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKotaKabKeyTyped
-        // TODO add your handling code here:
-        char enter = evt.getKeyChar();
-            if(!Character.isLetter(enter) && !Character.isISOControl(enter) && !Character.isWhitespace(enter)){
-                evt.consume();
-            }
-    }//GEN-LAST:event_txtKotaKabKeyTyped
-
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        TambahKantorCabang form = new TambahKantorCabang();
-        form.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     /**
@@ -566,23 +550,21 @@ public class UbahKantorCabang extends javax.swing.JFrame {
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JButton btnUbah1;
+    private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblKantorCabang;
     private javax.swing.JTextArea txtAlamatKC;
     private javax.swing.JTextField txtKodeKC;
-    private javax.swing.JTextField txtKotaKab;
     private javax.swing.JTextField txtNamaKC;
-    private javax.swing.JTextField txtProvinsi;
     private javax.swing.JTextField txtTeleponKC;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package list;
+package ListPickUp;
 
 import MainMenu.Login;
 import connection.DBConnect;
@@ -119,7 +119,7 @@ public class Status extends javax.swing.JFrame {
             }
         });
 
-        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sudah", "Belum", "Gagal" }));
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Sudah", "Belum", "Gagal" }));
         cmbStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbStatusActionPerformed(evt);
@@ -192,13 +192,14 @@ public class Status extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnKembali)
-                    .addComponent(btnCetak))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCetak)
+                    .addComponent(btnKembali))
                 .addGap(35, 35, 35))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
@@ -261,9 +262,15 @@ public class Status extends javax.swing.JFrame {
             model.fireTableDataChanged();
 
             try {
-                DBConnect connection = new DBConnect();
+                
                 connection.stat = connection.conn.createStatement();
-                String query = "select * from detailPickUp where ID_Staff = '"+txtid_driver.getText()+"' and keterangan ='"+status+"'";
+                String query;
+                if(status.equals("Semua")){
+                    query = "select * from detailPickUp where ID_Staff = '"+txtid_driver.getText()+"'";
+                }else{
+                    query = "select * from detailPickUp where ID_Staff = '"+txtid_driver.getText()+"' and keterangan ='"+status+"'";
+                }
+                
                 connection.result = connection.stat.executeQuery(query);
 
                 while (connection.result.next()) {
@@ -280,7 +287,7 @@ public class Status extends javax.swing.JFrame {
                 connection.stat.close();
                 connection.result.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Gagal111!\n" + e.toString());
+                //JOptionPane.showMessageDialog(this, "Gagal111!\n" + e.toString());
             }
     }
     private void txtid_driverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtid_driverActionPerformed

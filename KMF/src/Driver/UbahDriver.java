@@ -26,11 +26,21 @@ public class UbahDriver extends javax.swing.JFrame {
      * Creates new form UbahDriver
      */
     private DefaultTableModel model;
-    
+    private String KantorCabang = "";
         
     public UbahDriver() {
         initComponents();
         
+        model = new DefaultTableModel();
+        
+        //menambahkan table model ke table
+        addColumn();
+        addDataColumn();
+        tableDriver.setModel(model);
+    }
+    public UbahDriver(String kantorCabang) {
+        initComponents();
+        this.KantorCabang = kantorCabang;
         model = new DefaultTableModel();
         
         //menambahkan table model ke table
@@ -73,6 +83,7 @@ public class UbahDriver extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDriver = new javax.swing.JTable();
         btnUbah = new javax.swing.JButton();
+        btnStatus = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setText("UBAH DEPARTEMEN");
@@ -244,6 +255,13 @@ public class UbahDriver extends javax.swing.JFrame {
             }
         });
 
+        btnStatus.setText("Status");
+        btnStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -273,8 +291,11 @@ public class UbahDriver extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtnama_driver, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnUbah)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnStatus)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnUbah))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel7)
@@ -326,7 +347,9 @@ public class UbahDriver extends javax.swing.JFrame {
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(btnUbah)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUbah)
+                    .addComponent(btnStatus))
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -334,6 +357,7 @@ public class UbahDriver extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void addColumn(){
@@ -344,6 +368,29 @@ public class UbahDriver extends javax.swing.JFrame {
         model.addColumn("No Telepon");
         model.addColumn("Email");
         model.addColumn("Status Pcik Up");
+        model.addColumn("Status");
+    }
+    private String getKodeKantorCabang(String in){
+        DBConnect connection = new DBConnect();
+        String output= "";
+        try{
+            connection.stat = connection.conn.createStatement();
+                String query = "select * from KantorCabang where nama_kantor ='"+in+"'";
+                connection.result = connection.stat.executeQuery(query);
+                
+                connection.result.next();
+                    
+                output = (connection.result.getString("kode_kantor_cabang"));
+                
+                
+                connection.stat.close();
+                connection.result.close();
+                
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return output;
     }
     private void addDataColumn(){
         model.getDataVector().removeAllElements();
@@ -353,11 +400,11 @@ public class UbahDriver extends javax.swing.JFrame {
         try {
             DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
-            String query = "select * from Driver";
+            String query = "select * from Driver where kode_kantor_cabang ='"+getKodeKantorCabang(KantorCabang)+"'";
             connection.result = connection.stat.executeQuery(query);
 
             while (connection.result.next()) {
-                Object[] obj = new Object[7];
+                Object[] obj = new Object[8];
                 obj[0] = connection.result.getString("ID_Staff");
                 obj[1] = connection.result.getString("nama_staff");
                 obj[2] = connection.result.getString("alamat_staff");
@@ -365,8 +412,7 @@ public class UbahDriver extends javax.swing.JFrame {
                 obj[4] = connection.result.getString("no_telphone");
                 obj[5] = connection.result.getString("email");
                 obj[6] = connection.result.getString("Status_pickup");
-
-
+                obj[7] = connection.result.getString("status_aktif");
 
                 model.addRow(obj);
             }
@@ -411,11 +457,11 @@ public class UbahDriver extends javax.swing.JFrame {
         try{
             connection.stat = connection.conn.createStatement();
             String query = "SELECT * FROM Driver WHERE ID_Staff LIKE '%" +
-            txtid_driver.getText() + "%'";
+            txtid_driver.getText() + "%' and kode_kantor_cabang ='"+getKodeKantorCabang(KantorCabang)+"'";
             connection.result = connection.stat.executeQuery(query);
             //lakukan perbaris data
-            while(connection.result.next()){
-                Object[] obj = new Object[7];
+            while (connection.result.next()) {
+                Object[] obj = new Object[8];
                 obj[0] = connection.result.getString("ID_Staff");
                 obj[1] = connection.result.getString("nama_staff");
                 obj[2] = connection.result.getString("alamat_staff");
@@ -423,6 +469,8 @@ public class UbahDriver extends javax.swing.JFrame {
                 obj[4] = connection.result.getString("no_telphone");
                 obj[5] = connection.result.getString("email");
                 obj[6] = connection.result.getString("Status_pickup");
+                obj[7] = connection.result.getString("status_aktif");
+
                 model.addRow(obj);
             }
             //jika di table tidak ada data yg dicari
@@ -433,7 +481,7 @@ public class UbahDriver extends javax.swing.JFrame {
             connection.result.close();
         }
         catch(Exception e){
-            System.out.println("Terjadi error saat load Data Jenis Paket: "+e);
+            System.out.println("Terjadi error saat load Data Driver: "+e);
         }
     }//GEN-LAST:event_btnCariMouseClicked
 
@@ -523,8 +571,13 @@ public class UbahDriver extends javax.swing.JFrame {
         txtEmail.setText((String) model.getValueAt(i, 5));
         txtno_telepon.setText((String) model.getValueAt(i, 4));
         
+        if(((String) model.getValueAt(i, 7)).equals("Aktif") == true){
+            btnStatus.setText("Non-aktifkan");
+        }else{
+            btnStatus.setText("Aktifkan");
+        }
         
-        addDataColumn();
+        //addDataColumn();
     }//GEN-LAST:event_tableDriverMouseClicked
     private static final String EMAIL_PATTERN = 
     "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -579,6 +632,83 @@ public class UbahDriver extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnUbahActionPerformed
 
+    private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
+        // TODO add your handling code here:
+        if(!btnStatus.getText().equals("Status")){
+            Object[] options = {"Yaa, simpan",
+                "Tidak, batal"};
+            int n;
+            
+            
+        if(btnStatus.getText().equals("Non-aktifkan")){
+            penjemputan:
+            {
+                n = JOptionPane.showOptionDialog(this,
+                        "Yakin Non-aktifkan driver \n"
+                        + "ID Driver     : " + txtid_driver.getText()
+                        + "\nNama          : " + txtnama_driver.getText(),
+                        "Pertanyaan",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+            }
+            if (n == 0) {
+                updateStatusDriver(-1);
+            } else if (n == 1) {
+                JOptionPane.showMessageDialog(this,
+                        "Batal!");
+            }
+        }else{
+            penjemputan:
+            {
+                n = JOptionPane.showOptionDialog(this,
+                        "Yakin Aktifkan driver\n"
+                        + "ID Driver     : " + txtid_driver.getText()
+                        + "\nNama          : " + txtnama_driver.getText(),
+                        "Pertanyaan",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+            }
+            if (n == 0) {
+                updateStatusDriver(0);
+            } else if (n == 1) {
+                JOptionPane.showMessageDialog(this,
+                        "Batal!");
+            }
+        }
+        }
+        
+    }//GEN-LAST:event_btnStatusActionPerformed
+
+    private void updateStatusDriver(int i){
+        DBConnect connection = new DBConnect();
+        try {
+            String query;
+            if(i == 0){
+                query = "UPDATE Driver SET status_aktif = 'Aktif' WHERE ID_Staff=?";
+            }else{
+                query = "UPDATE Driver SET status_aktif = 'Non-aktif' WHERE ID_Staff=?";
+            }
+                
+                connection.pstat = connection.conn.prepareStatement(query);
+                connection.pstat.setString(1, txtid_driver.getText());
+
+                connection.pstat.executeUpdate();
+                //connection.result.close();
+                
+                addDataColumn();
+                JOptionPane.showMessageDialog(this, "Driver berhasil di"+btnStatus.getText());
+                clear();
+            }
+            catch (Exception e) {
+                System.out.println("Terjadi error saat update data driver: " + e.toString());
+            }
+    }
     private void updateDriver(){
         DBConnect connection = new DBConnect();
         try {
@@ -599,7 +729,7 @@ public class UbahDriver extends javax.swing.JFrame {
 
 
                 connection.pstat.executeUpdate();
-                connection.result.close();
+                //connection.result.close();
 
                 addDataColumn();
                 JOptionPane.showMessageDialog(this, "Ubah data driver berhasil");
@@ -658,6 +788,7 @@ public class UbahDriver extends javax.swing.JFrame {
     private javax.swing.JButton btnKembali1;
     private javax.swing.JButton btnNavTambah;
     private javax.swing.JButton btnNavTambah1;
+    private javax.swing.JButton btnStatus;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

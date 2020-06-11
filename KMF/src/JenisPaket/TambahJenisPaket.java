@@ -177,6 +177,7 @@ public class TambahJenisPaket extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private String getLastID(){

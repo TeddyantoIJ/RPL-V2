@@ -6,6 +6,7 @@
 package TransaksiPengambilanBarang;
 
 import MainMenu.MainMenu;
+import MainMenu.MainMenuCS;
 import Pelanggan.Pelanggan;
 import connection.DBConnect;
 import java.text.Format;
@@ -23,6 +24,14 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
      * Creates new form TransaksiPemesanan
      */
     private DBConnect connection = new DBConnect();
+    private String txtid_cs = null;
+    private String txtkode_kantor_cabang = null;
+    
+    public TransaksiPemesanan(String customer, String kantor) {
+        this.txtid_cs = customer;
+        this.txtkode_kantor_cabang = kantor;
+        initComponents();
+    }
     public TransaksiPemesanan() {
         initComponents();
     }
@@ -315,52 +324,48 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtid_pemesanan)
+                                .addComponent(txtnama_pelanggan)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtid_pelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnDaftar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtJenis_barang))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtid_pemesanan)
-                                        .addComponent(txtnama_pelanggan)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(txtid_pelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btnDaftar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(txtJenis_barang))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtberat_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel19)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnPlus)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnMinus))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbJenis_paket, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
+                                .addComponent(txtberat_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel19)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnPlus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMinus))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbJenis_paket, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
@@ -398,22 +403,24 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
                                         .addComponent(txtalamat_penerima, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(cbPick_up))
                                 .addContainerGap())))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelPick_up, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(panelPick_up, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBatal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLanjutkan)
                 .addGap(17, 17, 17))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(337, 337, 337))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtid_pelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -498,6 +505,7 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -505,8 +513,6 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
 
-        
-        
     }//GEN-LAST:event_formWindowActivated
     private void addItemJenisPaket(){
         cmbJenis_paket.removeAll();
@@ -727,7 +733,7 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-        MainMenu m = new MainMenu();
+        MainMenuCS m = new MainMenuCS();
         m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
@@ -762,6 +768,10 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
         txtnama_penerima.setText("");
         txtno_telpon.setText("");
         txtid_pemesanan.setText("Segera Diperbarui");
+        cbPick_up.setSelected(false);
+        cmbJenis_paket.setSelectedIndex(0);
+        cmbKotaKabupaten.setSelectedIndex(0);
+        cmbKota_pickup.setSelectedIndex(0);
     }
     private String id="";
     private void btnLanjutkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanjutkanActionPerformed
@@ -927,6 +937,48 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
         }
         return null;
     }
+    private String getIDPaket(){
+        
+        try{
+            connection.stat = connection.conn.createStatement();
+                String query = "select jns_id from JenisPaket where jns_nama = '"+cmbJenis_paket.getSelectedItem().toString()+"'";
+                connection.result = connection.stat.executeQuery(query);
+                String output = null;
+                while (connection.result.next()) {
+                    
+                    output = (connection.result.getString("jns_id"));
+                    
+                }
+                connection.stat.close();
+                connection.result.close();
+                return output;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
+    private String getIDKantor(){
+        
+        try{
+            connection.stat = connection.conn.createStatement();
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '"+txtkode_kantor_cabang+"'";
+            connection.result = connection.stat.executeQuery(query);
+            String output = null;
+            while (connection.result.next()) {
+
+                output = (connection.result.getString("kode_kantor_cabang"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            return output;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
     /**
      * @param args the command line arguments
      */
@@ -963,31 +1015,41 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
     }
 
     private void inputPesanan() {
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Format formatter = new SimpleDateFormat("hh:mm:ss");
         
         
         try {
-            String query = "insert into DataBarangPelanggan values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into DataBarangPelanggan values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             connection.pstat = connection.conn.prepareStatement(query);
             connection.pstat.setString(1, txtid_pemesanan.getText());
-            connection.pstat.setString(2, txtJenis_barang.getText());
-            connection.pstat.setString(3, txtKeteranganBarang.getText());
-            connection.pstat.setString(4, "-");
-            connection.pstat.setString(5, cmbJenis_paket.getSelectedItem().toString());
-            connection.pstat.setString(6, txtTanggal.getText());
-            connection.pstat.setString(7, txtBiaya.getText());
-            connection.pstat.setString(8, txtnama_penerima.getText());
-            connection.pstat.setString(9, txtalamat_penerima.getText());
-            connection.pstat.setString(10, cmbKotaKabupaten.getSelectedItem().toString());
-            connection.pstat.setString(11, txtno_telpon.getText());
-            
+            connection.pstat.setString(2, txtid_pelanggan.getText());
+            connection.pstat.setString(3, txtJenis_barang.getText());
+            connection.pstat.setString(4, txtberat_barang.getText());
+            connection.pstat.setString(5, txtKeteranganBarang.getText());
+            connection.pstat.setString(6, getIDPaket());
+            connection.pstat.setString(7, txtnama_penerima.getText());
+            connection.pstat.setString(8, txtalamat_penerima.getText());
+            connection.pstat.setString(9, cmbKotaKabupaten.getSelectedItem().toString());
+            connection.pstat.setString(10, txtno_telpon.getText());
+            connection.pstat.setString(11, txtKeterangan.getText());
             if(cbPick_up.isSelected() == true){
-                connection.pstat.setString(12, "BELUM");
+                connection.pstat.setString(12, "Pickup");
+                connection.pstat.setString(16, "BELUM");
             }else{
-                connection.pstat.setString(12, "LUNAS");
+                connection.pstat.setString(12, "Non-Pickup");
+                connection.pstat.setString(16, "LUNAS");
             }
             
-            connection.pstat.setString(13, txtid_pelanggan.getText());
+            Date date = new Date();
+            String waktu = formatter.format(date);
+            System.out.println(waktu);
+            connection.pstat.setString(13, txtTanggal.getText());
+            connection.pstat.setString(14,formatter.format(date));
+            connection.pstat.setString(15, txtBiaya.getText());
+            connection.pstat.setString(17, "-");
+            connection.pstat.setString(18, txtid_cs);
+            connection.pstat.setString(19, getIDKantor());
+            
 
             connection.pstat.executeUpdate();
             connection.pstat.close();
@@ -1000,13 +1062,14 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
             }
             
             
-            txtid_pelanggan.setText("PLGN-");
+            
             clear();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal!\n" + e.toString());
         }
         
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnDaftar;

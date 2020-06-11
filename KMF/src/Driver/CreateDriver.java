@@ -25,9 +25,16 @@ public class CreateDriver extends javax.swing.JFrame {
     "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    private String KantorCabang = "";
     public CreateDriver() {
         initComponents();
         txtid_driver.setText("DRV-"+getLastID());
+    }
+    public CreateDriver(String kantorCabang) {
+        initComponents();
+        txtid_driver.setText("DRV-"+getLastID());
+        this.KantorCabang = kantorCabang;
+        txtKantorCabang.setText(kantorCabang);
     }
 
     /**
@@ -55,6 +62,8 @@ public class CreateDriver extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         btnBatal = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtKantorCabang = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,6 +136,10 @@ public class CreateDriver extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Email");
+
+        txtKantorCabang.setText("KantorCabang");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,16 +155,6 @@ public class CreateDriver extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtid_driver)
                             .addComponent(txtnama_driver, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txttanggal_lahir, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtno_telepon)
-                            .addComponent(txtEmail)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(69, 69, 69)
@@ -166,7 +169,20 @@ public class CreateDriver extends javax.swing.JFrame {
                                     .addComponent(jLabel1))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(54, 54, 54)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtKantorCabang)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txttanggal_lahir, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(txtno_telepon)
+                                .addComponent(txtEmail)))))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -204,7 +220,11 @@ public class CreateDriver extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtKantorCabang))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBatal)
                     .addComponent(btnSimpan))
@@ -212,6 +232,7 @@ public class CreateDriver extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
@@ -243,7 +264,8 @@ public class CreateDriver extends javax.swing.JFrame {
                         + "\nAlamat        : " + txtAlamat.getText()
                         + "\nTanggal Lahir : " + tanggal
                         + "\nNo Telepon    : " + txtno_telepon.getText()
-                        + "\nEmail         : " + txtEmail.getText(),
+                        + "\nEmail         : " + txtEmail.getText()
+                        + "\nKantor        : " + txtKantorCabang.getText(),
                         "Pertanyaan",
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
@@ -364,12 +386,56 @@ public class CreateDriver extends javax.swing.JFrame {
         }
         return null;
     }
+    private String getDeptID(String in){
+        DBConnect connection = new DBConnect();
+        String output= "";
+        try{
+            connection.stat = connection.conn.createStatement();
+                String query = "select * from Departement where nama_dept ='"+in+"'";
+                connection.result = connection.stat.executeQuery(query);
+                
+                connection.result.next();
+                    
+                output = (connection.result.getString("id_dept"));
+                
+                
+                connection.stat.close();
+                connection.result.close();
+                
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return output;
+    }
+    private String getKodeKantorCabang(String in){
+        DBConnect connection = new DBConnect();
+        String output= "";
+        try{
+            connection.stat = connection.conn.createStatement();
+                String query = "select * from KantorCabang where nama_kantor ='"+in+"'";
+                connection.result = connection.stat.executeQuery(query);
+                
+                connection.result.next();
+                    
+                output = (connection.result.getString("kode_kantor_cabang"));
+                
+                
+                connection.stat.close();
+                connection.result.close();
+                
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return output;
+    }
     private void inputDriver() {
         Format formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String tanggal = formatter.format(txttanggal_lahir.getDate());
         DBConnect connection = new DBConnect();
         try {
-            String query = "insert into Driver values (?,?,?,?,?,?,?)";
+            String query = "insert into Driver values (?,?,?,?,?,?,?,?,?,?)";
             connection.pstat = connection.conn.prepareStatement(query);
             connection.pstat.setString(1, txtid_driver.getText());
             connection.pstat.setString(2, txtnama_driver.getText());
@@ -378,7 +444,10 @@ public class CreateDriver extends javax.swing.JFrame {
             connection.pstat.setString(5, txtno_telepon.getText());
             connection.pstat.setString(6, txtEmail.getText());
             connection.pstat.setString(7, "Tidak aktif");
-
+            connection.pstat.setString(8, "Aktif");
+            connection.pstat.setString(9, getKodeKantorCabang(KantorCabang));
+            connection.pstat.setString(10, getDeptID("Driver"));
+            
             connection.pstat.executeUpdate();
             connection.pstat.close();
             JOptionPane.showMessageDialog(this,
@@ -433,9 +502,11 @@ public class CreateDriver extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtAlamat;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JLabel txtKantorCabang;
     private javax.swing.JLabel txtid_driver;
     private javax.swing.JTextField txtnama_driver;
     private javax.swing.JTextField txtno_telepon;
