@@ -26,6 +26,7 @@ public class ubahCS extends javax.swing.JFrame {
     /**
      * Creates new form updateCS
      */
+    private String txtkode_kantor_cabang = "";
     public ubahCS() {
         initComponents();
         //this.tanggal = String.valueOf(fm.format(TglLahir.getDate()));
@@ -39,7 +40,41 @@ public class ubahCS extends javax.swing.JFrame {
         //menambahkan table model ke table
         tblCS.setModel(model);
     }
+    public ubahCS(String kantorCabang) {
+        initComponents();
+        this.txtkode_kantor_cabang = getIDKantor(kantorCabang);
+        //this.tanggal = String.valueOf(fm.format(TglLahir.getDate()));
+        //membuat tabel model
+        model = new DefaultTableModel();
+        
+        //memanggil method addColumn dan method loadData
+        addColumn();
+        loadData();
+        
+        //menambahkan table model ke table
+        tblCS.setModel(model);
+    }
+    private String getIDKantor(String in){
+        
+        try{
+            connection.stat = connection.conn.createStatement();
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '"+in+"'";
+            connection.result = connection.stat.executeQuery(query);
+            String output = null;
+            while (connection.result.next()) {
 
+                output = (connection.result.getString("kode_kantor_cabang"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            return output;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
     public void addColumn(){
         model.addColumn("ID CS");
         model.addColumn("Nama");

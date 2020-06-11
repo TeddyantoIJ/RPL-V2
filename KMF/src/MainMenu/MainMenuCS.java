@@ -56,7 +56,7 @@ public class MainMenuCS extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("permintaan pick up");
+        jButton2.setText("update pick up");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -132,9 +132,7 @@ public class MainMenuCS extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       permintaan_Pick_Up m = new permintaan_Pick_Up();
-        m.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

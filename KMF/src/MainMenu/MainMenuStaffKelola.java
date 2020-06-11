@@ -327,11 +327,11 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
     private void btnCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSActionPerformed
         // TODO add your handling code here:
         if(ubah){
-            ubahCS form = new ubahCS();
+            ubahCS form = new ubahCS(KantorCabang);
             this.setVisible(false);
             form.setVisible(true);
         }else{
-            tambahCS form = new tambahCS();
+            tambahCS form = new tambahCS(KantorCabang);
             this.setVisible(false);
             form.setVisible(true);
         }

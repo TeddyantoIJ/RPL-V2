@@ -136,7 +136,7 @@ public class MainMenuStaff extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPengirimanActionPerformed
 
     private void btnKelolaDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKelolaDataActionPerformed
-        MainMenuStaffKelola transaksi = new MainMenuStaffKelola();
+        MainMenuStaffKelola transaksi = new MainMenuStaffKelola(KantorCabang);
         this.setVisible(false);
         transaksi.setVisible(true);
 

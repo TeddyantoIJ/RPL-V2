@@ -183,7 +183,7 @@ public class Login extends javax.swing.JFrame {
     private void addItemKantor(){
         cbKantorCabang.removeAll();
         try {
-            
+            DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
             String query = "SELECT nama_kantor FROM KantorCabang";
             connection.result = connection.stat.executeQuery(query);
@@ -203,7 +203,7 @@ public class Login extends javax.swing.JFrame {
     private void addItemDepartement(){
         cbDept.removeAll();
         try {
-            
+            DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
             String query = "SELECT nama_dept FROM Departement";
             connection.result = connection.stat.executeQuery(query);
@@ -246,10 +246,10 @@ public class Login extends javax.swing.JFrame {
                 else
                 {
                     try {
-                    sql = "SELECT * FROM CustomerService WHERE username='"+ user+"' AND password='"+ pass +"' AND status_aktif='Aktif'";
+                    sql = "SELECT * FROM CustomerService WHERE username='"+ user+"' AND password='"+ pass +"' AND status_aktif='Aktif' and kode_kantor_cabang = '"+getIDKantor(cbKantorCabang.getSelectedItem().toString())+"'";
                     rs = stat.executeQuery(sql);
                     if(rs.next()){
-                        if(user.equals(rs.getString("username")) && pass.equals(rs.getString("password"))){
+                        if(user.equals(rs.getString("username")) && pass.equals(rs.getString("password")) && getTrueKantor(cbKantorCabang.getSelectedItem().toString())){
                             IdCs = (rs.getString("id_staff"));
                             JOptionPane.showMessageDialog(null, "berhasil login");
                             MainMenuCS transaksi = new MainMenuCS(IdCs, KantorCabang);
@@ -445,7 +445,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private String getPassDepartment(String akun){
-        try{
+        try{DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
             String query = "select pass_dept from Departement where nama_dept = '"+akun+"'";
             connection.result = connection.stat.executeQuery(query);
@@ -461,6 +461,55 @@ public class Login extends javax.swing.JFrame {
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
+    private boolean getTrueKantor(String in){
+        
+        try{DBConnect connection = new DBConnect();
+            connection.stat = connection.conn.createStatement();
+            String query = "select id_staff from CustomerService where username = '"+txtUser.getText()+"' and password ='"+txtPas.getText()+"' and kode_kantor_cabang = '"+getIDKantor(in)+"'";
+            connection.result = connection.stat.executeQuery(query);
+            String output = null;
+            while (connection.result.next()) {
+
+                output = (connection.result.getString("id_staff"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            if(output.equals("")){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        catch(Exception e){
+            //JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+            return false;
+        }
+        
+    }
+    private String getIDKantor(String in){
+        DBConnect connection = new DBConnect();
+        try{
+            connection.stat = connection.conn.createStatement();
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '"+in+"'";
+            //System.out.println(query);
+            connection.result = connection.stat.executeQuery(query);
+            
+            String output = null;
+            while (connection.result.next()) {
+
+                output = (connection.result.getString("kode_kantor_cabang"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            return output;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error do getIdKantor!!\n" + e.toString());
         }
         return null;
     }

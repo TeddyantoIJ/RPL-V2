@@ -24,7 +24,7 @@ public class tambahCS extends javax.swing.JFrame {
     DBConnect koneksi = new DBConnect();
     String id,nama,alamat, noTelp, email, username, password;
     Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-    
+    private String txtkode_kantor_cabang = "";
     /**
      * Creates new form CrudRole
      */
@@ -33,10 +33,37 @@ public class tambahCS extends javax.swing.JFrame {
         initComponents();
         txtId.setText("CS-"+getLastID());
     }
+    public tambahCS(String kantorcabang) {
+        //this.tanggal = String.valueOf(fm.format(TglLahir.getDate()));
+        this.txtkode_kantor_cabang = getIDKantor(kantorcabang);
+        initComponents();
+        txtId.setText("CS-"+getLastID());
+    }
+    private String getIDKantor(String in){
+        
+        try{
+            koneksi.stat = koneksi.conn.createStatement();
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '"+in+"'";
+            koneksi.result = koneksi.stat.executeQuery(query);
+            String output = null;
+            while (koneksi.result.next()) {
+
+                output = (koneksi.result.getString("kode_kantor_cabang"));
+
+            }
+            koneksi.stat.close();
+            koneksi.result.close();
+            return output;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
     private String getLastID(){
         String id= null;
         try{
-            koneksi.stat = koneksi.conn.createStatement();
+                koneksi.stat = koneksi.conn.createStatement();
                 String query = "select count(id_staff) Total from CustomerService";
                 koneksi.result = koneksi.stat.executeQuery(query);
                 int count = 0;
@@ -319,7 +346,7 @@ public class tambahCS extends javax.swing.JFrame {
         password = txtPass.getText();
         id = txtId.getText();
         try{
-            String query = "insert into CustomerService values(?,?,?,?,?,?,?,?)";
+            String query = "insert into CustomerService values(?,?,?,?,?,?,?,?,?,?,?)";
             koneksi.pstat = koneksi.conn.prepareStatement(query);
             koneksi.pstat.setString(1, id);
             koneksi.pstat.setString(2, nama);
@@ -329,6 +356,9 @@ public class tambahCS extends javax.swing.JFrame {
             koneksi.pstat.setString(6, email);
             koneksi.pstat.setString(7, username);
             koneksi.pstat.setString(8, password);
+            koneksi.pstat.setString(9, "Aktif");
+            koneksi.pstat.setString(10, getIDDepartment("Customer Service"));
+            koneksi.pstat.setString(11, txtkode_kantor_cabang);
             
             koneksi.pstat.executeUpdate();
             koneksi.pstat.close();
@@ -339,7 +369,26 @@ public class tambahCS extends javax.swing.JFrame {
         
         txtId.setText("CS-"+getLastID());
     }//GEN-LAST:event_btnTambahActionPerformed
+    private String getIDDepartment(String akun){
+        try{
+            koneksi.stat = koneksi.conn.createStatement();
+            String query = "select id_dept from Departement where nama_dept = '"+akun+"'";
+            koneksi.result = koneksi.stat.executeQuery(query);
+            String output = null;
+            while (koneksi.result.next()) {
 
+                output = (koneksi.result.getString("id_dept"));
+
+            }
+            koneksi.stat.close();
+            koneksi.result.close();
+            return output;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         txtId.setText("");
