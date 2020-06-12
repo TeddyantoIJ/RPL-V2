@@ -24,6 +24,8 @@ public class Connote extends javax.swing.JFrame {
         String id_connote;
         String id_pemesanan;
         String tgl_connote;
+         Format formatterDate = new SimpleDateFormat("yyyyMMdd");
+        Format formatterTime = new SimpleDateFormat("HHmm");
     /**
      * Creates new form Connote
      */
@@ -107,7 +109,7 @@ public class Connote extends javax.swing.JFrame {
 //        
 //    }
     
-     private String autoID()
+    private String autoID()
     {
         String maxID = null;
         int idtr = 0;
@@ -116,7 +118,7 @@ public class Connote extends javax.swing.JFrame {
         try{
             connection.stat = connection.conn.createStatement();
             String query = "SELECT count(id_connote) as ID FROM Connote WHERE id_connote LIKE '%"+formatter.format(new Date())+"%'";
-            System.out.println(query);
+            //System.out.println(query);
             connection.result = connection.stat.executeQuery(query);
             
             while(connection.result.next()){
@@ -575,23 +577,24 @@ public class Connote extends javax.swing.JFrame {
             try
             {
                 DBConnect c = new DBConnect();
-                String query = "INSERT INTO Connote VALUES (?,?,?,?)";
+                String query = "INSERT INTO Connote VALUES (?,?,?,?,?)";
                      c.pstat = c.conn.prepareStatement(query);
                      c.pstat.setString(1, id_connote);
                      c.pstat.setString(2, id_pemesanan);
                      c.pstat.setString(3, getIDKantor());
                      c.pstat.setString(4, formatter.format(new Date()));
+                     c.pstat.setString(5, "Belum");
 
                       //insert ke dalam database
                 c.pstat.executeUpdate();
                 c.pstat.close();
-
+                JOptionPane.showMessageDialog(this, "insert data connote berhasil");
             }catch(Exception e){
-                System.out.println("Terjadi error pada saat insert data connote :" + e);
+                JOptionPane.showMessageDialog(this,"Terjadi error pada saat insert data connote :" + e);
             }
-             JOptionPane.showMessageDialog(this, "insert data connote berhasil");
+             
 
-             txtIdC.setText(autoID());
+             txtIdC.setText(formatterDate.format(new Date())+formatterTime.format(new Date())+autoID());
         }else{
             JOptionPane.showMessageDialog(this, "Data sudah ada");
         }
@@ -603,7 +606,7 @@ public class Connote extends javax.swing.JFrame {
             connection.stat = connection.conn.createStatement();
             String query = "select * from Connote where id_pemesanan = '"+in+"'";
             connection.result = connection.stat.executeQuery(query);
-            String output = null;
+            String output = "";
             while (connection.result.next()) {
 
                 output = (connection.result.getString("kode_kantor_cabang"));

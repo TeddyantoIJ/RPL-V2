@@ -733,7 +733,7 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-        MainMenuCS m = new MainMenuCS();
+        MainMenuCS m = new MainMenuCS(txtid_cs, txtkode_kantor_cabang);
         m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
@@ -855,7 +855,7 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
         // TODO add your handling code here:
         //AWAL MULA MUNCUL
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        
+        clear();
         Date date = new Date();
         txtTanggal.setText(formatter.format(date));
         
@@ -1060,10 +1060,8 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
                     permintaan_Pick_Up pickup = new permintaan_Pick_Up(txtalamat_pickup.getText(),cmbKota_pickup.getSelectedItem().toString(),id);
                     pickup.setVisible(true);
             }
-            
-            
-            
             clear();
+        
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal!\n" + e.toString());
         }
