@@ -196,7 +196,8 @@ public class Bagging extends javax.swing.JFrame {
     private boolean getTrueID(){
         try{
             connection.stat = connection.conn.createStatement();
-            String query = "select * from Connote where id_connote = '"+txtid_connote.getText()+"'";
+            String query = "select * from Connote inner join DataBarangPelanggan a on Connote.id_pemesanan = a.id_pemesanan\n" +
+                "where Connote.id_connote = '"+txtid_connote.getText()+"' and a.kode_kantor_cabang = '"+getIDKantor(KantorCabang)+"'";
             connection.result = connection.stat.executeQuery(query);
             String output = "";
             while (connection.result.next()) {

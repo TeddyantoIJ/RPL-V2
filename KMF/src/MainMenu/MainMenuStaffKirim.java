@@ -6,6 +6,7 @@
 package MainMenu;
 
 import TransaksiPengirimanBarang.Bagging;
+import TransaksiPengirimanBarang.listBagging;
 
 /**
  *
@@ -82,6 +83,11 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
         });
 
         jButton6.setText("closing barang");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -161,6 +167,14 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
         bag.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        listBagging bag = new listBagging(KantorCabang);
+        this.setVisible(false);
+        bag.setVisible(true);
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

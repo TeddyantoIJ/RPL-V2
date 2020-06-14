@@ -5,7 +5,10 @@
  */
 package MainMenu;
 
+import KonfirmasiPenerima.KonfirmasiPenerima;
 import PendataanBarangMasuk.PendataanCargo;
+import connection.DBConnect;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,11 +23,34 @@ public class MainMenuStaffTerima extends javax.swing.JFrame {
         initComponents();
     }
     private String KantorCabang = "";
+    private String txtkode_kantor_cabang ="";
+    
     public MainMenuStaffTerima(String kantorCabang) {
         initComponents();
         this.KantorCabang = kantorCabang;
+        this.txtkode_kantor_cabang = getIDKantor(kantorCabang);
     }
+    
+    private String getIDKantor(String in) {
+        DBConnect connection = new DBConnect();
+        try {
+            connection.stat = connection.conn.createStatement();
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '" + in + "'";
+            connection.result = connection.stat.executeQuery(query);
+            String output = null;
+            while (connection.result.next()) {
 
+                output = (connection.result.getString("kode_kantor_cabang"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            return output;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,6 +143,8 @@ public class MainMenuStaffTerima extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        KonfirmasiPenerima konfirmasi = new KonfirmasiPenerima(KantorCabang);
+        konfirmasi.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
