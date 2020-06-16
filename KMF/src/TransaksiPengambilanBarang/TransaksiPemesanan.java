@@ -1016,7 +1016,7 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
 
     private void inputPesanan() {
         Format formatter = new SimpleDateFormat("hh:mm:ss");
-        
+        Format formatterDate = new SimpleDateFormat("yyyyMMdd");
         
         try {
             String query = "insert into DataBarangPelanggan values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -1043,8 +1043,8 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
             Date date = new Date();
             String waktu = formatter.format(date);
             System.out.println(waktu);
-            connection.pstat.setString(13, txtTanggal.getText());
-            connection.pstat.setString(14,formatter.format(date));
+            connection.pstat.setString(13, formatterDate.format(new Date()));
+            connection.pstat.setString(14, formatter.format(date));
             connection.pstat.setString(15, txtBiaya.getText());
             connection.pstat.setString(17, "-");
             connection.pstat.setString(18, txtid_cs);
