@@ -6,6 +6,8 @@
 package TransaksiPengirimanBarang;
 
 import connection.DBConnect;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,17 +24,41 @@ public class CargoManifest extends javax.swing.JFrame {
     listBagging g = new listBagging();
     private DefaultTableModel model;
     private DBConnect connection = new DBConnect();
-    
+    List<String> calonCargo = new ArrayList();
     public CargoManifest() {
         initComponents();
         addCargo(); 
     }
-    public CargoManifest(String kantorCabang) {
+    public CargoManifest(String kantorCabang, List<String> a) {
         this.KantorCabang = kantorCabang;
+        this.calonCargo = a;
         initComponents();
         addCargo(); 
+        txtJumkantong.setText(String.valueOf(calonCargo.size()));
     }
-    
+    private void inputDetailCargo(){
+        int n = calonCargo.size();
+        for(int i = 0; i < n ; i++){
+            try
+            {
+                DBConnect c = new DBConnect();
+                String query = "INSERT INTO detailCargo VALUES (?,?,?)";
+                     c.pstat = c.conn.prepareStatement(query);
+                     c.pstat.setString(1, calonCargo.get(i));
+                     c.pstat.setString(2, txtIdCargo.getText());
+                     c.pstat.setString(3, "Akan dikirim");
+
+
+                      //insert ke dalam database
+                c.pstat.executeUpdate();
+                c.pstat.close();
+                JOptionPane.showMessageDialog(this, "insert data Bagging berhasil");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this,"Terjadi error pada saat insert data detailCargo :" + e);
+            }
+        }
+        
+    }
     private void addCargo(){
         
         try {
@@ -272,6 +298,7 @@ public class CargoManifest extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        inputDetailCargo();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

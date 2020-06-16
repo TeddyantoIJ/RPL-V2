@@ -23,7 +23,7 @@ public class Bagging extends javax.swing.JFrame {
      * Creates new form Bagging
      */
     private DefaultTableModel model;
-    private String KantorCabang = "";
+    private String KantorCabang = "KMF JKT";
     private DBConnect connection = new DBConnect();
     
     

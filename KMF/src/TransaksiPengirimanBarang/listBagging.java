@@ -10,10 +10,11 @@ import connection.DBConnect;
 import java.sql.Time;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import java.util.List;
 /**
  *
  * @author putri ramadani rais
@@ -21,8 +22,9 @@ import javax.swing.table.DefaultTableModel;
 public class listBagging extends javax.swing.JFrame {
 
     private DefaultTableModel model;
-    private String KantorCabang = "";
+    private String KantorCabang = "KMF JKT";
     private DBConnect connection = new DBConnect();
+    List<String> calonCargo = new ArrayList<>();
     /**
      * Creates new form listBagging
      */
@@ -132,15 +134,24 @@ public class listBagging extends javax.swing.JFrame {
         try {
             DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
-            String query = 
+            String query;
             
-           "select * from Bagging \n inner join detailBagging a on [Bagging].id_bagging = a.id_bagging"+
+            
+//            query = "select * from Bagging \n inner join detailBagging a on [Bagging].id_bagging = a.id_bagging"+
+//            " inner join Connote b on a.id_connote = b.id_connote "+
+//            " inner join DataBarangPelanggan c on b.id_pemesanan = c.id_pemesanan "+
+//            " inner join KantorCabang d on c.kode_kantor_cabang = d.kode_kantor_cabang "+
+//            " inner join KotaKabupaten e on d.kota = e.singkatan "+
+//            " where d.kode_kantor_cabang = '"+getIDKantor(txtKantorCabang.getText())+
+//            "' and status_bagging = 'Belum'";
+            
+            query = "select * from Bagging \n inner join detailBagging a on [Bagging].id_bagging = a.id_bagging"+
             " inner join Connote b on a.id_connote = b.id_connote "+
             " inner join DataBarangPelanggan c on b.id_pemesanan = c.id_pemesanan "+
             " inner join KantorCabang d on c.kode_kantor_cabang = d.kode_kantor_cabang "+
             " inner join KotaKabupaten e on d.kota = e.singkatan "+
             " where d.kode_kantor_cabang = '"+getIDKantor(txtKantorCabang.getText())+
-            "' and status_bagging = 'Belum'";
+            "' and status_bagging = 'Belum' and c.kota_penerima = '"+cmbkota_tujuan.getSelectedItem().toString()+"'";
             System.out.println(query);
             connection.result = connection.stat.executeQuery(query);
 
@@ -428,6 +439,11 @@ public class listBagging extends javax.swing.JFrame {
                 cmbkota_tujuanItemStateChanged(evt);
             }
         });
+        cmbkota_tujuan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbkota_tujuanActionPerformed(evt);
+            }
+        });
 
         btnCargo.setText("Tambah");
         btnCargo.addActionListener(new java.awt.event.ActionListener() {
@@ -547,7 +563,7 @@ public class listBagging extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuatActionPerformed
-        CargoManifest c = new CargoManifest(KantorCabang);
+        CargoManifest c = new CargoManifest(KantorCabang, calonCargo);
         c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBuatActionPerformed
@@ -563,6 +579,8 @@ public class listBagging extends javax.swing.JFrame {
         if(getTrueID()){
             //updateStatusConnote();
             //inputBagging();
+            calonCargo.add(txtid_bagging.getText());
+            System.out.println(calonCargo.toString());
         }else{
             JOptionPane.showMessageDialog(this," ID Tidak ditemukan !\n");
         }
@@ -572,6 +590,11 @@ public class listBagging extends javax.swing.JFrame {
     private void txtid_cargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtid_cargoActionPerformed
 
     }//GEN-LAST:event_txtid_cargoActionPerformed
+
+    private void cmbkota_tujuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbkota_tujuanActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cmbkota_tujuanActionPerformed
 
     /**
      * @param args the command line arguments

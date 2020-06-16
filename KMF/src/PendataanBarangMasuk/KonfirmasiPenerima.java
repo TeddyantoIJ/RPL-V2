@@ -701,10 +701,10 @@ public class KonfirmasiPenerima extends javax.swing.JFrame {
                         + "inner join KantorCabang d on a.kode_kantor_cabang = d.kode_kantor_cabang\n"
                         + "inner join KotaKabupaten e on a.kota_penerima = e.nama_kota\n"
                         + "where\n"
-                        + "e.singkatan = '" + getSingkatanKantor(namaKantor) + "' and [Connote].status_pengiriman = '" + status + "'";
+                        + "e.singkatan = '" + getKotaKantor() + "' and [Connote].status_pengiriman = '" + status + "'";
             }
 
-            //System.out.println(query);
+            //JOptionPane.showMessageDialog(this, query);
             connection.result = connection.stat.executeQuery(query);
             while (connection.result.next()) {
                 Object obj[] = new Object[7];
