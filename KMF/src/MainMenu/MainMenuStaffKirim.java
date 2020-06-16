@@ -6,6 +6,8 @@
 package MainMenu;
 
 import TransaksiPengirimanBarang.Bagging;
+import TransaksiPengirimanBarang.CekDoc;
+import TransaksiPengirimanBarang.Sortir;
 import TransaksiPengirimanBarang.listBagging;
 
 /**
@@ -36,35 +38,35 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCekConnote = new javax.swing.JButton();
+        btnSortitBarang = new javax.swing.JButton();
+        btnBaggingBarang = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnCargoManifest = new javax.swing.JButton();
+        btnClosingBarang = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
-        jButton1.setText("Cek connote");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCekConnote.setText("Cek connote");
+        btnCekConnote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCekConnoteActionPerformed(evt);
             }
         });
 
-        jButton2.setText("sortir barang");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSortitBarang.setText("sortir barang");
+        btnSortitBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSortitBarangActionPerformed(evt);
             }
         });
 
-        jButton3.setText("bagging barang");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnBaggingBarang.setText("bagging barang");
+        btnBaggingBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnBaggingBarangActionPerformed(evt);
             }
         });
 
@@ -75,17 +77,17 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("data cargo manifest");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCargoManifest.setText("data cargo manifest");
+        btnCargoManifest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCargoManifestActionPerformed(evt);
             }
         });
 
-        jButton6.setText("closing barang");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnClosingBarang.setText("closing barang");
+        btnClosingBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnClosingBarangActionPerformed(evt);
             }
         });
 
@@ -101,26 +103,26 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnClosingBarang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCargoManifest, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBaggingBarang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(btnCekConnote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSortitBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addComponent(jButton1)
+                .addComponent(btnCekConnote)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnSortitBarang)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(btnBaggingBarang)
                 .addGap(15, 15, 15)
-                .addComponent(jButton5)
+                .addComponent(btnCargoManifest)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
+                .addComponent(btnClosingBarang)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(26, 26, 26))
@@ -143,9 +145,12 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSortitBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortitBarangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        Sortir s = new Sortir();
+        this.setVisible(false);
+        s.setVisible(true);
+    }//GEN-LAST:event_btnSortitBarangActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         MainMenuStaff t= new MainMenuStaff();
@@ -153,28 +158,33 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCekConnoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekConnoteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Bagging bag = new Bagging(KantorCabang);
-        bag.setVisible(true);
+        CekDoc c = new CekDoc();
         this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        c.setVisible(true);
+        
+    }//GEN-LAST:event_btnCekConnoteActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnCargoManifestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargoManifestActionPerformed
         // TODO add your handling code here:
         listBagging bag = new listBagging(KantorCabang);
         this.setVisible(false);
         bag.setVisible(true);
+    }//GEN-LAST:event_btnCargoManifestActionPerformed
+
+    private void btnBaggingBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaggingBarangActionPerformed
+        // TODO add your handling code here:
+        Bagging bag = new Bagging(KantorCabang);
+        bag.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBaggingBarangActionPerformed
+
+    private void btnClosingBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClosingBarangActionPerformed
+        // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton6ActionPerformed
+        
+    }//GEN-LAST:event_btnClosingBarangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,12 +222,12 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnBaggingBarang;
+    private javax.swing.JButton btnCargoManifest;
+    private javax.swing.JButton btnCekConnote;
+    private javax.swing.JButton btnClosingBarang;
+    private javax.swing.JButton btnSortitBarang;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

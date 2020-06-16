@@ -5,7 +5,7 @@
  */
 package MainMenu;
 
-import KonfirmasiPenerima.KonfirmasiPenerima;
+import PendataanBarangMasuk.KonfirmasiPenerima;
 import PendataanBarangMasuk.PendataanCargo;
 import connection.DBConnect;
 import javax.swing.JOptionPane;

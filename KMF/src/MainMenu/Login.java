@@ -5,7 +5,7 @@
  */
 package MainMenu;
 
-import ListPickUp.Status;
+import ListPickUp.LihatStatusPickUp;
 import TransaksiPengambilanBarang.TransaksiPemesanan;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -224,7 +224,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here: 
         if(driver)
         {
-            Status status = new Status();
+            LihatStatusPickUp status = new LihatStatusPickUp();
             this.setVisible(false);
             status.setVisible(true);
         }

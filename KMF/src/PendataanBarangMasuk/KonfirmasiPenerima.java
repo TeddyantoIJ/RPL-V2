@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package KonfirmasiPenerima;
+package PendataanBarangMasuk;
 
 import connection.DBConnect;
 import java.sql.Connection;
@@ -480,6 +480,7 @@ public class KonfirmasiPenerima extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnKonfirmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonfirmasiActionPerformed
