@@ -5,6 +5,7 @@
  */
 package MainMenu;
 
+import Konfirmasi_Pengiriman.ListCargo;
 import TransaksiPengambilanBarang.TransaksiPemesanan;
 import TransaksiPengambilanBarang.permintaan_Pick_Up;
 import javax.swing.JOptionPane;
@@ -132,7 +133,7 @@ public class MainMenuCS extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -143,6 +144,9 @@ public class MainMenuCS extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        ListCargo c = new ListCargo(id,KantorCabang);
+        this.setVisible(false);
+        c.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

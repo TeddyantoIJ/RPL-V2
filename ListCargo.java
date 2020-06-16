@@ -3,13 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Konfirmasi_Pengiriman;
+package TransaksiPengirimanBarang;
 
-import MainMenu.MainMenuCS;
 import connection.DBConnect;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,11 +18,6 @@ public class ListCargo extends javax.swing.JFrame {
     private DefaultTableModel model;
     DBConnect connection = new DBConnect();
     int i;
-    String KantorCabang = "KMF JKT";
-    String idBagging = "";
-    String Bandara = "";
-    String idPemesanan = "";
-    String id_cs = "";
     
     /**
      * Creates new form ListCargo
@@ -35,16 +26,6 @@ public class ListCargo extends javax.swing.JFrame {
         initComponents();
         model = new DefaultTableModel();
         
-        tblCargo.setModel(model);
-        addColumn();
-        loadData();
-    }
-    
-    public ListCargo(String id,String KantorCabang) {
-        initComponents();
-        model = new DefaultTableModel();
-        this.KantorCabang = KantorCabang;
-        this.id_cs = id;
         tblCargo.setModel(model);
         addColumn();
         loadData();
@@ -147,63 +128,16 @@ public class ListCargo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addRiwayat(){
-        Format formatter = new SimpleDateFormat("yyyyMMdd");
-        Format formatterTime = new SimpleDateFormat("hh:mm:ss");
-        
-            try
-            {
-                DBConnect c = new DBConnect();
-                String query = "INSERT INTO Riwayat VALUES (?,?,?,?)";
-                     c.pstat = c.conn.prepareStatement(query);
-                     c.pstat.setString(1, formatter.format(new Date()));
-                     c.pstat.setString(2, formatterTime.format(new Date()));
-                     c.pstat.setString(3, "Berangkat dari bandara" + Bandara);
-                     c.pstat.setString(4, idPemesanan);
-
-                      //insert ke dalam database
-                c.pstat.executeUpdate();
-                c.pstat.close();
-                //JOptionPane.showMessageDialog(this, "insert data Baggin berhasil");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this,"Terjadi error pada saat insert data bagging :" + e);
-            }        
-    }
-    private String getIDKantor(String in) {
-        DBConnect connection = new DBConnect();
-        try {
-            connection.stat = connection.conn.createStatement();
-            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '" + in + "'";
-            connection.result = connection.stat.executeQuery(query);
-            String output = null;
-            while (connection.result.next()) {
-
-                output = (connection.result.getString("kode_kantor_cabang"));
-
-            }
-            connection.stat.close();
-            connection.result.close();
-            return output;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
-        }
-        return null;
-    }
     public void CariData()
     {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged(); 
         
         try{
-            DBConnect connection = new DBConnect();
+//            DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
-            String query = "SELECT * FROM CargoManifest AS C\n" +
-                    "INNER JOIN detailCargo AS d ON c.id_cargo_manifest = d.id_cargo_manifest\n" +
-                    "INNER JOIN detailBagging AS b ON d.id_bagging = b.id_bagging\n" +
-                    "INNER JOIN Connote AS o ON o.id_connote = b.id_connote\n" +
-                    "WHERE C.id_cargo_manifest='" + txtIdCargo.getText() +
-                    "' AND o.kantor_cabang='" + getIDKantor(KantorCabang)+"'";
-            System.out.println(query);
+            String query = "SELECT * FROM CargoManifest WHERE id_cargo_manifest LIKE '%" +
+                    txtIdCargo.getText() + "%'";
             connection.result = connection.stat.executeQuery(query);
             
             while(connection.result.next()){
@@ -243,20 +177,19 @@ public class ListCargo extends javax.swing.JFrame {
 
     private void btnSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelesaiActionPerformed
         // TODO add your handling code here:
-        MainMenuCS cs = new MainMenuCS(id_cs, KantorCabang);
     }//GEN-LAST:event_btnSelesaiActionPerformed
 
     private void tblCargoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCargoMouseClicked
         // TODO add your handling code here:
         String query;
-        
+        String idBagging = "";
+        String Bandara = "";
         
         int i = tblCargo.getSelectedRow();
         if(i != -1){
             txtIdCargo.setText(tblCargo.getValueAt(i, 0).toString());
         }
         String IdCargo = txtIdCargo.getText();
-        
         
         if(IdCargo.equals(""))
         {
@@ -269,14 +202,11 @@ public class ListCargo extends javax.swing.JFrame {
                 query = "SELECT * FROM CargoManifest AS C\n" +
                             "INNER JOIN detailCargo AS d ON c.id_cargo_manifest = d.id_cargo_manifest\n" +
                             "INNER JOIN detailBagging AS b ON d.id_bagging = b.id_bagging\n" +
-                            "INNER JOIN Connote AS O ON O.id_connote = d.id_connote\n" +
                             "WHERE C.id_cargo_manifest = '" + txtIdCargo.getText() + "'";
-                System.out.println(query);
                 connection.result = connection.stat.executeQuery(query);
                 while (connection.result.next()) {
                     idBagging = (connection.result.getString("id_bagging"));
                     Bandara = (connection.result.getString("kota_asal"));
-                    idPemesanan = (connection.result.getString("id_pemesanan"));
                 }
             }
             catch (Exception e){
@@ -301,8 +231,6 @@ public class ListCargo extends javax.swing.JFrame {
                 catch (Exception e){
                     System.out.println("Terjadi error saat update status Cargo: " + e.toString());
                 }
-                
-                addRiwayat();
             }
         }
     }//GEN-LAST:event_tblCargoMouseClicked
@@ -332,11 +260,6 @@ public class ListCargo extends javax.swing.JFrame {
         
         try{
             connection.stat = connection.conn.createStatement();
-//            String query = "SELECT C.* FROM CargoManifest AS C\n" +
-//                    "INNER JOIN detailCargo AS d ON c.id_cargo_manifest = d.id_cargo_manifest\n" +
-//                    "INNER JOIN detailBagging AS b ON d.id_bagging = b.id_bagging\n" +
-//                    "INNER JOIN Connote AS o ON o.id_connote = b.id_connote\n" +
-//                    "WHERE o.kantor_cabang='" + KantorCabang + "'";
             String query = "SELECT * FROM CargoManifest";
             connection.result = connection.stat.executeQuery(query);
             
