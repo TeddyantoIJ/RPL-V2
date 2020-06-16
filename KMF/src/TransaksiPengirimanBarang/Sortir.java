@@ -22,12 +22,15 @@ public class Sortir extends javax.swing.JFrame {
      * Creates new form Sortir
      */
     DefaultTableModel model;
+    
+    
     public Sortir() {
         initComponents();
-        tampilKota();
+        
         model = new DefaultTableModel();
         addColomn();
         tblBarang.setModel(model);
+        tampilKota();
         btnGrup.add(rbBelum);
         btnGrup.add(rbTerkirim);
     }
@@ -36,7 +39,7 @@ public class Sortir extends javax.swing.JFrame {
         model.addColumn("ID Connote");
         model.addColumn("Jenis Barang");
         model.addColumn("Nama Penerima");
-        model.addColumn("Alamat Penerima");
+        model.addColumn("Kota Penerima");
     }
 
     //model = new DefaultTableModel();
@@ -198,9 +201,9 @@ public class Sortir extends javax.swing.JFrame {
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
-        MainMenuStaffKirim MainMenuStaffKirim = new MainMenuStaffKirim();
+        
         this.setVisible(false);
-        MainMenuStaffKirim.setVisible(true);
+        
     }//GEN-LAST:event_btnKembaliActionPerformed
 
     private void rbTerkirimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbTerkirimMouseClicked
@@ -239,7 +242,7 @@ public class Sortir extends javax.swing.JFrame {
         try{
             DBConnect c = new DBConnect();
             c.stat = c.conn.createStatement();
-            String sql = "SELECT * FROM Connote join DataBarangPelanggan  on Connote.id_pemesanan = DataBarangPelanggan.id_pemesanan where status_barang = 'Belum'";
+            String sql = "select c.id_connote, d.jenis_barang, d.nama_penerima, d.kota_penerima from Connote c inner join DataBarangPelanggan d on c.id_pemesanan = d.id_pemesanan where c.status_pengiriman = 'Belum' and d.kota_penerima ='"+cmbKota.getSelectedItem()+"'";
             c.result = c.stat.executeQuery(sql);
             
             while (c.result.next()) {
@@ -247,7 +250,7 @@ public class Sortir extends javax.swing.JFrame {
                     obj[0] = c.result.getString("id_connote");
                     obj[1] = c.result.getString("jenis_barang");
                     obj[2] = c.result.getString("nama_penerima");
-                    obj[3] = c.result.getString("alamat_penerima");
+                    obj[3] = c.result.getString("kota_penerima");
 
                     model.addRow(obj);
 
@@ -263,30 +266,29 @@ public class Sortir extends javax.swing.JFrame {
         // TODO add your handling code here:
         rbBelum.setSelected(false);
         if (rbTerkirim.isSelected() == true) {
-            model.getDataVector().removeAllElements();
+                    model.getDataVector().removeAllElements();
 
-            model.fireTableDataChanged();
+        model.fireTableDataChanged();
+        try{
+                DBConnect c = new DBConnect();
+                c.stat = c.conn.createStatement();
+                String sql = "select c.id_connote, d.jenis_barang, d.nama_penerima, d.kota_penerima from Connote c inner join DataBarangPelanggan d on c.id_pemesanan = d.id_pemesanan where c.status_pengiriman = 'Belum' and d.kota_penerima ='"+cmbKota.getSelectedItem()+"'";
+                c.result = c.stat.executeQuery(sql);
+                
+                while (c.result.next()) {
+                        Object[] obj = new Object[4];
+                        obj[0] = c.result.getString("id_connote");
+                        obj[1] = c.result.getString("jenis_barang");
+                        obj[2] = c.result.getString("nama_penerima");
+                        obj[3] = c.result.getString("kota_penerima");
 
-            try {
-                DBConnect connection = new DBConnect();
-                connection.stat = connection.conn.createStatement();
-                String query = "select * from Driver";
-                connection.result = connection.stat.executeQuery(query);
-
-                while (connection.result.next()) {
-                    Object[] obj = new Object[3];
-                    obj[0] = connection.result.getString("ID_Staff");
-                    obj[1] = connection.result.getString("nama_staff");
-                    obj[2] = connection.result.getString("Status_pickup");
-
-                    if (obj[2].equals("Aktif")) {
                         model.addRow(obj);
-                    }
+
                 }
-                connection.stat.close();
-                connection.result.close();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Gagal111!\n" + e.toString());
+                c.stat.close();
+                c.result.close();  
+            } catch (SQLException ex){
+                System.out.println("Terjadi error"+ex);
             }
         } else {
             rbTerkirim.setSelected(true);
@@ -295,6 +297,52 @@ public class Sortir extends javax.swing.JFrame {
 
     private void cmbKotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKotaActionPerformed
         // TODO add your handling code here:
+        model.getDataVector().removeAllElements();
+
+        model.fireTableDataChanged();
+        try{
+            DBConnect c = new DBConnect();
+            c.stat = c.conn.createStatement();
+            String sql = "select c.id_connote, d.jenis_barang, d.nama_penerima, d.kota_penerima from Connote c inner join DataBarangPelanggan d on c.id_pemesanan = d.id_pemesanan where c.status_pengiriman = 'Belum' and d.kota_penerima ='"+cmbKota.getSelectedItem()+"'";
+            c.result = c.stat.executeQuery(sql);
+            
+            while (c.result.next()) {
+                    Object[] obj = new Object[4];
+                        obj[0] = c.result.getString("id_connote");
+                        obj[1] = c.result.getString("jenis_barang");
+                        obj[2] = c.result.getString("nama_penerima");
+                        obj[3] = c.result.getString("kota_penerima");
+
+                    model.addRow(obj);
+
+            }
+            c.stat.close();
+            c.result.close();  
+        } catch (SQLException ex){
+            try{
+            DBConnect c = new DBConnect();
+            c.stat = c.conn.createStatement();
+            String sql = "select c.id_connote, d.jenis_barang, d.nama_penerima, d.kota_penerima from Connote c inner join DataBarangPelanggan d on c.id_pemesanan = d.id_pemesanan where c.status_pengiriman = 'Belum'";
+            c.result = c.stat.executeQuery(sql);
+            
+            while (c.result.next()) {
+                    Object[] obj = new Object[4];
+                        obj[0] = c.result.getString("id_connote");
+                        obj[1] = c.result.getString("jenis_barang");
+                        obj[2] = c.result.getString("nama_penerima");
+                        obj[3] = c.result.getString("kota_penerima");
+
+                    model.addRow(obj);
+
+            }
+            c.stat.close();
+            c.result.close();  
+            System.out.println("Terjadi error"+ex);
+            }
+            catch(Exception e){
+                
+            }
+        }
     }//GEN-LAST:event_cmbKotaActionPerformed
 
     /**
@@ -337,12 +385,12 @@ public class Sortir extends javax.swing.JFrame {
         try{
             DBConnect c = new DBConnect();
             c.stat = c.conn.createStatement();
-            String sql = "SELECT * FROM Connote join DataBarangPelanggan  on Connote.id_pemesanan = DataBarangPelanggan.id_pemesanan";
+            String sql = "select * from KotaKabupaten";
             c.result = c.stat.executeQuery(sql);
             
             while (c.result.next()) {
                 //cmbPelanggan.addItem(c.result.getString("ID_Pelanggan"));               
-                    cmbKota.addItem(c.result.getString("kota_penerima"));
+                    cmbKota.addItem(c.result.getString("nama_kota"));
             }
             c.stat.close();
             c.result.close();  

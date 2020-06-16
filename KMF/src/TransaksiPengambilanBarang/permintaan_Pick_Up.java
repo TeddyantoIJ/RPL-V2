@@ -54,6 +54,24 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
         addColomn();
         loadData();
     }
+    private String kantorCabang ="";
+    public permintaan_Pick_Up(String alamat, String kota, String id, String kantorCabang) {
+        initComponents();
+        this.kantorCabang = kantorCabang;
+        
+        //System.out.println("INI ID!  "+id);
+        kota_penjemputan = kota;
+        alamat_penjemputan = alamat;
+        txtid_barang.setText(id);
+        
+        model = new DefaultTableModel();
+        model1 = new DefaultTableModel();
+        tableDriver.setModel(model);
+        tableDetail.setModel(model1);
+
+        addColomn();
+        loadData();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -416,6 +434,7 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
             String query = "insert into detailPickUp values (?,?,'Belum',?,?)";
             connection.pstat = connection.conn.prepareStatement(query);
             
+            
             connection.pstat.setString(1, txtid_driver.getText());
             connection.pstat.setString(2, txtid_barang.getText());
             connection.pstat.setString(3, alamat_penjemputan);
@@ -424,7 +443,7 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
             connection.pstat.executeUpdate();
             connection.pstat.close();
             JOptionPane.showMessageDialog(this, "Berhasil!\n");
-            this.setVisible(false);
+            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal!\n" + e.toString());
         }
@@ -548,6 +567,26 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Gagal111!\n" + e.toString());
             }
     }
+    private String getIDKantor(String in) {
+        DBConnect connection = new DBConnect();
+        try {
+            connection.stat = connection.conn.createStatement();
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '" + in + "'";
+            connection.result = connection.stat.executeQuery(query);
+            String output = null;
+            while (connection.result.next()) {
+
+                output = (connection.result.getString("kode_kantor_cabang"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            return output;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
     public void loadData() {
         model.getDataVector().removeAllElements();
 
@@ -556,7 +595,7 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
         try {
             DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
-            String query = "select * from Driver where status_aktif = 'Aktif'";
+            String query = "select * from Driver where status_aktif = 'Aktif' and kode_kantor_cabang = '"+getIDKantor(kantorCabang)+"'";
             connection.result = connection.stat.executeQuery(query);
 
             while (connection.result.next()) {

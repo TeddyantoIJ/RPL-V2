@@ -47,6 +47,8 @@ public class KonfirmasiPenerima extends javax.swing.JFrame {
         this.namaKantor = namaKantor;
         model = new DefaultTableModel();
         addColumn();
+        
+        tblBarang.setModel(model);
         addSource("Semua");
         //getData();
     }
@@ -704,7 +706,8 @@ public class KonfirmasiPenerima extends javax.swing.JFrame {
                         + "e.singkatan = '" + getKotaKantor() + "' and [Connote].status_pengiriman = '" + status + "'";
             }
 
-            //JOptionPane.showMessageDialog(this, query);
+         //   JOptionPane.showMessageDialog(this, query);
+            System.out.println(query);
             connection.result = connection.stat.executeQuery(query);
             while (connection.result.next()) {
                 Object obj[] = new Object[7];

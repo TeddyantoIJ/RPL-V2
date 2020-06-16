@@ -42,7 +42,7 @@ public class Bagging extends javax.swing.JFrame {
 
     public Bagging(String kantorCabang) {
         initComponents();
-        this.KantorCabang = getIDKantor(kantorCabang);
+        this.KantorCabang = kantorCabang;
         txtKantorCabang.setText(kantorCabang);
         model = new DefaultTableModel();
         addColumn();
@@ -92,6 +92,7 @@ public class Bagging extends javax.swing.JFrame {
     }
     private void addItemKota(){
         cmbkota_tujuan.removeAll();
+        DBConnect connection = new DBConnect();
         try {
             
             connection.stat = connection.conn.createStatement();
@@ -108,11 +109,12 @@ public class Bagging extends javax.swing.JFrame {
         }
     }
     private String getIDKantor(String in){
-        
+        DBConnect connection = new DBConnect();
         try{
             connection.stat = connection.conn.createStatement();
             String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '"+in+"'";
             connection.result = connection.stat.executeQuery(query);
+            System.out.println(query);
             String output = null;
             while (connection.result.next()) {
 
@@ -129,7 +131,7 @@ public class Bagging extends javax.swing.JFrame {
         return null;
     }
     private String getIDKantorPengirim(String in){
-        
+        DBConnect connection = new DBConnect();
         try{
             connection.stat = connection.conn.createStatement();
             String query = "select kode_kantor_cabang from KantorCabang where kota = '"+in+"'";
@@ -150,7 +152,7 @@ public class Bagging extends javax.swing.JFrame {
         return null;
     }
     private String getSingkatan(String in){
-        
+        DBConnect connection = new DBConnect();
         try{
             connection.stat = connection.conn.createStatement();
             String query = "select singkatan from KotaKabupaten where nama_kota = '"+in+"'";
@@ -172,6 +174,7 @@ public class Bagging extends javax.swing.JFrame {
         return null;
     }
     private int getBerat(String in){
+        DBConnect connection = new DBConnect();
         try{
             connection.stat = connection.conn.createStatement();
             String query = "select [DataBarangPelanggan].berat_barang as singkatan from DataBarangPelanggan inner join Connote "
@@ -194,11 +197,13 @@ public class Bagging extends javax.swing.JFrame {
     }
     
     private boolean getTrueID(){
+        DBConnect connection = new DBConnect();
         try{
             connection.stat = connection.conn.createStatement();
             String query = "select * from Connote inner join DataBarangPelanggan a on Connote.id_pemesanan = a.id_pemesanan\n" +
                 "where Connote.id_connote = '"+txtid_connote.getText()+"' and a.kode_kantor_cabang = '"+getIDKantor(KantorCabang)+"'";
             connection.result = connection.stat.executeQuery(query);
+            System.out.println(query);
             String output = "";
             while (connection.result.next()) {
 
@@ -221,6 +226,7 @@ public class Bagging extends javax.swing.JFrame {
         }
     }
     private boolean belumBagging(){
+        DBConnect connection = new DBConnect();
         try{
             connection.stat = connection.conn.createStatement();
             String query = "select * from detailBagging where id_connote = '"+txtid_connote.getText()+"' and id_bagging = '"+txtid_bagging.getText()+"'";
@@ -330,6 +336,7 @@ public class Bagging extends javax.swing.JFrame {
     }
     private String autoID()
     {
+        DBConnect connection = new DBConnect();
         String maxID = null;
         int idtr = 0;
         String id = null;

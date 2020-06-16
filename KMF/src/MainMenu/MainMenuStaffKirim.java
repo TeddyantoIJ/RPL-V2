@@ -148,7 +148,7 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
     private void btnSortitBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortitBarangActionPerformed
         // TODO add your handling code here:
         Sortir s = new Sortir();
-        this.setVisible(false);
+       
         s.setVisible(true);
     }//GEN-LAST:event_btnSortitBarangActionPerformed
 
