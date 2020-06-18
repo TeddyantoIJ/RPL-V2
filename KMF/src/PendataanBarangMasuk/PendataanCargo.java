@@ -86,8 +86,8 @@ public class PendataanCargo extends javax.swing.JFrame {
                 obj[0] = connection.result.getString("id_cargo_manifest");
                 obj[1] = connection.result.getString("nomor_registrasi");
                 obj[2] = connection.result.getString("nomor_penerbangan");
-                obj[3] = connection.result.getString("kota_asal");
-                obj[4] = connection.result.getString("kota_tujuan");
+                obj[3] = connection.result.getString("bandara_asal");
+                obj[4] = connection.result.getString("bandara_tujuan");
                 obj[5] = connection.result.getString("tanggal_pemberangkatan") + " " + connection.result.getString("waktu_pemberangkatan");
                 obj[6] = connection.result.getString("tanggal_sampai") + " " + connection.result.getString("waktu_sampai");
                 obj[7] = connection.result.getString("jumlah_kantong");
@@ -131,8 +131,8 @@ public class PendataanCargo extends javax.swing.JFrame {
                 obj[0] = connection.result.getString("id_cargo_manifest");
                 obj[1] = connection.result.getString("nomor_registrasi");
                 obj[2] = connection.result.getString("nomor_penerbangan");
-                obj[3] = connection.result.getString("kota_asal");
-                obj[4] = connection.result.getString("kota_tujuan");
+                obj[3] = connection.result.getString("bandara_asal");
+                obj[4] = connection.result.getString("bandara_tujuan");
                 obj[5] = connection.result.getString("tanggal_pemberangkatan") + " " + connection.result.getString("waktu_pemberangkatan");
                 obj[6] = connection.result.getString("tanggal_sampai") + " " + connection.result.getString("waktu_sampai");
                 obj[7] = connection.result.getString("jumlah_kantong");

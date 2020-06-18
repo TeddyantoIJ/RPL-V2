@@ -6,6 +6,7 @@
 package ListPickUp;
 
 import MainMenu.Login;
+import MainMenu.MainMenuCS;
 import connection.DBConnect;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -303,9 +304,8 @@ public class LihatStatusPickUp extends javax.swing.JFrame {
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
-        Login login = new Login();
+        
         this.setVisible(false);
-        login.setVisible(true);
     }//GEN-LAST:event_btnKembaliActionPerformed
 
     /**

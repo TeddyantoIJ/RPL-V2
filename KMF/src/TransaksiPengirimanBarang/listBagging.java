@@ -7,7 +7,6 @@ package TransaksiPengirimanBarang;
 
 import MainMenu.MainMenuStaffKirim;
 import connection.DBConnect;
-import java.sql.Time;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,7 +46,6 @@ public class listBagging extends javax.swing.JFrame {
         addDataColumn();
         addItemKota();
         tableBagging.setModel(model);
-        
     }
     
     private void addColumn(){
@@ -76,29 +74,6 @@ public class listBagging extends javax.swing.JFrame {
         }
     }
     
-    private String getSingkatan(String in){
-        
-        try{
-            connection.stat = connection.conn.createStatement();
-            String query = "select singkatan from KotaKabupaten where nama_kota = '"+in+"'";
-            System.out.println(query);
-            connection.result = connection.stat.executeQuery(query);
-            String output = null;
-            while (connection.result.next()) {
-
-                output = (connection.result.getString("singkatan"));
-
-            }
-            connection.stat.close();
-            connection.result.close();
-            return output;
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error getSingkatan!!\n" + e.toString());
-        }
-        return null;
-    }
-    
     private boolean getTrueID(){
         try{
             connection.stat = connection.conn.createStatement();
@@ -106,9 +81,7 @@ public class listBagging extends javax.swing.JFrame {
             connection.result = connection.stat.executeQuery(query);
             String output = "";
             while (connection.result.next()) {
-
                 output = (connection.result.getString("status_bagging"));
-
             }
             connection.stat.close();
             connection.result.close();
@@ -118,7 +91,6 @@ public class listBagging extends javax.swing.JFrame {
             }else{
                 return true;
             }
-            
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
@@ -135,15 +107,6 @@ public class listBagging extends javax.swing.JFrame {
             DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
             String query;
-            
-            
-//            query = "select * from Bagging \n inner join detailBagging a on [Bagging].id_bagging = a.id_bagging"+
-//            " inner join Connote b on a.id_connote = b.id_connote "+
-//            " inner join DataBarangPelanggan c on b.id_pemesanan = c.id_pemesanan "+
-//            " inner join KantorCabang d on c.kode_kantor_cabang = d.kode_kantor_cabang "+
-//            " inner join KotaKabupaten e on d.kota = e.singkatan "+
-//            " where d.kode_kantor_cabang = '"+getIDKantor(txtKantorCabang.getText())+
-//            "' and status_bagging = 'Belum'";
             
             query = "select * from Bagging \n inner join detailBagging a on [Bagging].id_bagging = a.id_bagging"+
             " inner join Connote b on a.id_connote = b.id_connote "+
@@ -168,7 +131,7 @@ public class listBagging extends javax.swing.JFrame {
             connection.stat.close();
             connection.result.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal111!\n" + e.toString());
+            JOptionPane.showMessageDialog(this, "Gagal!\n" + e.toString());
         }
     }
     
@@ -230,7 +193,7 @@ public class listBagging extends javax.swing.JFrame {
             int output = 0;
             while (connection.result.next()) {
 
-                output = Integer.parseInt(connection.result.getString("singkatan"));
+                output = Integer.parseInt(connection.result.getString("berat"));
 
             }
             connection.stat.close();
@@ -245,25 +208,25 @@ public class listBagging extends javax.swing.JFrame {
     
     private void inputCargo(){
         Format formatter = new SimpleDateFormat("yyyyMMdd");
-        SimpleDateFormat formatterTime = new SimpleDateFormat("HHmm");
+        SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm");
         String time = formatterTime.format(new Date());
         if(belumCargo()){
             try
             {
                 DBConnect c = new DBConnect();
-                String query = "INSERT INTO CargoManifest VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                String query = "INSERT INTO CargoManifest VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; //
                      c.pstat = c.conn.prepareStatement(query);
                      c.pstat.setString(1, txtid_cargo.getText());
                      c.pstat.setString(2, "");
                      c.pstat.setString(3, "");
-                     c.pstat.setString(4, ""+txtKantorCabang);
-                     c.pstat.setString(5, ""+cmbkota_tujuan.getSelectedItem());
-                     c.pstat.setString(6, formatter.format(new Date()));
-                     c.pstat.setString(7, time);
+                     c.pstat.setString(4, "");
+                     c.pstat.setString(5, "");
+                     c.pstat.setString(6, "");
+                     c.pstat.setString(7, "");
                      c.pstat.setString(8, "");
                      c.pstat.setString(9, "");
                      c.pstat.setString(10, "");
-                     c.pstat.setString(11, ""+getBerat(txtid_bagging.getText()));
+                     c.pstat.setString(11, "");
                      c.pstat.setString(12, "");
                      c.pstat.setString(13, "");
 
@@ -278,7 +241,7 @@ public class listBagging extends javax.swing.JFrame {
                     int i = getBerat(txtid_bagging.getText());
 
                     DBConnect c = new DBConnect();
-                    String query = "update CargoManifest set jumlah = jumlah+1, berat = berat+? where id_cargo_manifest = '"+txtid_cargo.getText()+"'";
+                    String query = "update CargoManifest set jumlah_kantong = jumlah_kantong + 1, berat_barang_total = berat_barang_total + ? where id_cargo_manifest = '"+txtid_cargo.getText()+"'";
                          c.pstat = c.conn.prepareStatement(query);
                          c.pstat.setString(1, ""+i);
 
@@ -297,14 +260,15 @@ public class listBagging extends javax.swing.JFrame {
         }
         
     }
+    
     private void inputDetailCargo(){
         try
         {
             DBConnect c = new DBConnect();
             String query = "INSERT INTO detailCargo VALUES (?,?,?)";
                  c.pstat = c.conn.prepareStatement(query);
-                 c.pstat.setString(1, txtid_cargo.getText());
-                 c.pstat.setString(2, txtid_bagging.getText());
+                 c.pstat.setString(1, txtid_bagging.getText());
+                 c.pstat.setString(2, txtid_cargo.getText());
                  c.pstat.setString(3, "Akan dikirim");
                  
 
@@ -569,22 +533,20 @@ public class listBagging extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuatActionPerformed
 
     private void cmbkota_tujuanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbkota_tujuanItemStateChanged
-        // TODO add your handling code here:
         Format formatterDate = new SimpleDateFormat("yyyyMMdd");
         addDataColumn();
-        txtid_cargo.setText((getSingkatan(cmbkota_tujuan.getSelectedItem().toString()))+"-"+formatterDate.format(new Date())+autoID());
+        txtid_cargo.setText(formatterDate.format(new Date())+ "-" +autoID());
     }//GEN-LAST:event_cmbkota_tujuanItemStateChanged
 
     private void btnCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargoActionPerformed
         if(getTrueID()){
             //updateStatusConnote();
-            //inputBagging();
+            inputCargo();
             calonCargo.add(txtid_bagging.getText());
             System.out.println(calonCargo.toString());
         }else{
             JOptionPane.showMessageDialog(this," ID Tidak ditemukan !\n");
         }
-
     }//GEN-LAST:event_btnCargoActionPerformed
 
     private void txtid_cargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtid_cargoActionPerformed

@@ -298,6 +298,7 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
         // TODO add your handling code here:
         Pelanggan form = new Pelanggan(false);
         this.setVisible(false);
+        form.setVisible(true);
     }//GEN-LAST:event_btnPelangganActionPerformed
 
     private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed

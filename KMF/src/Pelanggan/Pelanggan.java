@@ -17,7 +17,7 @@ public class Pelanggan extends javax.swing.JFrame {
     
     public void tampil() {
   Object[] tampil = {
-    "ID", "Nama", "No Hp", "Alamat", "Provinsi"
+    "ID", "Nama", "Alamat", "Provinsi","No Hp"
   };
   
   tabModel = new DefaultTableModel(null, tampil);

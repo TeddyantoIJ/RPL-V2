@@ -23,6 +23,7 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
         initComponents();
     }
     private String KantorCabang = "";
+   
     public MainMenuStaffKirim(String kantorCabang) {
         this.KantorCabang = kantorCabang;
         initComponents();
@@ -148,7 +149,6 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
     private void btnSortitBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortitBarangActionPerformed
         // TODO add your handling code here:
         Sortir s = new Sortir();
-       
         s.setVisible(true);
     }//GEN-LAST:event_btnSortitBarangActionPerformed
 
@@ -161,7 +161,6 @@ public class MainMenuStaffKirim extends javax.swing.JFrame {
     private void btnCekConnoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekConnoteActionPerformed
         // TODO add your handling code here:
         CekDoc c = new CekDoc();
-        this.setVisible(false);
         c.setVisible(true);
         
     }//GEN-LAST:event_btnCekConnoteActionPerformed

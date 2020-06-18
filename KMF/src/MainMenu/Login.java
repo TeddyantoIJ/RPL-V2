@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import connection.DBConnect;
+
 ;
 
 /**
@@ -28,6 +29,7 @@ public class Login extends javax.swing.JFrame {
     public String KantorCabang;
     int i;
     String IdCs;
+
     /**
      * Creates new form Login
      */
@@ -39,7 +41,7 @@ public class Login extends javax.swing.JFrame {
         addItemKantor();
         addItemDepartement();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +62,7 @@ public class Login extends javax.swing.JFrame {
         cbDept = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         cbKantorCabang = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,35 +106,49 @@ public class Login extends javax.swing.JFrame {
 
         cbKantorCabang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Kantor --" }));
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 396, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 333, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(jLabel1)
-                .addGap(165, 165, 165))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUser)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbDept, 0, 180, Short.MAX_VALUE)
-                            .addComponent(cbKantorCabang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogin)
-                        .addGap(73, 73, 73))))
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel1)
+                        .addGap(165, 165, 165))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblUser)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel2))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbDept, 0, 180, Short.MAX_VALUE)
+                                .addComponent(cbKantorCabang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addContainerGap(12, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnCancel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLogin)
+                            .addGap(73, 73, 73)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,6 +176,10 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(btnCancel)
                     .addComponent(btnLogin))
                 .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -169,12 +190,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
 
-    public void Clear(){
+    public void Clear() {
         txtUser.setText("");
         txtPas.setText("");
     }
-    
-    private void addItemKantor(){
+
+    private void addItemKantor() {
         cbKantorCabang.removeAll();
         try {
             DBConnect connection = new DBConnect();
@@ -182,19 +203,19 @@ public class Login extends javax.swing.JFrame {
             String query = "SELECT nama_kantor FROM KantorCabang";
             connection.result = connection.stat.executeQuery(query);
             connection.result.next();
-            do{
-                
+            do {
+
                 cbKantorCabang.addItem(connection.result.getString("nama_kantor"));
-            }while(connection.result.next());
-            
+            } while (connection.result.next());
+
             connection.stat.close();
             connection.result.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal menambahkan item KantorCabang!\n" + e.toString());
         }
     }
-    
-    private void addItemDepartement(){
+
+    private void addItemDepartement() {
         cbDept.removeAll();
         try {
             DBConnect connection = new DBConnect();
@@ -202,71 +223,62 @@ public class Login extends javax.swing.JFrame {
             String query = "SELECT nama_dept FROM Departement";
             connection.result = connection.stat.executeQuery(query);
             connection.result.next();
-            do{
-                
+            do {
+
                 cbDept.addItem(connection.result.getString("nama_dept"));
-            }while(connection.result.next());
-            
+            } while (connection.result.next());
+
             connection.stat.close();
             connection.result.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal menambahkan item Departement!\n" + e.toString());
         }
     }
-    
+
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here: 
-        if(driver)
-        {
+        if (driver) {
             LihatStatusPickUp status = new LihatStatusPickUp();
             this.setVisible(false);
             status.setVisible(true);
-        }
-        else
-        {
+        } else {
             String user = txtUser.getText();
             String pass = txtPas.getText();
-            String akun = (String)cbDept.getSelectedItem();
-            KantorCabang = (String)cbKantorCabang.getSelectedItem();
+            String akun = (String) cbDept.getSelectedItem();
+            KantorCabang = (String) cbKantorCabang.getSelectedItem();
             System.out.println(akun);
-            if(akun.equals("Customer Service"))
-            {
+            if (akun.equals("Customer Service")) {
                 txtUser.setVisible(true);
                 lblUser.setVisible(true);
-                if(user.equals("") || pass.equals(""))
-                {
+                if (user.equals("") || pass.equals("")) {
                     JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
-                }
-                else
-                {
+                } else {
                     try {
-                    sql = "SELECT * FROM CustomerService WHERE username='"+ user+"' AND password='"+ pass +"' AND status_aktif='Aktif' and kode_kantor_cabang = '"+getIDKantor(cbKantorCabang.getSelectedItem().toString())+"'";
-                    rs = stat.executeQuery(sql);
-                    if(rs.next()){
-                        if(user.equals(rs.getString("username")) && pass.equals(rs.getString("password")) && getTrueKantor(cbKantorCabang.getSelectedItem().toString())){
-                            IdCs = (rs.getString("id_staff"));
-                            JOptionPane.showMessageDialog(null, "berhasil login");
-                            MainMenuCS transaksi = new MainMenuCS(IdCs, KantorCabang);
-                            this.setVisible(false);
-                            transaksi.setVisible(true);
-                        }
-                    }else{
+                        sql = "SELECT * FROM CustomerService WHERE username='" + user + "' AND password='" + pass + "' AND status_aktif='Aktif' and kode_kantor_cabang = '" + getIDKantor(cbKantorCabang.getSelectedItem().toString()) + "'";
+                        rs = stat.executeQuery(sql);
+                        if (rs.next()) {
+                            if (user.equals(rs.getString("username")) && pass.equals(rs.getString("password")) && getTrueKantor(cbKantorCabang.getSelectedItem().toString())) {
+                                IdCs = (rs.getString("id_staff"));
+                                JOptionPane.showMessageDialog(null, "berhasil login");
+                                MainMenuCS transaksi = new MainMenuCS(IdCs, KantorCabang);
+                                this.setVisible(false);
+                                transaksi.setVisible(true);
+                            }
+                        } else {
                             JOptionPane.showMessageDialog(null, "Nama pengguna atau kata sandi salah");
-                            int jawab = JOptionPane.showOptionDialog(this, 
-                                        "Ingin Mencoba lagi?", 
-                                        "Mengulang", 
-                                        JOptionPane.YES_NO_OPTION, 
-                                        JOptionPane.QUESTION_MESSAGE, null, null, null);
+                            int jawab = JOptionPane.showOptionDialog(this,
+                                    "Ingin Mencoba lagi?",
+                                    "Mengulang",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE, null, null, null);
 
-                            if(jawab == JOptionPane.NO_OPTION){
+                            if (jawab == JOptionPane.NO_OPTION) {
                                 JOptionPane.showMessageDialog(this, "Program Akan Keluar");
                                 System.exit(0);
-                            }
-                            else
-                            {
+                            } else {
                                 Clear();
                                 i++;
-                                if(i == 3){
+                                if (i == 3) {
                                     JOptionPane.showMessageDialog(this, "Anda telah gagal 3x. Aplikasi akan ditutup");
                                     System.exit(0);
                                 }
@@ -276,56 +288,53 @@ public class Login extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, e.getMessage());
                     }
                 }
-            }else{
-                if(pass.equals(""))
-                {   
+            } else {
+                if (pass.equals("")) {
                     JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
-                }else{
-                    if(pass.equals(getPassDepartment(akun))){
+                } else {
+                    if (pass.equals(getPassDepartment(akun))) {
                         JOptionPane.showMessageDialog(null, "berhasil login");
-                        switch (akun){
-                            case "Dispatch" :{
+                        switch (akun) {
+                            case "Dispatch": {
                                 MainMenuDispatch m = new MainMenuDispatch(KantorCabang);
                                 m.setVisible(true);
                                 this.setVisible(false);
                                 break;
                             }
-                            case "Pencetak Connote" : {
+                            case "Pencetak Connote": {
                                 MainMenuPencetakConnote m = new MainMenuPencetakConnote(KantorCabang);
                                 m.setVisible(true);
                                 this.setVisible(false);
                                 break;
                             }
-                            case "Staff" : {
+                            case "Staff": {
                                 MainMenuStaff m = new MainMenuStaff(KantorCabang);
                                 m.setVisible(true);
                                 this.setVisible(false);
                                 break;
                             }
-                    }
-                    }else{
+                        }
+                    } else {
                         JOptionPane.showMessageDialog(null, "Nama pengguna atau kata sandi salah");
-                        int jawab = JOptionPane.showOptionDialog(this, 
-                                        "Ingin Mencoba lagi?", 
-                                        "Mengulang", 
-                                        JOptionPane.YES_NO_OPTION, 
-                                        JOptionPane.QUESTION_MESSAGE, null, null, null);
+                        int jawab = JOptionPane.showOptionDialog(this,
+                                "Ingin Mencoba lagi?",
+                                "Mengulang",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE, null, null, null);
 
-                            if(jawab == JOptionPane.NO_OPTION){
-                                JOptionPane.showMessageDialog(this, "Program Akan Keluar");
+                        if (jawab == JOptionPane.NO_OPTION) {
+                            JOptionPane.showMessageDialog(this, "Program Akan Keluar");
+                            System.exit(0);
+                        } else {
+                            Clear();
+                            i++;
+                            if (i == 3) {
+                                JOptionPane.showMessageDialog(this, "Anda telah gagal 3x. Aplikasi akan ditutup");
                                 System.exit(0);
                             }
-                            else
-                            {
-                                Clear();
-                                i++;
-                                if(i == 3){
-                                    JOptionPane.showMessageDialog(this, "Anda telah gagal 3x. Aplikasi akan ditutup");
-                                    System.exit(0);
-                                }
-                            }
+                        }
                     }
-                    
+
                 }
             }
 //            else if(akun.equals("Staff Kelola"))
@@ -430,7 +439,7 @@ public class Login extends javax.swing.JFrame {
 //                }
 //            }
         }
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -438,10 +447,11 @@ public class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private String getPassDepartment(String akun){
-        try{DBConnect connection = new DBConnect();
+    private String getPassDepartment(String akun) {
+        try {
+            DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
-            String query = "select pass_dept from Departement where nama_dept = '"+akun+"'";
+            String query = "select pass_dept from Departement where nama_dept = '" + akun + "'";
             connection.result = connection.stat.executeQuery(query);
             String output = null;
             while (connection.result.next()) {
@@ -452,17 +462,18 @@ public class Login extends javax.swing.JFrame {
             connection.stat.close();
             connection.result.close();
             return output;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
         }
         return null;
     }
-    private boolean getTrueKantor(String in){
-        
-        try{DBConnect connection = new DBConnect();
+
+    private boolean getTrueKantor(String in) {
+
+        try {
+            DBConnect connection = new DBConnect();
             connection.stat = connection.conn.createStatement();
-            String query = "select id_staff from CustomerService where username = '"+txtUser.getText()+"' and password ='"+txtPas.getText()+"' and kode_kantor_cabang = '"+getIDKantor(in)+"'";
+            String query = "select id_staff from CustomerService where username = '" + txtUser.getText() + "' and password ='" + txtPas.getText() + "' and kode_kantor_cabang = '" + getIDKantor(in) + "'";
             connection.result = connection.stat.executeQuery(query);
             String output = null;
             while (connection.result.next()) {
@@ -472,26 +483,26 @@ public class Login extends javax.swing.JFrame {
             }
             connection.stat.close();
             connection.result.close();
-            if(output.equals("")){
+            if (output.equals("")) {
                 return false;
-            }else{
+            } else {
                 return true;
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             //JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
             return false;
         }
-        
+
     }
-    private String getIDKantor(String in){
+
+    private String getIDKantor(String in) {
         DBConnect connection = new DBConnect();
-        try{
+        try {
             connection.stat = connection.conn.createStatement();
-            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '"+in+"'";
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '" + in + "'";
             //System.out.println(query);
             connection.result = connection.stat.executeQuery(query);
-            
+
             String output = null;
             while (connection.result.next()) {
 
@@ -501,27 +512,25 @@ public class Login extends javax.swing.JFrame {
             connection.stat.close();
             connection.result.close();
             return output;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error do getIdKantor!!\n" + e.toString());
         }
         return null;
     }
     private void cbDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDeptActionPerformed
         // TODO add your handling code here:
-        String akun = (String)cbDept.getSelectedItem();
-        if(akun.equals("Customer Service") || akun.equals("Staff Kelola"))
-        {
+        String akun = (String) cbDept.getSelectedItem();
+        if (akun.equals("Customer Service") || akun.equals("Staff Kelola")) {
             txtUser.setVisible(true);
             lblUser.setVisible(true);
-        }
-        else{
-            
+        } else {
+
             txtUser.setVisible(false);
             lblUser.setVisible(false);
         }
     }//GEN-LAST:event_cbDeptActionPerformed
     boolean driver = false;
+
     /**
      * @param args the command line arguments
      */
@@ -567,6 +576,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblUser;
     private javax.swing.JTextField txtPas;
     private javax.swing.JTextField txtUser;
