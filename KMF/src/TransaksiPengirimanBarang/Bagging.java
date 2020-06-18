@@ -306,7 +306,7 @@ public class Bagging extends javax.swing.JFrame {
                     c.pstat.close();
                     //JOptionPane.showMessageDialog(this, "insert data connote berhasil");
                 }catch(Exception n){
-                    JOptionPane.showMessageDialog(this,"Terjadi error pada saat insert data connote :" + n);
+                    JOptionPane.showMessageDialog(this,"Terjadi error pada saat inputBagginge :" + n);
                 }
             }
             inputDetailBagging();
@@ -329,6 +329,7 @@ public class Bagging extends javax.swing.JFrame {
                   //insert ke dalam database
             c.pstat.executeUpdate();
             c.pstat.close();
+            txtid_connote.setText("");
             //JOptionPane.showMessageDialog(this, "insert data Bagging berhasil");
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Terjadi error pada saat insert data detailBagging :" + e);

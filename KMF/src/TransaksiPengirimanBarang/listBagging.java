@@ -126,7 +126,13 @@ public class listBagging extends javax.swing.JFrame {
                 obj[2] = connection.result.getString("berat");
                 obj[3] = connection.result.getString("tanggal");
                 obj[4] = connection.result.getString("status_bagging");
-                model.addRow(obj);
+                
+                if(!adaDitable(obj[0].toString())){
+                    
+                    model.addRow(obj);
+                }else{
+                    System.out.println("Takadeeee");
+                }
             }
             connection.stat.close();
             connection.result.close();
@@ -134,7 +140,14 @@ public class listBagging extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Gagal!\n" + e.toString());
         }
     }
-    
+    private boolean adaDitable(String in){
+        for(int i = 0; i<model.getRowCount();i++){
+            if(in.equals(model.getValueAt(i, 0))){
+                return true;
+            }
+        }
+        return false;
+    }
     private String getIDKantor(String in){
         
         try{
@@ -527,9 +540,10 @@ public class listBagging extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuatActionPerformed
-        CargoManifest c = new CargoManifest(KantorCabang, calonCargo);
-        c.setVisible(true);
+        String cargo = txtid_cargo.getText();
+        CargoManifest c = new CargoManifest(cargo, KantorCabang, calonCargo);
         this.setVisible(false);
+        c.setVisible(true);
     }//GEN-LAST:event_btnBuatActionPerformed
 
     private void cmbkota_tujuanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbkota_tujuanItemStateChanged
@@ -541,9 +555,14 @@ public class listBagging extends javax.swing.JFrame {
     private void btnCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargoActionPerformed
         if(getTrueID()){
             //updateStatusConnote();
-            inputCargo();
+            //inputCargo();
             calonCargo.add(txtid_bagging.getText());
             System.out.println(calonCargo.toString());
+            int i = tableBagging.getSelectedRow();
+            model.removeRow(i);
+            model.fireTableDataChanged();
+            txtid_bagging.setText("");
+            JOptionPane.showMessageDialog(this, "Berhasil menambahkan!");
         }else{
             JOptionPane.showMessageDialog(this," ID Tidak ditemukan !\n");
         }

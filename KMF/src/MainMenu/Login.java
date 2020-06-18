@@ -26,7 +26,7 @@ public class Login extends javax.swing.JFrame {
     Statement stat;
     ResultSet rs;
     String sql, query;
-    public String KantorCabang;
+    public String KantorCabang = "KMF JKT";
     int i;
     String IdCs;
 

@@ -5,6 +5,7 @@
  */
 package MainMenu;
 
+import PendataanBarangMasuk.cetakTemporaryshipment;
 import TransaksiPengambilanBarang.TransaksiPemesanan;
 
 /**
@@ -104,6 +105,10 @@ public class MainMenuDispatch extends javax.swing.JFrame {
 
     private void btnNavTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavTempActionPerformed
         // TODO add your handling code here:
+        cetakTemporaryshipment ct = new cetakTemporaryshipment(KantorCabang);
+        this.setVisible(false);
+        ct.setVisible(true);
+        
     }//GEN-LAST:event_btnNavTempActionPerformed
 
     /**

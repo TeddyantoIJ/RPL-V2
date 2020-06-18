@@ -23,7 +23,7 @@ public class CargoManifest extends javax.swing.JFrame {
     /**
      * Creates new form CargoManifest
      */
-    private String KantorCabang = "";
+    private String KantorCabang = "KMF JKT";
     listBagging g = new listBagging();
     private DefaultTableModel model;
     private DBConnect connection = new DBConnect();
@@ -34,30 +34,55 @@ public class CargoManifest extends javax.swing.JFrame {
         //addCargo(); 
     }
     
-    public CargoManifest(String kantorCabang, List<String> a) {
+    public CargoManifest(String id_cargo, String kantorCabang, List<String> a) {
+        initComponents();
         this.KantorCabang = kantorCabang;
         this.calonCargo = a;
-        initComponents();
+        System.out.println(id_cargo);
+        
+        
+        txtid_cargo.setText(id_cargo);
         //addCargo(); 
-        id();
-        txtberat.setText(String.valueOf(getBerat(txtid_cargo.getText())));
-        txtJumkantong.setText(String.valueOf(calonCargo.size()));
+        //id();
+        int berat = 0;
+        int jumlah = 0;
+        for(int i = 0; i < this.calonCargo.size(); i++){
+            berat+=getBerat(calonCargo.get(i));
+            jumlah+=getJumlah(calonCargo.get(i));
+        }
+        txtberat.setText(String.valueOf(berat));
+        txtJumkantong.setText(String.valueOf(jumlah));
     }
     
     private int getBerat(String in){
         try{
             connection.stat = connection.conn.createStatement();
-            String query = "select [DataBarangPelanggan].berat_barang as berat "
-                    + "from DataBarangPelanggan "
-                    + "inner join Connote on [DataBarangPelanggan].id_pemesanan = [Connote].id_pemesanan "
-                    + "inner join detailBagging on [Connote].id_connote = [detailBagging].id_connote "
-                    + "inner join detailCargo on [detailBagging].id_bagging = [detailCargo].id_bagging "
-                    + "where [detailCargo].id_cargo_manifest = '"+in+"'";
+            String query = "select berat from Bagging where id_bagging = '"+in+"'";
             connection.result = connection.stat.executeQuery(query);
             int output = 0;
             while (connection.result.next()) {
 
                 output = Integer.parseInt(connection.result.getString("berat"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            return output;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error getBerat!!\n" + e.toString());
+        }
+        return 0;
+    }
+    private int getJumlah(String in){
+        try{
+            connection.stat = connection.conn.createStatement();
+            String query = "select jumlah from Bagging where id_bagging = '"+in+"'";
+            connection.result = connection.stat.executeQuery(query);
+            int output = 0;
+            while (connection.result.next()) {
+
+                output = Integer.parseInt(connection.result.getString("jumlah"));
 
             }
             connection.stat.close();
@@ -120,7 +145,7 @@ public class CargoManifest extends javax.swing.JFrame {
                      c.pstat.setString(2, txtid_cargo.getText());
                      c.pstat.setString(3, "Akan dikirim");
 
-
+                     updateStatusBagging(calonCargo.get(i));
                       //insert ke dalam database
                 c.pstat.executeUpdate();
                 c.pstat.close();
@@ -130,41 +155,51 @@ public class CargoManifest extends javax.swing.JFrame {
             }
         }     
     }
-    
+    private void updateStatusBagging(String in) {
+        DBConnect connection = new DBConnect();
+        try {
+            String query;
+
+            query = "UPDATE Bagging SET status_bagging='Sudah' WHERE id_bagging='" + in + "'";
+
+            connection.pstat = connection.conn.prepareStatement(query);
+
+            connection.pstat.executeUpdate();
+            //connection.result.close();
+            //addRiwayat();
+            //JOptionPane.showMessageDialog(this, "Bagging berhasil");
+        } catch (Exception e) {
+            System.out.println("Terjadi error saat updateStatusBagging: " + e.toString());
+        }
+    }
     private void inputCargoManifest(){
         Format formatter = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
         String time = formatterTime.format(new Date());
         try
         {
-            String query = "UPDATE CargoManifest SET "
-                    + "nomor_registrasi=?, nomor_penerbangan=?, "
-                    + "bandara_asal=?, bandara_tujuan=?, "
-                    + "berat_barang_total=?, jumlah_kantong=?, "
-                    + "tanggal_pemberangkatan=?, waktu_pemberangkatan=?, "
-                    + "tanggal_sampai=?, waktu_sampai=?, "
-                    + "total_biaya=?, status=?"
-                    + " WHERE id_cargo_manifest=?"; //+ txtid_cargo.getText()+"'";
+            String query = "INSERT INTO CargoManifest VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; //
+             //+ txtid_cargo.getText()+"'";
             connection.pstat = connection.conn.prepareStatement(query);
 
-            connection.pstat.setString(1, txtnoreg.getText());
-            connection.pstat.setString(2, txtnopenerbangan.getText());
-            connection.pstat.setString(3, txtbanAsal.getText());
-            connection.pstat.setString(4, txtbanTujuan.getText());
-            connection.pstat.setString(5, txtberat.getText());
-            connection.pstat.setString(6, txtJumkantong.getText());
-            connection.pstat.setString(7, formatter.format(dateBerangkat.getDate()));
-            connection.pstat.setString(8, txttimeberangkat.getText());//formatterTime.format(formatterTime.parse(txttimeberangkat.getText())));
-            connection.pstat.setString(9, formatter.format(dateSampai.getDate()));
-            connection.pstat.setString(10, txttimesampai.getText());
-            connection.pstat.setString(11, txtharga.getText());
-            connection.pstat.setString(12, "sampai");
-            connection.pstat.setString(13, txtid_cargo.getText());
+            connection.pstat.setString(2, txtnoreg.getText());
+            connection.pstat.setString(3, txtnopenerbangan.getText());
+            connection.pstat.setString(4, txtbanAsal.getText());
+            connection.pstat.setString(5, txtbanTujuan.getText());
+            connection.pstat.setString(6, txtberat.getText());
+            connection.pstat.setString(7, txtJumkantong.getText());
+            connection.pstat.setString(8, formatter.format(dateBerangkat.getDate()));
+            connection.pstat.setString(9, txttimeberangkat.getText());//formatterTime.format(formatterTime.parse(txttimeberangkat.getText())));
+            connection.pstat.setString(10, formatter.format(dateSampai.getDate()));
+            connection.pstat.setString(11, txttimesampai.getText());
+            connection.pstat.setString(12, txtharga.getText());
+            connection.pstat.setString(13, "Siap berangkat");
+            connection.pstat.setString(1, txtid_cargo.getText());
 
             connection.pstat.executeUpdate();
             connection.result.close();
 
-            JOptionPane.showMessageDialog(this, "insert data cargo manifest berhasil");
+            JOptionPane.showMessageDialog(this, "Berhasil menyimpan data");
             
         }
         catch (Exception e) {
@@ -209,6 +244,7 @@ public class CargoManifest extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtharga = new javax.swing.JTextField();
         btnCetak = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -222,11 +258,16 @@ public class CargoManifest extends javax.swing.JFrame {
 
         jLabel5.setText("Tanggal Pemberangkatan");
 
+        txtberat.setEnabled(false);
+
+        txtid_cargo.setEnabled(false);
         txtid_cargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtid_cargoActionPerformed(evt);
             }
         });
+
+        txtJumkantong.setEnabled(false);
 
         jButton1.setText("Kembali");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +307,8 @@ public class CargoManifest extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("KG");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -289,21 +332,15 @@ public class CargoManifest extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtberat, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtnopenerbangan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                .addComponent(txtbanAsal, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtnoreg)
-                                .addComponent(txtbanTujuan))
-                            .addComponent(txtid_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtnopenerbangan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(txtbanAsal, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtnoreg)
+                            .addComponent(txtbanTujuan)
+                            .addComponent(txtid_cargo))
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(27, 27, 27)
-                                .addComponent(dateBerangkat, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
@@ -311,14 +348,22 @@ public class CargoManifest extends javax.swing.JFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel6))
                                 .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtharga, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(dateSampai, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                        .addComponent(txttimeberangkat)
-                                        .addComponent(txttimesampai))))))
-                    .addComponent(txtJumkantong, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dateSampai, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                    .addComponent(txttimesampai)
+                                    .addComponent(txttimeberangkat)
+                                    .addComponent(txtharga)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(27, 27, 27)
+                                .addComponent(dateBerangkat, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtJumkantong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                            .addComponent(txtberat, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)))
+                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jButton1)
@@ -349,7 +394,7 @@ public class CargoManifest extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(dateBerangkat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(13, 13, 13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
                                     .addComponent(txttimeberangkat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -372,17 +417,21 @@ public class CargoManifest extends javax.swing.JFrame {
                                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtbanTujuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(dateSampai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txttimesampai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel15)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel15))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(dateSampai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txttimesampai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtberat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtberat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,10 +459,37 @@ public class CargoManifest extends javax.swing.JFrame {
     }//GEN-LAST:event_txtid_cargoActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        if(cekCargo(txtid_cargo.getText())){
+            JOptionPane.showMessageDialog(this, "Data sudah disimpan!");
+            return; 
+        }
         inputDetailCargo();
         inputCargoManifest();
     }//GEN-LAST:event_btnSimpanActionPerformed
+    private boolean cekCargo(String in){
+        try{
+            connection.stat = connection.conn.createStatement();
+            String query = "select * from CargoManifest where id_cargo_manifest = '"+in+"'";
+            connection.result = connection.stat.executeQuery(query);
+            String output = "";
+            while (connection.result.next()) {
 
+                output = (connection.result.getString("id_cargo_manifest"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            if(!output.equals("")){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        catch(Exception e){
+            //JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+            return false;
+        }
+    }
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
        JOptionPane.showMessageDialog(this,"Mencetak ....");
     }//GEN-LAST:event_btnCetakActionPerformed
@@ -472,6 +548,7 @@ public class CargoManifest extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtJumkantong;
     private javax.swing.JTextField txtbanAsal;
     private javax.swing.JTextField txtbanTujuan;

@@ -22,7 +22,7 @@ public class Sortir extends javax.swing.JFrame {
      * Creates new form Sortir
      */
     DefaultTableModel model;
-    
+    private String kantorCabang = "KMF JXXT";
     
     public Sortir() {
         initComponents();
@@ -33,8 +33,21 @@ public class Sortir extends javax.swing.JFrame {
         tampilKota();
         btnGrup.add(rbBelum);
         btnGrup.add(rbTerkirim);
+        rbBelum.setSelected(true);
     }
     
+    public Sortir(String kantorCabang) {
+        initComponents();
+        this.kantorCabang= kantorCabang;
+        
+        model = new DefaultTableModel();
+        addColomn();
+        tblBarang.setModel(model);
+        tampilKota();
+        btnGrup.add(rbBelum);
+        btnGrup.add(rbTerkirim);
+        rbBelum.setSelected(true);
+    }
     public void addColomn() {
         model.addColumn("ID Connote");
         model.addColumn("Jenis Barang");
@@ -294,7 +307,28 @@ public class Sortir extends javax.swing.JFrame {
             rbTerkirim.setSelected(true);
         }
     }//GEN-LAST:event_rbTerkirimActionPerformed
+    private String getIDKantor(String in){
+        DBConnect connection = new DBConnect();
+        try{
+            connection.stat = connection.conn.createStatement();
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '"+in+"'";
+            connection.result = connection.stat.executeQuery(query);
+            System.out.println(query);
+            String output = null;
+            while (connection.result.next()) {
 
+                output = (connection.result.getString("kode_kantor_cabang"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            return output;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
     private void cmbKotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKotaActionPerformed
         // TODO add your handling code here:
         model.getDataVector().removeAllElements();
@@ -303,7 +337,8 @@ public class Sortir extends javax.swing.JFrame {
         try{
             DBConnect c = new DBConnect();
             c.stat = c.conn.createStatement();
-            String sql = "select c.id_connote, d.jenis_barang, d.nama_penerima, d.kota_penerima from Connote c inner join DataBarangPelanggan d on c.id_pemesanan = d.id_pemesanan where c.status_pengiriman = 'Belum' and d.kota_penerima ='"+cmbKota.getSelectedItem()+"'";
+            String sql = "select c.id_connote, d.jenis_barang, d.nama_penerima, d.kota_penerima from Connote c inner join DataBarangPelanggan d on c.id_pemesanan = d.id_pemesanan where c.status_pengiriman = 'Belum' and d.kota_penerima ='"+cmbKota.getSelectedItem()+"' and d.kode_kantor_cabang ='"+getIDKantor(kantorCabang)+"'";
+            System.out.println("SQL "+sql);
             c.result = c.stat.executeQuery(sql);
             
             while (c.result.next()) {

@@ -1035,9 +1035,11 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
             if(cbPick_up.isSelected() == true){
                 connection.pstat.setString(12, "Pickup");
                 connection.pstat.setString(16, "BELUM");
+                connection.pstat.setString(17, "Segera dipickup");
             }else{
                 connection.pstat.setString(12, "Non-Pickup");
                 connection.pstat.setString(16, "LUNAS");
+                connection.pstat.setString(17, "Sedang diproses pada kantor pengirim");
             }
             
             Date date = new Date();
@@ -1046,7 +1048,7 @@ public class TransaksiPemesanan extends javax.swing.JFrame {
             connection.pstat.setString(13, formatterDate.format(new Date()));
             connection.pstat.setString(14, formatter.format(date));
             connection.pstat.setString(15, txtBiaya.getText());
-            connection.pstat.setString(17, "-");
+            
             connection.pstat.setString(18, txtid_cs);
             connection.pstat.setString(19, getIDKantor());
             

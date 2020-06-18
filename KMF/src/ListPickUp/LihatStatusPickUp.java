@@ -10,6 +10,7 @@ import MainMenu.MainMenuCS;
 import connection.DBConnect;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,6 +28,18 @@ public class LihatStatusPickUp extends javax.swing.JFrame {
     public LihatStatusPickUp() {
         initComponents();
         
+        setLocationRelativeTo(this);
+        
+        model = new DefaultTableModel();
+        
+        //menambahkan table model ke table
+        addColumn();
+        tableView.setModel(model);
+    }
+    private String KantorCabang = "KMF JKT";
+    public LihatStatusPickUp(String kantorCabang) {
+        initComponents();
+        this.KantorCabang = kantorCabang;
         setLocationRelativeTo(this);
         
         model = new DefaultTableModel();
@@ -203,10 +216,38 @@ public class LihatStatusPickUp extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    String kode ="";
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
+        int count = tableView.getRowCount();
+        if(count == 0){
+            return;
+        }
         updateStatus();
+        for(int i = 0; i < count ; i++){
+            kode = tableView.getValueAt(i, 0).toString();
+            updateStatusBarang();
+        }
     }//GEN-LAST:event_btnCetakActionPerformed
+    
+    private void updateStatusBarang() {
+        DBConnect connection = new DBConnect();
+        try {
+            String query;
+
+            query = "UPDATE DataBarangPelanggan SET status_barang='Sedang diproses pada kantor pengirim' WHERE id_pemesanan='" + kode + "'";
+
+            connection.pstat = connection.conn.prepareStatement(query);
+
+            connection.pstat.executeUpdate();
+            //connection.result.close();
+           
+            //JOptionPane.showMessageDialog(this, "Bagging berhasil");
+        } catch (Exception e) {
+            System.out.println("Terjadi error saat updateStatusBarang: " + e.toString());
+        }
+    }
+    
     private DefaultTableModel model;
     private void addColumn(){
         model.addColumn("ID Barang");
@@ -233,8 +274,6 @@ public class LihatStatusPickUp extends javax.swing.JFrame {
             connection.result.close();
             JOptionPane.showMessageDialog(this, "Mencetak...");
             fillStatus();
-            
-
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Terjadi error Update Status: " + e);
@@ -244,7 +283,9 @@ public class LihatStatusPickUp extends javax.swing.JFrame {
         try {
             
             connection.stat = connection.conn.createStatement();
-            String query = "select * from Driver where ID_Staff = '"+txtid_driver.getText()+"'";
+            String query = "select * from detailPickUp dp inner join Driver d on dp.ID_Staff = d.ID_Staff\n" +
+                    "inner join KantorCabang kc on kc.kode_kantor_cabang = d.kode_kantor_cabang\n" +
+                    "where kc.nama_kantor ='"+KantorCabang+"' and dp.ID_Staff = '"+txtid_driver.getText()+"'";
             connection.result = connection.stat.executeQuery(query);
             connection.result.next();
             do {
@@ -267,11 +308,15 @@ public class LihatStatusPickUp extends javax.swing.JFrame {
                 connection.stat = connection.conn.createStatement();
                 String query;
                 if(status.equals("Semua")){
-                    query = "select * from detailPickUp where ID_Staff = '"+txtid_driver.getText()+"'";
+                    query = "select * from detailPickUp dp inner join Driver d on dp.ID_Staff = d.ID_Staff\n" +
+                    "inner join KantorCabang kc on kc.kode_kantor_cabang = d.kode_kantor_cabang\n" +
+                    "where kc.nama_kantor ='"+KantorCabang+"' and dp.ID_Staff = '"+txtid_driver.getText()+"'";
                 }else{
-                    query = "select * from detailPickUp where ID_Staff = '"+txtid_driver.getText()+"' and keterangan ='"+status+"'";
+                    query = "select * from detailPickUp dp inner join Driver d on dp.ID_Staff = d.ID_Staff\n" +
+                "inner join KantorCabang kc on kc.kode_kantor_cabang = d.kode_kantor_cabang\n" +
+                "where kc.nama_kantor = '"+KantorCabang+"' and dp.ID_Staff = '"+txtid_driver.getText()+"' and dp.keterangan ='"+status+"'";
                 }
-                
+                System.out.println(query);
                 connection.result = connection.stat.executeQuery(query);
 
                 while (connection.result.next()) {
@@ -299,6 +344,7 @@ public class LihatStatusPickUp extends javax.swing.JFrame {
     private void txtid_driverKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtid_driverKeyReleased
         // TODO add your handling code here:
         fillTableView(status);
+        System.out.println("txtid_driverKeyReleased");
         fillStatus();
     }//GEN-LAST:event_txtid_driverKeyReleased
 

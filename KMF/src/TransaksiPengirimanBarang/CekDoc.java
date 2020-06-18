@@ -12,6 +12,7 @@ import connection.DBConnect;
 import java.sql.SQLException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,10 +25,21 @@ public class CekDoc extends javax.swing.JFrame {
     /**
      * Creates new form CekDoc
      */
-    private String id_pemesanan;
-    private String id_connote;
+    private String id_pemesanan="";
+    private String id_connote="";
+    private String kantorCabang = "KMF JKT";
+    
     public CekDoc() {
         initComponents();
+        model = new DefaultTableModel();
+        addColomn();
+        tblList.setModel(model);
+        liatdata();
+    }
+    
+    public CekDoc(String kantorCabang) {
+        initComponents();
+        this.kantorCabang = kantorCabang;
         model = new DefaultTableModel();
         addColomn();
         tblList.setModel(model);
@@ -46,7 +58,26 @@ public class CekDoc extends javax.swing.JFrame {
         model.addColumn("Total harga");
         model.addColumn("Keterangan Pembayaran");
     }
+    private String getIDKantor(String in) {
+        DBConnect connection = new DBConnect();
+        try {
+            connection.stat = connection.conn.createStatement();
+            String query = "select kode_kantor_cabang from KantorCabang where nama_kantor = '" + in + "'";
+            connection.result = connection.stat.executeQuery(query);
+            String output = null;
+            while (connection.result.next()) {
 
+                output = (connection.result.getString("kode_kantor_cabang"));
+
+            }
+            connection.stat.close();
+            connection.result.close();
+            return output;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error!!\n" + e.toString());
+        }
+        return null;
+    }
     public void liatdata(){
         model.getDataVector().removeAllElements();
 
@@ -54,7 +85,7 @@ public class CekDoc extends javax.swing.JFrame {
         try{
             DBConnect c = new DBConnect();
             c.stat = c.conn.createStatement();
-            String sql = "SELECT * FROM Connote join DataBarangPelanggan  on Connote.id_pemesanan = DataBarangPelanggan.id_pemesanan and DataBarangPelanggan.status_barang != 'Barang siap berangkat' and Connote.status_pengiriman = 'Belum'";
+            String sql = "SELECT * FROM Connote join DataBarangPelanggan  on Connote.id_pemesanan = DataBarangPelanggan.id_pemesanan and DataBarangPelanggan.status_barang != 'Barang siap diberangkat' and Connote.status_pengiriman = 'Belum' and DataBarangPelanggan.kode_kantor_cabang = '"+getIDKantor(kantorCabang).toString()+"'";
             c.result = c.stat.executeQuery(sql);
             
             while (c.result.next()) {
@@ -235,23 +266,49 @@ public class CekDoc extends javax.swing.JFrame {
 
     private void btnSesuaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSesuaiActionPerformed
         // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(this, "Dengan menekan Yes anda menyatakan barang ini sesuai", "Pertanyaan", JOptionPane.YES_NO_CANCEL_OPTION)!=JOptionPane.YES_OPTION){
+            return;
+        }
         DBConnect connection = new DBConnect();
         try {
                 
-                String query = "UPDATE DataBarangPelanggan SET status_barang = 'Barang siap berangkat' WHERE id_pemesanan=?";
+                String query = "UPDATE DataBarangPelanggan SET status_barang = 'Barang siap diberangkatkan' WHERE id_pemesanan=?";
                 //System.out.println(query);
                 connection.pstat = connection.conn.prepareStatement(query);
                 connection.pstat.setString(1, id_pemesanan);
 
                 connection.pstat.executeUpdate();
                 connection.pstat.close();
+                addRiwayat("Barang siap diberangkatkan");
                 JOptionPane.showMessageDialog(this, "Data barang telah sesuai");
             }
         catch (SQLException e) {
-            System.out.println("Terjadi error saat menambahkan komentar: " + e.toString());
+            System.out.println("Terjadi error saat btnSesuaiActionPerformed: " + e.toString());
         }
        liatdata(); 
     }//GEN-LAST:event_btnSesuaiActionPerformed
+    private void addRiwayat(String riwayat){
+        Format formatter = new SimpleDateFormat("yyyyMMdd");
+        Format formatterTime = new SimpleDateFormat("hh:mm:ss");
+        
+            try
+            {
+                DBConnect c = new DBConnect();
+                String query = "INSERT INTO Riwayat VALUES (?,?,?,?)";
+                     c.pstat = c.conn.prepareStatement(query);
+                     c.pstat.setString(1, formatter.format(new Date()));
+                     c.pstat.setString(2, formatterTime.format(new Date()));
+                     c.pstat.setString(3, riwayat);
+                     c.pstat.setString(4, id_pemesanan);
+
+                      //insert ke dalam database
+                c.pstat.executeUpdate();
+                c.pstat.close();
+                //JOptionPane.showMessageDialog(this, "insert data Baggin berhasil");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this,"Terjadi error pada saat addRiwayat :" + e);
+            }        
+    }
     private void ubahStatusGagal(){
         DBConnect connection = new DBConnect();
         try {
@@ -274,7 +331,9 @@ public class CekDoc extends javax.swing.JFrame {
 //        CommentCek Comment = new CommentCek();
 //        this.setVisible(true);
 //        Comment.setVisible(true);
-        
+        if(JOptionPane.showConfirmDialog(this, "Dengan menekan Yes anda menyatakan barang ini tidak sesuai", "Pertanyaan", JOptionPane.YES_NO_CANCEL_OPTION)!=JOptionPane.YES_OPTION){
+            return;
+        }
         
         //System.out.println(id_pemesanan);
         DBConnect connection = new DBConnect();
@@ -288,6 +347,7 @@ public class CekDoc extends javax.swing.JFrame {
 
                 connection.pstat.executeUpdate();
                 connection.pstat.close();
+                addRiwayat(txtKomen.getText());
                 JOptionPane.showMessageDialog(this, "Menambah komentar berhasil");
                 ubahStatusGagal();
             }
