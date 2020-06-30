@@ -58,97 +58,161 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        btnUbahData = new javax.swing.JButton();
-        btnTambahData = new javax.swing.JButton();
-        btnKembali = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        lblolah = new javax.swing.JLabel();
+        btnTambahData = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btnUbahData = new javax.swing.JLabel();
         panelCreate = new javax.swing.JPanel();
-        btnDepartment = new javax.swing.JButton();
-        btnJnsPaket = new javax.swing.JButton();
-        btnPelanggan = new javax.swing.JButton();
-        btnDriver = new javax.swing.JButton();
-        btnStaff = new javax.swing.JButton();
-        btnCS = new javax.swing.JButton();
-        btnKC = new javax.swing.JButton();
-        btnOlahData = new javax.swing.JButton();
+        lbldept = new javax.swing.JLabel();
+        lbljenis = new javax.swing.JLabel();
+        lblpelanggan = new javax.swing.JLabel();
+        lbldriver = new javax.swing.JLabel();
+        lblstaff = new javax.swing.JLabel();
+        lblkantor = new javax.swing.JLabel();
+        lblcs = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(1200, 700));
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(960, 700));
 
-        btnUbahData.setText("Ubah Data");
-        btnUbahData.setInheritsPopupMenu(true);
-        btnUbahData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUbahDataActionPerformed(evt);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/Logo.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(229, 229, 229)
+                .addComponent(jLabel1)
+                .addContainerGap(398, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 556, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel4.setPreferredSize(new java.awt.Dimension(240, 700));
+
+        lblolah.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblolah.setForeground(new java.awt.Color(255, 255, 255));
+        lblolah.setText("Pengolahan Data");
+        lblolah.setToolTipText("");
+        lblolah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblolahMouseClicked(evt);
             }
         });
 
+        btnTambahData.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        btnTambahData.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahData.setText("Tambah Data");
-        btnTambahData.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        btnTambahData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTambahDataActionPerformed(evt);
+        btnTambahData.setToolTipText("");
+        btnTambahData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTambahDataMouseClicked(evt);
             }
         });
 
-        btnKembali.setText("kembali");
-        btnKembali.setInheritsPopupMenu(true);
-        btnKembali.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKembaliActionPerformed(evt);
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Keluar");
+        jLabel5.setToolTipText("");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
             }
         });
 
+        btnUbahData.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        btnUbahData.setForeground(new java.awt.Color(255, 255, 255));
+        btnUbahData.setText("Ubah Data");
+        btnUbahData.setToolTipText("");
+        btnUbahData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUbahDataMouseClicked(evt);
+            }
+        });
+
+        panelCreate.setBackground(new java.awt.Color(0, 0, 51));
         panelCreate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelCreate.setToolTipText("");
 
-        btnDepartment.setText("Master Departemen");
-        btnDepartment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDepartmentActionPerformed(evt);
+        lbldept.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lbldept.setForeground(new java.awt.Color(255, 255, 255));
+        lbldept.setText("Master Departemen");
+        lbldept.setToolTipText("");
+        lbldept.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbldeptMouseClicked(evt);
             }
         });
 
-        btnJnsPaket.setText("Master Jenis Paket");
-        btnJnsPaket.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnJnsPaketActionPerformed(evt);
+        lbljenis.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lbljenis.setForeground(new java.awt.Color(255, 255, 255));
+        lbljenis.setText("Master Jenis Paket");
+        lbljenis.setToolTipText("");
+        lbljenis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbljenisMouseClicked(evt);
             }
         });
 
-        btnPelanggan.setText("Master Pelanggan");
-        btnPelanggan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPelangganActionPerformed(evt);
+        lblpelanggan.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblpelanggan.setForeground(new java.awt.Color(255, 255, 255));
+        lblpelanggan.setText("Master Pelanggan");
+        lblpelanggan.setToolTipText("");
+        lblpelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblpelangganMouseClicked(evt);
             }
         });
 
-        btnDriver.setText("Master Driver");
-        btnDriver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDriverActionPerformed(evt);
+        lbldriver.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lbldriver.setForeground(new java.awt.Color(255, 255, 255));
+        lbldriver.setText("Master Driver");
+        lbldriver.setToolTipText("");
+        lbldriver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbldriverMouseClicked(evt);
             }
         });
 
-        btnStaff.setText("Master Staff");
-        btnStaff.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStaffActionPerformed(evt);
+        lblstaff.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblstaff.setForeground(new java.awt.Color(255, 255, 255));
+        lblstaff.setText("Master Staff");
+        lblstaff.setToolTipText("");
+        lblstaff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblstaffMouseClicked(evt);
             }
         });
 
-        btnCS.setText("Master Customer Service");
-        btnCS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCSActionPerformed(evt);
+        lblkantor.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblkantor.setForeground(new java.awt.Color(255, 255, 255));
+        lblkantor.setText("Master Kantor Cabang");
+        lblkantor.setToolTipText("");
+        lblkantor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblkantorMouseClicked(evt);
             }
         });
 
-        btnKC.setText("Master Kantor Cabang");
-        btnKC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKCActionPerformed(evt);
+        lblcs.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblcs.setForeground(new java.awt.Color(255, 255, 255));
+        lblcs.setText("Master Customer Service");
+        lblcs.setToolTipText("");
+        lblcs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblcsMouseClicked(evt);
             }
         });
 
@@ -157,202 +221,102 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
         panelCreateLayout.setHorizontalGroup(
             panelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCreateLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnCS, javax.swing.GroupLayout.PREFERRED_SIZE, 162, Short.MAX_VALUE)
-                    .addComponent(btnKC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnStaff, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDriver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnJnsPaket, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(panelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblcs, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblkantor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblstaff, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbldriver, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblpelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbljenis, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbldept, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         panelCreateLayout.setVerticalGroup(
             panelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCreateLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnDepartment)
+                .addComponent(lbldept, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbljenis, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnJnsPaket)
+                .addComponent(lblpelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbldriver, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPelanggan)
+                .addComponent(lblstaff, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblkantor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDriver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnStaff)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnKC)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCS)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblcs, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        btnOlahData.setText("Pegolahan Data");
-        btnOlahData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOlahDataActionPerformed(evt);
-            }
-        });
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setIcon(new javax.swing.ImageIcon("D:\\_PROJEK BESAR RPL\\logokmf.png")); // NOI18N
+        jLabel8.setToolTipText("");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 23, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnUbahData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTambahData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnOlahData, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTambahData, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUbahData)
+                    .addComponent(lblolah, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(panelCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addContainerGap())))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(btnOlahData)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblolah, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnTambahData)
+                .addComponent(btnTambahData, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnUbahData)
-                .addGap(31, 31, 31)
+                .addComponent(btnUbahData, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
-                .addComponent(btnKembali)
-                .addGap(39, 39, 39))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 298, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUbahDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahDataActionPerformed
-        ubah = true;
-        btnUbahData.setVisible(false);
-        btnTambahData.setVisible(false);
-        panelCreate.setVisible(true);
-    }//GEN-LAST:event_btnUbahDataActionPerformed
-
-    private void btnTambahDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahDataActionPerformed
-        ubah = false;
-        panelCreate.setVisible(true);
-        btnTambahData.setVisible(false);
-        btnUbahData.setVisible(false);
-    }//GEN-LAST:event_btnTambahDataActionPerformed
-
-    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
-        MainMenuStaff t= new MainMenuStaff();
-        t.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnKembaliActionPerformed
-
-    private void btnDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentActionPerformed
-        if(ubah){
-            UbahDepartemen dpt = new UbahDepartemen();
-            dpt.setVisible(true);
-        }else{
-            TambahDepartemen dpt = new TambahDepartemen();
-            dpt.setVisible(true);
-        }
-
-        this.setVisible(false);
-    }//GEN-LAST:event_btnDepartmentActionPerformed
-
-    private void btnJnsPaketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJnsPaketActionPerformed
-        if(ubah){
-            UbahJenisPaket dpt = new UbahJenisPaket();
-            dpt.setVisible(true);
-        }else{
-            TambahJenisPaket dpt = new TambahJenisPaket();
-            dpt.setVisible(true);
-        }
-
-        this.setVisible(false);
-
-    }//GEN-LAST:event_btnJnsPaketActionPerformed
-
-    private void btnPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPelangganActionPerformed
-        // TODO add your handling code here:
-        Pelanggan form = new Pelanggan(false);
-        this.setVisible(false);
-        form.setVisible(true);
-    }//GEN-LAST:event_btnPelangganActionPerformed
-
-    private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed
-        // TODO add your handling code here:
-        if(ubah){
-            UbahDriver driver = new UbahDriver();
-            driver.setVisible(true);
-        }else{
-            CreateDriver driver = new CreateDriver();
-            driver.setVisible(true);
-        }
-        this.setVisible(false);
-    }//GEN-LAST:event_btnDriverActionPerformed
-
-    private void btnStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStaffActionPerformed
-        // TODO add your handling code here:
-        if(ubah){
-            Ubah_Staff staff = new Ubah_Staff();
-            staff.setVisible(true);
-        }else{
-            Staff staff = new Staff(KantorCabang);
-            staff.setVisible(true);
-        }
-        this.setVisible(false);
-    }//GEN-LAST:event_btnStaffActionPerformed
-
-    private void btnCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSActionPerformed
-        // TODO add your handling code here:
-        if(ubah){
-            ubahCS form = new ubahCS(KantorCabang);
-            this.setVisible(false);
-            form.setVisible(true);
-        }else{
-            tambahCS form = new tambahCS(KantorCabang);
-            this.setVisible(false);
-            form.setVisible(true);
-        }
-    }//GEN-LAST:event_btnCSActionPerformed
-
-    private void btnKCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKCActionPerformed
-        // TODO add your handling code here:
-        if(ubah){
-            UbahKantorCabang form = new UbahKantorCabang();
-            this.setVisible(false);
-            form.setVisible(true);
-        }else{
-            TambahKantorCabang form = new TambahKantorCabang();
-            this.setVisible(false);
-            form.setVisible(true);
-        }
-    }//GEN-LAST:event_btnKCActionPerformed
-
-    private void btnOlahDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOlahDataActionPerformed
-        // TODO add your handling code here:
+    private void lblolahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblolahMouseClicked
         if(olah){
             olah = false;
             panelCreate.setVisible(false);
@@ -363,7 +327,103 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
             btnTambahData.setVisible(true);
             btnUbahData.setVisible(true);
         }
-    }//GEN-LAST:event_btnOlahDataActionPerformed
+    }//GEN-LAST:event_lblolahMouseClicked
+
+    private void btnTambahDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambahDataMouseClicked
+        ubah = false;
+        panelCreate.setVisible(true);
+        btnTambahData.setVisible(false);
+        btnUbahData.setVisible(false);
+    }//GEN-LAST:event_btnTambahDataMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        MainMenuStaff t= new MainMenuStaff(KantorCabang);
+        t.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void btnUbahDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahDataMouseClicked
+        ubah = true;
+        btnUbahData.setVisible(false);
+        btnTambahData.setVisible(false);
+        panelCreate.setVisible(true);
+    }//GEN-LAST:event_btnUbahDataMouseClicked
+
+    private void lblpelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblpelangganMouseClicked
+        Pelanggan form = new Pelanggan(false);
+        this.setVisible(false);
+        form.setVisible(true);
+    }//GEN-LAST:event_lblpelangganMouseClicked
+
+    private void lbljenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbljenisMouseClicked
+        if(ubah){
+            UbahJenisPaket dpt = new UbahJenisPaket();
+            dpt.setVisible(true);
+        }else{
+            TambahJenisPaket dpt = new TambahJenisPaket();
+            dpt.setVisible(true);
+        }
+
+        this.setVisible(false);
+    }//GEN-LAST:event_lbljenisMouseClicked
+
+    private void lbldeptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeptMouseClicked
+        if(ubah){
+            UbahDepartemen dpt = new UbahDepartemen();
+            dpt.setVisible(true);
+        }else{
+            TambahDepartemen dpt = new TambahDepartemen();
+            dpt.setVisible(true);
+        }
+
+        this.setVisible(false);
+    }//GEN-LAST:event_lbldeptMouseClicked
+
+    private void lblcsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcsMouseClicked
+        if(ubah){
+            ubahCS form = new ubahCS(KantorCabang);
+            this.setVisible(false);
+            form.setVisible(true);
+        }else{
+            tambahCS form = new tambahCS(KantorCabang);
+            this.setVisible(false);
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_lblcsMouseClicked
+
+    private void lblkantorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblkantorMouseClicked
+        if(ubah){
+            UbahKantorCabang form = new UbahKantorCabang();
+            this.setVisible(false);
+            form.setVisible(true);
+        }else{
+            TambahKantorCabang form = new TambahKantorCabang();
+            this.setVisible(false);
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_lblkantorMouseClicked
+
+    private void lblstaffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblstaffMouseClicked
+        if(ubah){
+            Ubah_Staff staff = new Ubah_Staff();
+            staff.setVisible(true);
+        }else{
+            Staff staff = new Staff(KantorCabang);
+            staff.setVisible(true);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_lblstaffMouseClicked
+
+    private void lbldriverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldriverMouseClicked
+        if(ubah){
+            UbahDriver driver = new UbahDriver();
+            driver.setVisible(true);
+        }else{
+            CreateDriver driver = new CreateDriver();
+            driver.setVisible(true);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_lbldriverMouseClicked
 
     /**
      * @param args the command line arguments
@@ -401,18 +461,21 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCS;
-    private javax.swing.JButton btnDepartment;
-    private javax.swing.JButton btnDriver;
-    private javax.swing.JButton btnJnsPaket;
-    private javax.swing.JButton btnKC;
-    private javax.swing.JButton btnKembali;
-    private javax.swing.JButton btnOlahData;
-    private javax.swing.JButton btnPelanggan;
-    private javax.swing.JButton btnStaff;
-    private javax.swing.JButton btnTambahData;
-    private javax.swing.JButton btnUbahData;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel btnTambahData;
+    private javax.swing.JLabel btnUbahData;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblcs;
+    private javax.swing.JLabel lbldept;
+    private javax.swing.JLabel lbldriver;
+    private javax.swing.JLabel lbljenis;
+    private javax.swing.JLabel lblkantor;
+    private javax.swing.JLabel lblolah;
+    private javax.swing.JLabel lblpelanggan;
+    private javax.swing.JLabel lblstaff;
     private javax.swing.JPanel panelCreate;
     // End of variables declaration//GEN-END:variables
 }

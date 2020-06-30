@@ -51,6 +51,11 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        cbDept = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        cbKantorCabang = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -58,41 +63,17 @@ public class Login extends javax.swing.JFrame {
         txtPas = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        cbDept = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        cbKantorCabang = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setText("MASUK");
+        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setPreferredSize(new java.awt.Dimension(840, 370));
 
-        lblUser.setText("Nama Pengguna");
-
-        jLabel3.setText("Kata Sandi");
-
-        txtUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserActionPerformed(evt);
-            }
-        });
-
-        btnLogin.setText("Masuk");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
-
-        btnCancel.setText("Keluar");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Masuk sebagai");
 
         cbDept.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Departemen --" }));
@@ -102,141 +83,159 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Kantor Cabang");
 
         cbKantorCabang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Kantor --" }));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("MASUK");
+
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUser.setText("Nama Pengguna");
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Kata Sandi");
+
+        txtUser.setBackground(new java.awt.Color(204, 204, 255));
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserActionPerformed(evt);
+            }
+        });
+
+        txtPas.setBackground(new java.awt.Color(204, 204, 255));
+
+        btnLogin.setBackground(new java.awt.Color(204, 255, 204));
+        btnLogin.setText("Masuk");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setBackground(new java.awt.Color(204, 255, 204));
+        btnCancel.setText("Keluar");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/Logo.png"))); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon("D:\\_PROJEK BESAR RPL\\logokmf.png")); // NOI18N
+        jLabel6.setToolTipText("");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(lblUser)
+                            .addComponent(jLabel3))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cbKantorCabang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cbDept, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(1, 1, 1))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(73, 73, 73))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCancel)
+                        .addGap(76, 76, 76)
+                        .addComponent(btnLogin)
+                        .addGap(95, 95, 95))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPas)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbDept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbKantorCabang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancel)
+                    .addComponent(btnLogin))
+                .addGap(105, 105, 105))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel1)
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUser)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel1)
-                        .addGap(165, 165, 165))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblUser)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbDept, 0, 180, Short.MAX_VALUE)
-                                .addComponent(cbKantorCabang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addContainerGap(12, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnCancel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLogin)
-                            .addGap(73, 73, 73)))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, 839, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUser)
-                    .addComponent(txtUser))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPas))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbDept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbKantorCabang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancel)
-                    .addComponent(btnLogin))
-                .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserActionPerformed
-
-    public void Clear() {
-        txtUser.setText("");
-        txtPas.setText("");
-    }
-
-    private void addItemKantor() {
-        cbKantorCabang.removeAll();
-        try {
-            DBConnect connection = new DBConnect();
-            connection.stat = connection.conn.createStatement();
-            String query = "SELECT nama_kantor FROM KantorCabang";
-            connection.result = connection.stat.executeQuery(query);
-            connection.result.next();
-            do {
-
-                cbKantorCabang.addItem(connection.result.getString("nama_kantor"));
-            } while (connection.result.next());
-
-            connection.stat.close();
-            connection.result.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal menambahkan item KantorCabang!\n" + e.toString());
-        }
-    }
-
-    private void addItemDepartement() {
-        cbDept.removeAll();
-        try {
-            DBConnect connection = new DBConnect();
-            connection.stat = connection.conn.createStatement();
-            String query = "SELECT nama_dept FROM Departement";
-            connection.result = connection.stat.executeQuery(query);
-            connection.result.next();
-            do {
-
-                cbDept.addItem(connection.result.getString("nama_dept"));
-            } while (connection.result.next());
-
-            connection.stat.close();
-            connection.result.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal menambahkan item Departement!\n" + e.toString());
-        }
-    }
+        System.exit(0);
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here: 
+        // TODO add your handling code here:
         if (driver) {
             LihatStatusPickUp status = new LihatStatusPickUp();
             this.setVisible(false);
@@ -267,10 +266,10 @@ public class Login extends javax.swing.JFrame {
                         } else {
                             JOptionPane.showMessageDialog(null, "Nama pengguna atau kata sandi salah");
                             int jawab = JOptionPane.showOptionDialog(this,
-                                    "Ingin Mencoba lagi?",
-                                    "Mengulang",
-                                    JOptionPane.YES_NO_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+                                "Ingin Mencoba lagi?",
+                                "Mengulang",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE, null, null, null);
 
                             if (jawab == JOptionPane.NO_OPTION) {
                                 JOptionPane.showMessageDialog(this, "Program Akan Keluar");
@@ -317,10 +316,10 @@ public class Login extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Nama pengguna atau kata sandi salah");
                         int jawab = JOptionPane.showOptionDialog(this,
-                                "Ingin Mencoba lagi?",
-                                "Mengulang",
-                                JOptionPane.YES_NO_OPTION,
-                                JOptionPane.QUESTION_MESSAGE, null, null, null);
+                            "Ingin Mencoba lagi?",
+                            "Mengulang",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, null, null);
 
                         if (jawab == JOptionPane.NO_OPTION) {
                             JOptionPane.showMessageDialog(this, "Program Akan Keluar");
@@ -337,115 +336,175 @@ public class Login extends javax.swing.JFrame {
 
                 }
             }
-//            else if(akun.equals("Staff Kelola"))
-//            {
-//                txtUser.setVisible(true);
-//                lblUser.setVisible(true);
-//                if(user.equals("") || pass.equals(""))
-//                {
-//                    JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
-//                }
-//                else
-//                {
-//                    if(user.equals("admin") && pass.equals("admin"))
-//                    {
-//                        
-//                        MainMenuStaffKelola m = new MainMenuStaffKelola(KantorCabang);
-//                        m.setVisible(true);
-//                        this.setVisible(false);
-//                    }
-//                    else
-//                    {
-//                        JOptionPane.showMessageDialog(null, "Nama pengguna atau kata sandi salah");
-//                        int jawab = JOptionPane.showOptionDialog(this, 
-//                                    "Ingin Mencoba lagi?", 
-//                                    "Mengulang", 
-//                                    JOptionPane.YES_NO_OPTION, 
-//                                    JOptionPane.QUESTION_MESSAGE, null, null, null);
-//
-//                        if(jawab == JOptionPane.NO_OPTION){
-//                            JOptionPane.showMessageDialog(this, "Program Akan Keluar");
-//                            System.exit(0);
-//                        }
-//                        else
-//                        {
-//                            Clear();
-//                            i++;
-//                            if(i == 3){
-//                                JOptionPane.showMessageDialog(this, "Anda telah gagal 3x. Aplikasi akan ditutup");
-//                                System.exit(0);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            else
-//            {
-//                txtUser.setVisible(false);
-//                lblUser.setVisible(false);
-//                if(pass.equals(""))
-//                {
-//                    JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
-//                }
-//                else
-//                {
-//                    if(pass.equals("KMFJAYA"))
-//                    {
-//                        if(akun.equals("Staff"))
-//                        {
-//                            JOptionPane.showMessageDialog(null, "berhasil login");
-//                            MainMenuStaff m = new MainMenuStaff();
-//                            m.setVisible(true);
-//                            this.setVisible(false);
-//                        }
-//                        else if(akun.equals("Dispatch"))
-//                        {
-//                            JOptionPane.showMessageDialog(null, "berhasil login");
-//                            MainMenuDispatch m = new MainMenuDispatch();
-//                            m.setVisible(true);
-//                            this.setVisible(false);
-//                        }
-//                        else if(akun.equals("Pencetak Connote"))
-//                        {
-//                            JOptionPane.showMessageDialog(null, "berhasil login");
-//                            MainMenuPencetakConnote m = new MainMenuPencetakConnote();
-//                            m.setVisible(true);
-//                            this.setVisible(false);
-//                        }
-//                    }
-//                    else
-//                    {
-//                        JOptionPane.showMessageDialog(null, "Nama pengguna atau kata sandi salah");
-//                        int jawab = JOptionPane.showOptionDialog(this, 
-//                                    "Ingin Mencoba lagi?", 
-//                                    "Mengulang", 
-//                                    JOptionPane.YES_NO_OPTION, 
-//                                    JOptionPane.QUESTION_MESSAGE, null, null, null);
-//
-//                        if(jawab == JOptionPane.NO_OPTION){
-//                            JOptionPane.showMessageDialog(this, "Program Akan Keluar");
-//                            System.exit(0);
-//                        }
-//                        else
-//                        {
-//                            Clear();
-//                            i++;
-//                            if(i == 3){
-//                                JOptionPane.showMessageDialog(this, "Anda telah gagal 3x. Aplikasi akan ditutup");
-//                                System.exit(0);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            //            else if(akun.equals("Staff Kelola"))
+            //            {
+                //                txtUser.setVisible(true);
+                //                lblUser.setVisible(true);
+                //                if(user.equals("") || pass.equals(""))
+                //                {
+                    //                    JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
+                    //                }
+                //                else
+                //                {
+                    //                    if(user.equals("admin") && pass.equals("admin"))
+                    //                    {
+                        //
+                        //                        MainMenuStaffKelola m = new MainMenuStaffKelola(KantorCabang);
+                        //                        m.setVisible(true);
+                        //                        this.setVisible(false);
+                        //                    }
+                    //                    else
+                    //                    {
+                        //                        JOptionPane.showMessageDialog(null, "Nama pengguna atau kata sandi salah");
+                        //                        int jawab = JOptionPane.showOptionDialog(this,
+                            //                                    "Ingin Mencoba lagi?",
+                            //                                    "Mengulang",
+                            //                                    JOptionPane.YES_NO_OPTION,
+                            //                                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+                        //
+                        //                        if(jawab == JOptionPane.NO_OPTION){
+                            //                            JOptionPane.showMessageDialog(this, "Program Akan Keluar");
+                            //                            System.exit(0);
+                            //                        }
+                        //                        else
+                        //                        {
+                            //                            Clear();
+                            //                            i++;
+                            //                            if(i == 3){
+                                //                                JOptionPane.showMessageDialog(this, "Anda telah gagal 3x. Aplikasi akan ditutup");
+                                //                                System.exit(0);
+                                //                            }
+                            //                        }
+                        //                    }
+                    //                }
+                //            }
+            //            else
+            //            {
+                //                txtUser.setVisible(false);
+                //                lblUser.setVisible(false);
+                //                if(pass.equals(""))
+                //                {
+                    //                    JOptionPane.showMessageDialog(this, "Data tidak boleh kosong!");
+                    //                }
+                //                else
+                //                {
+                    //                    if(pass.equals("KMFJAYA"))
+                    //                    {
+                        //                        if(akun.equals("Staff"))
+                        //                        {
+                            //                            JOptionPane.showMessageDialog(null, "berhasil login");
+                            //                            MainMenuStaff m = new MainMenuStaff();
+                            //                            m.setVisible(true);
+                            //                            this.setVisible(false);
+                            //                        }
+                        //                        else if(akun.equals("Dispatch"))
+                        //                        {
+                            //                            JOptionPane.showMessageDialog(null, "berhasil login");
+                            //                            MainMenuDispatch m = new MainMenuDispatch();
+                            //                            m.setVisible(true);
+                            //                            this.setVisible(false);
+                            //                        }
+                        //                        else if(akun.equals("Pencetak Connote"))
+                        //                        {
+                            //                            JOptionPane.showMessageDialog(null, "berhasil login");
+                            //                            MainMenuPencetakConnote m = new MainMenuPencetakConnote();
+                            //                            m.setVisible(true);
+                            //                            this.setVisible(false);
+                            //                        }
+                        //                    }
+                    //                    else
+                    //                    {
+                        //                        JOptionPane.showMessageDialog(null, "Nama pengguna atau kata sandi salah");
+                        //                        int jawab = JOptionPane.showOptionDialog(this,
+                            //                                    "Ingin Mencoba lagi?",
+                            //                                    "Mengulang",
+                            //                                    JOptionPane.YES_NO_OPTION,
+                            //                                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+                        //
+                        //                        if(jawab == JOptionPane.NO_OPTION){
+                            //                            JOptionPane.showMessageDialog(this, "Program Akan Keluar");
+                            //                            System.exit(0);
+                            //                        }
+                        //                        else
+                        //                        {
+                            //                            Clear();
+                            //                            i++;
+                            //                            if(i == 3){
+                                //                                JOptionPane.showMessageDialog(this, "Anda telah gagal 3x. Aplikasi akan ditutup");
+                                //                                System.exit(0);
+                                //                            }
+                            //                        }
+                        //                    }
+                    //                }
+                //            }
         }
-
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_btnCancelActionPerformed
+    }//GEN-LAST:event_txtUserActionPerformed
+
+    private void cbDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDeptActionPerformed
+        // TODO add your handling code here:
+        String akun = (String) cbDept.getSelectedItem();
+        if (akun.equals("Customer Service") || akun.equals("Staff Kelola")) {
+            txtUser.setVisible(true);
+            lblUser.setVisible(true);
+        } else {
+
+            txtUser.setVisible(false);
+            lblUser.setVisible(false);
+        }
+    }//GEN-LAST:event_cbDeptActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    public void Clear() {
+        txtUser.setText("");
+        txtPas.setText("");
+    }
+
+    private void addItemKantor() {
+        cbKantorCabang.removeAll();
+        try {
+            DBConnect connection = new DBConnect();
+            connection.stat = connection.conn.createStatement();
+            String query = "SELECT nama_kantor FROM KantorCabang";
+            connection.result = connection.stat.executeQuery(query);
+            connection.result.next();
+            do {
+
+                cbKantorCabang.addItem(connection.result.getString("nama_kantor"));
+            } while (connection.result.next());
+
+            connection.stat.close();
+            connection.result.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal menambahkan item KantorCabang!\n" + e.toString());
+        }
+    }
+
+    private void addItemDepartement() {
+        cbDept.removeAll();
+        try {
+            DBConnect connection = new DBConnect();
+            connection.stat = connection.conn.createStatement();
+            String query = "SELECT nama_dept FROM Departement";
+            connection.result = connection.stat.executeQuery(query);
+            connection.result.next();
+            do {
+
+                cbDept.addItem(connection.result.getString("nama_dept"));
+            } while (connection.result.next());
+
+            connection.stat.close();
+            connection.result.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal menambahkan item Departement!\n" + e.toString());
+        }
+    }
 
     private String getPassDepartment(String akun) {
         try {
@@ -516,19 +575,8 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error do getIdKantor!!\n" + e.toString());
         }
         return null;
-    }
-    private void cbDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDeptActionPerformed
-        // TODO add your handling code here:
-        String akun = (String) cbDept.getSelectedItem();
-        if (akun.equals("Customer Service") || akun.equals("Staff Kelola")) {
-            txtUser.setVisible(true);
-            lblUser.setVisible(true);
-        } else {
-
-            txtUser.setVisible(false);
-            lblUser.setVisible(false);
-        }
-    }//GEN-LAST:event_cbDeptActionPerformed
+    }    
+    
     boolean driver = false;
 
     /**
@@ -542,7 +590,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -576,6 +624,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblUser;
     private javax.swing.JTextField txtPas;
