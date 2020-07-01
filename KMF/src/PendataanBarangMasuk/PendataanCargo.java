@@ -248,15 +248,17 @@ public class PendataanCargo extends javax.swing.JFrame {
         btnGagal = new javax.swing.JButton();
         btnBerhasil = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        lblmasuk = new javax.swing.JLabel();
-        lblkon = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        lblpod = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        lblmasuk2 = new javax.swing.JLabel();
+        lblkon4 = new javax.swing.JLabel();
+        lblkon5 = new javax.swing.JLabel();
+        lblpod2 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1200, 700));
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 700));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -267,11 +269,12 @@ public class PendataanCargo extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("Pendataan Cargo Masuk");
+        jLabel1.setText("Pendataan Barang Masuk");
 
         tableCargo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -369,28 +372,10 @@ public class PendataanCargo extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 103, -1, -1));
+
         jPanel3.setBackground(new java.awt.Color(0, 0, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(240, 700));
-
-        lblmasuk.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        lblmasuk.setForeground(new java.awt.Color(255, 255, 255));
-        lblmasuk.setText("Data Barang Masuk");
-        lblmasuk.setToolTipText("");
-        lblmasuk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblmasukMouseClicked(evt);
-            }
-        });
-
-        lblkon.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        lblkon.setForeground(new java.awt.Color(255, 255, 255));
-        lblkon.setText("Konfirmasi Penerima");
-        lblkon.setToolTipText("");
-        lblkon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblkonMouseClicked(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -402,20 +387,55 @@ public class PendataanCargo extends javax.swing.JFrame {
             }
         });
 
-        lblpod.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        lblpod.setForeground(new java.awt.Color(255, 255, 255));
-        lblpod.setText("Print Out Delivery");
-        lblpod.setToolTipText("");
-        lblpod.setPreferredSize(new java.awt.Dimension(240, 700));
-        lblpod.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblpodMouseClicked(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setToolTipText("");
+
+        jLabel25.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainMenu/b.png"))); // NOI18N
+        jLabel25.setToolTipText("");
+
+        lblmasuk2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblmasuk2.setForeground(new java.awt.Color(255, 255, 255));
+        lblmasuk2.setText("Data Barang Masuk");
+        lblmasuk2.setToolTipText("");
+        lblmasuk2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblmasuk2MouseClicked(evt);
+            }
+        });
+
+        lblkon4.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblkon4.setForeground(new java.awt.Color(255, 255, 255));
+        lblkon4.setText("Konfirmasi Barang");
+        lblkon4.setToolTipText("");
+        lblkon4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblkon4MouseClicked(evt);
+            }
+        });
+
+        lblkon5.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblkon5.setForeground(new java.awt.Color(255, 255, 255));
+        lblkon5.setText("Konfirmasi Penerima");
+        lblkon5.setToolTipText("");
+        lblkon5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblkon5MouseClicked(evt);
+            }
+        });
+
+        lblpod2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblpod2.setForeground(new java.awt.Color(255, 255, 255));
+        lblpod2.setText("Print Out Delivery");
+        lblpod2.setToolTipText("");
+        lblpod2.setPreferredSize(new java.awt.Dimension(240, 700));
+        lblpod2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblpod2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -424,16 +444,21 @@ public class PendataanCargo extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblkon, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblmasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblpod, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)))
+                            .addComponent(lblkon4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblkon5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblmasuk2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblpod2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel25)
+                .addGap(35, 35, 35))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,34 +466,36 @@ public class PendataanCargo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblmasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel25)
                 .addGap(18, 18, 18)
-                .addComponent(lblkon, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblmasuk2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblpod, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 364, Short.MAX_VALUE)
+                .addComponent(lblkon4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblkon5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblpod2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 728));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 730, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 960, 730));
 
         pack();
         setLocationRelativeTo(null);
@@ -585,29 +612,35 @@ public class PendataanCargo extends javax.swing.JFrame {
         addDataColumn(cmbStatus.getSelectedItem().toString());
     }//GEN-LAST:event_cmbStatusActionPerformed
 
-    private void lblmasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblmasukMouseClicked
-        PendataanCargo cargo = new PendataanCargo(KantorCabang);
-        cargo.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblmasukMouseClicked
-
-    private void lblkonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblkonMouseClicked
-        KonfirmasiPenerima s = new KonfirmasiPenerima(KantorCabang);
-        s.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_lblkonMouseClicked
-
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         MainMenuStaff t = new MainMenuStaff(KantorCabang);
         t.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void lblpodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblpodMouseClicked
+    private void lblmasuk2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblmasuk2MouseClicked
+        PendataanCargo cargo = new PendataanCargo(KantorCabang);
+        cargo.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblmasuk2MouseClicked
+
+    private void lblkon4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblkon4MouseClicked
+        KonfirmasiBarang k = new KonfirmasiBarang(KantorCabang);
+        k.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblkon4MouseClicked
+
+    private void lblkon5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblkon5MouseClicked
+        KonfirmasiPenerima s = new KonfirmasiPenerima(KantorCabang);
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblkon5MouseClicked
+
+    private void lblpod2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblpod2MouseClicked
         POD p = new POD(KantorCabang);
         p.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_lblpodMouseClicked
+    }//GEN-LAST:event_lblpod2MouseClicked
     public void resizeColumnWidth(JTable table) {
         final TableColumnModel columnModel = table.getColumnModel();
         for (int column = 0; column < table.getColumnCount(); column++) {
@@ -647,13 +680,38 @@ public class PendataanCargo extends javax.swing.JFrame {
             System.out.println("Terjadi error saat update status cargo: " + e.toString());
         }
         if (i == 0) {
-            updateDetailBagging();
+            addRiwayat();
         }else{
-            updateDetailBagging1();
+            addRiwayat1();
         }
     }
 
-    
+    private void addRiwayat() {
+        Format formatter = new SimpleDateFormat("yyyyMMdd");
+        Format formatterTime = new SimpleDateFormat("hh:mm:ss");
+        for (int i = 0; i < pemesanan.size(); i++) {
+            try {
+                DBConnect c = new DBConnect();
+                String query = "INSERT INTO Riwayat VALUES (?,?,?,?)";
+                c.pstat = c.conn.prepareStatement(query);
+                c.pstat.setString(1, formatter.format(new Date()));
+                c.pstat.setString(2, formatterTime.format(new Date()));
+                c.pstat.setString(3, "Sampai di kantor tujuan");
+                c.pstat.setString(4, pemesanan.get(i));
+
+                //insert ke dalam database
+                c.pstat.executeUpdate();
+                c.pstat.close();
+                //JOptionPane.showMessageDialog(this, "insert data Baggin berhasil");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Terjadi error pada saat insert data riwayat :" + e);
+            }
+        }
+        updateStatusBarang();
+        updateDetailBagging();
+
+    }
 
     private void updateDetailBagging() {
         for (int h = 0; h < bagging.size(); h++) {
@@ -673,7 +731,51 @@ public class PendataanCargo extends javax.swing.JFrame {
         }
     }
 
-    
+    private void updateStatusBarang() {
+        for (int i = 0; i < pemesanan.size(); i++) {
+            try {
+                DBConnect connection = new DBConnect();
+                String query = "UPDATE DataBarangPelanggan SET status_barang = 'Sampai di kantor tujuan' WHERE id_pemesanan=?";
+                //System.out.println(query);
+                connection.pstat = connection.conn.prepareStatement(query);
+                connection.pstat.setString(1, pemesanan.get(i));
+
+                connection.pstat.executeUpdate();
+                connection.pstat.close();
+            } catch (Exception e) {
+                System.out.println("Terjadi error saat updateStatusBarang: " + e.toString());
+            }
+        }
+
+    }
+
+    private void addRiwayat1() {
+        Format formatter = new SimpleDateFormat("yyyyMMdd");
+        Format formatterTime = new SimpleDateFormat("hh:mm:ss");
+        for (int i = 0; i < pemesanan.size(); i++) {
+            try {
+                DBConnect c = new DBConnect();
+                String query = "INSERT INTO Riwayat VALUES (?,?,?,?)";
+                c.pstat = c.conn.prepareStatement(query);
+                c.pstat.setString(1, formatter.format(new Date()));
+                c.pstat.setString(2, formatterTime.format(new Date()));
+                c.pstat.setString(3, "Tidak sampai di kantor tujuan");
+                c.pstat.setString(4, pemesanan.get(i));
+
+                //insert ke dalam database
+                c.pstat.executeUpdate();
+                c.pstat.close();
+                //JOptionPane.showMessageDialog(this, "insert data Baggin berhasil");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Terjadi error pada saat insert data riwayat :" + e);
+            }
+        }
+        updateStatusBarang1();
+        updateDetailBagging1();
+
+    }
+
     private void updateDetailBagging1() {
         for (int h = 0; h < bagging.size(); h++) {
             try {
@@ -692,7 +794,23 @@ public class PendataanCargo extends javax.swing.JFrame {
         }
     }
 
-   
+    private void updateStatusBarang1() {
+        for (int i = 0; i < pemesanan.size(); i++) {
+            try {
+                DBConnect connection = new DBConnect();
+                String query = "UPDATE DataBarangPelanggan SET status_barang = 'Tidak sampai kantor di kantor tujuan' WHERE id_pemesanan=?";
+                //System.out.println(query);
+                connection.pstat = connection.conn.prepareStatement(query);
+                connection.pstat.setString(1, pemesanan.get(i));
+
+                connection.pstat.executeUpdate();
+                connection.pstat.close();
+            } catch (Exception e) {
+                System.out.println("Terjadi error saat updateStatusBarang: " + e.toString());
+            }
+        }
+
+    }
 
     private void isiList() {
         String idBagging = "";
@@ -762,14 +880,17 @@ public class PendataanCargo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblkon;
-    private javax.swing.JLabel lblmasuk;
-    private javax.swing.JLabel lblpod;
+    private javax.swing.JLabel lblkon4;
+    private javax.swing.JLabel lblkon5;
+    private javax.swing.JLabel lblmasuk2;
+    private javax.swing.JLabel lblpod2;
     private javax.swing.JTable tableCargo;
     // End of variables declaration//GEN-END:variables
 }

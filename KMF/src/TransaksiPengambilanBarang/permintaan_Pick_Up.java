@@ -227,11 +227,6 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
 
         btnBatal.setBackground(new java.awt.Color(204, 255, 204));
         btnBatal.setText("Batal");
-        btnBatal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBatalMouseClicked(evt);
-            }
-        });
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalActionPerformed(evt);
@@ -346,7 +341,7 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setIcon(new javax.swing.ImageIcon("D:\\_PROJEK BESAR RPL\\logokmf.png")); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainMenu/b.png"))); // NOI18N
         jLabel25.setToolTipText("");
         jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -363,9 +358,9 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(119, 119, 119))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(37, 37, 37)
+                .addComponent(jLabel25)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,11 +451,6 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnSimpanActionPerformed
-
-    private void btnBatalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnBatalMouseClicked
 
     private void rbAktifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAktifActionPerformed
         // TODO add your handling code here:

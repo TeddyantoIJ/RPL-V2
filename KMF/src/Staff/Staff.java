@@ -32,7 +32,6 @@ public class Staff extends javax.swing.JFrame {
         txtIdStaff.setText("Staff-" + getLastID());
         txtKantorCabang.setText(KantorCabang);
         model = new DefaultTableModel();
-        tableStaff.setModel(model);
         addItemDepartemen();
         addColumn();
         loadData();
@@ -45,7 +44,6 @@ public class Staff extends javax.swing.JFrame {
         
         txtKantorCabang.setText(KantorCabang);
         model = new DefaultTableModel();
-        tableStaff.setModel(model);
         addItemDepartemen();
         addColumn();
         loadData();
@@ -72,14 +70,9 @@ public class Staff extends javax.swing.JFrame {
         txtTelp = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        btnTambah = new javax.swing.JButton();
-        btnUbah = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtIdStaff = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableStaff = new javax.swing.JTable();
         DateLahir = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -87,27 +80,36 @@ public class Staff extends javax.swing.JFrame {
         cbStatus = new javax.swing.JComboBox<>();
         txtKantorCabang = new javax.swing.JTextField();
         cbDept = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        btnUbah = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(460, 450));
+        setResizable(false);
+        setSize(new java.awt.Dimension(460, 450));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Tambah Staff");
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 55));
+        jLabel1.setText("TAMBAH STAFF");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nama");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Alamat");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("No Telp");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Email");
         jLabel5.setToolTipText("");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
 
         txtNama.setBackground(new java.awt.Color(204, 204, 255));
         txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -118,8 +120,10 @@ public class Staff extends javax.swing.JFrame {
                 txtNamaKeyTyped(evt);
             }
         });
+        jPanel1.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 167, -1));
 
         txtAlamat.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.add(txtAlamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 167, 48));
 
         txtTelp.setBackground(new java.awt.Color(204, 204, 255));
         txtTelp.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -127,50 +131,25 @@ public class Staff extends javax.swing.JFrame {
                 txtTelpKeyTyped(evt);
             }
         });
+        jPanel1.add(txtTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 167, -1));
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Tanggal Lahir");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
 
         txtEmail.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 167, -1));
 
-        btnTambah.setBackground(new java.awt.Color(204, 255, 204));
-        btnTambah.setForeground(new java.awt.Color(0, 0, 0));
-        btnTambah.setText("Tambah");
-        btnTambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTambahActionPerformed(evt);
-            }
-        });
-
-        btnUbah.setBackground(new java.awt.Color(204, 255, 204));
-        btnUbah.setForeground(new java.awt.Color(0, 0, 0));
-        btnUbah.setText("Ubah");
-        btnUbah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUbahActionPerformed(evt);
-            }
-        });
-
-        btnSimpan.setBackground(new java.awt.Color(204, 255, 204));
-        btnSimpan.setForeground(new java.awt.Color(0, 0, 0));
+        btnSimpan.setBackground(new java.awt.Color(255, 255, 255));
         btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimpanActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, -1, -1));
 
-        jButton4.setBackground(new java.awt.Color(204, 255, 204));
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Kembali");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Id");
+        jLabel8.setText("Id Staff");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
 
         txtIdStaff.setBackground(new java.awt.Color(204, 204, 255));
         txtIdStaff.setEnabled(false);
@@ -179,19 +158,7 @@ public class Staff extends javax.swing.JFrame {
                 txtIdStaffActionPerformed(evt);
             }
         });
-
-        tableStaff.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tableStaff);
+        jPanel1.add(txtIdStaff, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 167, -1));
 
         DateLahir.setBackground(new java.awt.Color(204, 204, 255));
         DateLahir.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -199,144 +166,80 @@ public class Staff extends javax.swing.JFrame {
                 DateLahirKeyTyped(evt);
             }
         });
+        jPanel1.add(DateLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 167, -1));
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Status");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, -1));
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Kantor cabang");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, 20));
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Departement");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, -1, -1));
 
         cbStatus.setBackground(new java.awt.Color(204, 204, 255));
-        cbStatus.setForeground(new java.awt.Color(0, 0, 0));
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aktif", "Tidak aktif" }));
+        jPanel1.add(cbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 170, -1));
 
         txtKantorCabang.setBackground(new java.awt.Color(204, 204, 255));
         txtKantorCabang.setEnabled(false);
+        jPanel1.add(txtKantorCabang, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 170, -1));
 
         cbDept.setBackground(new java.awt.Color(204, 204, 255));
-        cbDept.setForeground(new java.awt.Color(0, 0, 0));
         cbDept.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Departemen --" }));
+        jPanel1.add(cbDept, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 170, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnTambah)
-                            .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10))))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DateLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKantorCabang, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbDept, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton4)
-                        .addGap(247, 247, 247)
-                        .addComponent(btnSimpan)))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(btnTambah)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUbah))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel8)
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel2)
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel3)
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel6)
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel4)
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel5)
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel7)
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel9)
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel10))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(txtIdStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(DateLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(txtTelp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(txtKantorCabang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(cbDept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel2.setBackground(new java.awt.Color(0, 0, 51));
+
+        btnUbah.setText("Ubah");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Kembali");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnSimpan)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(btnUbah)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(33, 33, 33))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -449,16 +352,9 @@ public class Staff extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdStaffActionPerformed
 
-    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-
-            // TODO add your handling code here:
-            new Staff().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnTambahActionPerformed
-
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
-        new Ubah_Staff().setVisible(true);
+        new Ubah_Staff(KantorCabang).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnUbahActionPerformed
    
@@ -599,8 +495,6 @@ public class Staff extends javax.swing.JFrame {
     }//GEN-LAST:event_DateLahirKeyTyped
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        MainMenuStaffKelola m = new MainMenuStaffKelola(KantorCabang);
-        m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -642,7 +536,6 @@ public class Staff extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateLahir;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> cbDept;
     private javax.swing.JComboBox<String> cbStatus;
@@ -659,8 +552,7 @@ public class Staff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableStaff;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtAlamat;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIdStaff;

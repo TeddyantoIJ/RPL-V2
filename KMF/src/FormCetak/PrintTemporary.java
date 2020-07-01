@@ -172,7 +172,6 @@ public class PrintTemporary extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("TEMPORARY SHIPMENT");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -192,7 +191,6 @@ public class PrintTemporary extends javax.swing.JFrame {
         jLabel6.setText("KETERANGAN   BARANG");
 
         txtKeterangan_barang.setEditable(false);
-        txtKeterangan_barang.setBackground(new java.awt.Color(255, 255, 255));
         txtKeterangan_barang.setColumns(20);
         txtKeterangan_barang.setRows(5);
         jScrollPane1.setViewportView(txtKeterangan_barang);
@@ -394,7 +392,6 @@ public class PrintTemporary extends javax.swing.JFrame {
         jLabel25.setText("KETERANGAN");
 
         txtKeterangan.setEditable(false);
-        txtKeterangan.setBackground(new java.awt.Color(255, 255, 255));
         txtKeterangan.setColumns(20);
         txtKeterangan.setRows(5);
         jScrollPane2.setViewportView(txtKeterangan);
@@ -654,7 +651,7 @@ public class PrintTemporary extends javax.swing.JFrame {
                                 .addGap(165, 165, 165)
                                 .addComponent(cbPickUp))
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         panelPrintLayout.setVerticalGroup(
             panelPrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -794,6 +791,7 @@ public class PrintTemporary extends javax.swing.JFrame {
         // TODO add your handling code here:        
         printRecord(panelPrint);
         JOptionPane.showMessageDialog(this, "Mencetak selesai!");
+        this.setVisible(false);
     }//GEN-LAST:event_btnCetakActionPerformed
 
     private void btnSebelumnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSebelumnyaActionPerformed

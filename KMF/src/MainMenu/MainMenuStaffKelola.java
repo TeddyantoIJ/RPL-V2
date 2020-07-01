@@ -74,11 +74,13 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
         lblkantor = new javax.swing.JLabel();
         lblcs = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setSize(new java.awt.Dimension(1200, 700));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(java.awt.SystemColor.inactiveCaption);
         jPanel1.setPreferredSize(new java.awt.Dimension(960, 700));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/Logo.png"))); // NOI18N
@@ -87,16 +89,17 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addComponent(jLabel1)
-                .addContainerGap(398, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(637, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(269, 269, 269)
                 .addComponent(jLabel1)
-                .addGap(0, 556, Short.MAX_VALUE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 51));
@@ -254,8 +257,12 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon("D:\\_PROJEK BESAR RPL\\logokmf.png")); // NOI18N
         jLabel8.setToolTipText("");
+
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainMenu/b.png"))); // NOI18N
+        jLabel6.setToolTipText("");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -270,20 +277,24 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
                     .addComponent(lblolah, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(panelCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(26, 26, 26)
                         .addComponent(jLabel8)
                         .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblolah, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -350,79 +361,68 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUbahDataMouseClicked
 
     private void lblpelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblpelangganMouseClicked
-        Pelanggan form = new Pelanggan(false);
-        this.setVisible(false);
+        Pelanggan form = new Pelanggan(KantorCabang);
         form.setVisible(true);
     }//GEN-LAST:event_lblpelangganMouseClicked
 
     private void lbljenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbljenisMouseClicked
         if(ubah){
-            UbahJenisPaket dpt = new UbahJenisPaket();
+            UbahJenisPaket dpt = new UbahJenisPaket(KantorCabang);
             dpt.setVisible(true);
         }else{
-            TambahJenisPaket dpt = new TambahJenisPaket();
+            TambahJenisPaket dpt = new TambahJenisPaket(KantorCabang);
             dpt.setVisible(true);
         }
-
-        this.setVisible(false);
     }//GEN-LAST:event_lbljenisMouseClicked
 
     private void lbldeptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldeptMouseClicked
         if(ubah){
-            UbahDepartemen dpt = new UbahDepartemen();
+            UbahDepartemen dpt = new UbahDepartemen(KantorCabang);
             dpt.setVisible(true);
         }else{
-            TambahDepartemen dpt = new TambahDepartemen();
+            TambahDepartemen dpt = new TambahDepartemen(KantorCabang);
             dpt.setVisible(true);
         }
-
-        this.setVisible(false);
     }//GEN-LAST:event_lbldeptMouseClicked
 
     private void lblcsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcsMouseClicked
         if(ubah){
             ubahCS form = new ubahCS(KantorCabang);
-            this.setVisible(false);
             form.setVisible(true);
         }else{
             tambahCS form = new tambahCS(KantorCabang);
-            this.setVisible(false);
             form.setVisible(true);
         }
     }//GEN-LAST:event_lblcsMouseClicked
 
     private void lblkantorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblkantorMouseClicked
         if(ubah){
-            UbahKantorCabang form = new UbahKantorCabang();
-            this.setVisible(false);
+            UbahKantorCabang form = new UbahKantorCabang(KantorCabang);
             form.setVisible(true);
         }else{
-            TambahKantorCabang form = new TambahKantorCabang();
-            this.setVisible(false);
+            TambahKantorCabang form = new TambahKantorCabang(KantorCabang);
             form.setVisible(true);
         }
     }//GEN-LAST:event_lblkantorMouseClicked
 
     private void lblstaffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblstaffMouseClicked
         if(ubah){
-            Ubah_Staff staff = new Ubah_Staff();
+            Ubah_Staff staff = new Ubah_Staff(KantorCabang);
             staff.setVisible(true);
         }else{
             Staff staff = new Staff(KantorCabang);
             staff.setVisible(true);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_lblstaffMouseClicked
 
     private void lbldriverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldriverMouseClicked
         if(ubah){
-            UbahDriver driver = new UbahDriver();
+            UbahDriver driver = new UbahDriver(KantorCabang);
             driver.setVisible(true);
         }else{
-            CreateDriver driver = new CreateDriver();
+            CreateDriver driver = new CreateDriver(KantorCabang);
             driver.setVisible(true);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_lbldriverMouseClicked
 
     /**
@@ -465,6 +465,7 @@ public class MainMenuStaffKelola extends javax.swing.JFrame {
     private javax.swing.JLabel btnUbahData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
