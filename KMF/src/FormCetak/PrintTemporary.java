@@ -154,6 +154,7 @@ public class PrintTemporary extends javax.swing.JFrame {
         lblPageSekarang = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         lblPageAkhir = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(null);
@@ -736,6 +737,13 @@ public class PrintTemporary extends javax.swing.JFrame {
 
         lblPageAkhir.setText("[0]");
 
+        jButton1.setText("Selesai");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -747,10 +755,12 @@ public class PrintTemporary extends javax.swing.JFrame {
                         .addComponent(panelPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 911, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSebelumnya, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140)
+                        .addGap(22, 22, 22)
+                        .addComponent(btnSebelumnya, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel43)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPageSekarang)
@@ -778,7 +788,8 @@ public class PrintTemporary extends javax.swing.JFrame {
                     .addComponent(jLabel43)
                     .addComponent(lblPageSekarang)
                     .addComponent(jLabel45)
-                    .addComponent(lblPageAkhir))
+                    .addComponent(lblPageAkhir)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -790,7 +801,7 @@ public class PrintTemporary extends javax.swing.JFrame {
         // TODO add your handling code here:        
         printRecord(panelPrint);
         JOptionPane.showMessageDialog(this, "Mencetak selesai!");
-        this.setVisible(false);
+        
     }//GEN-LAST:event_btnCetakActionPerformed
 
     private void btnSebelumnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSebelumnyaActionPerformed
@@ -812,6 +823,11 @@ public class PrintTemporary extends javax.swing.JFrame {
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void generateHalaman(int efek){
         if(efek == 1){
             page++;
@@ -988,6 +1004,7 @@ public class PrintTemporary extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnSebelumnya;
     private javax.swing.JToggleButton btnSelanjutnya;
     private javax.swing.JCheckBox cbPickUp;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

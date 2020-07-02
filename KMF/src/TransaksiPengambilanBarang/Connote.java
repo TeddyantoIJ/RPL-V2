@@ -79,7 +79,7 @@ public class Connote extends javax.swing.JFrame {
             connection.stat = connection.conn.createStatement();
             String query = "select dbp.id_pemesanan, dbp.jenis_barang, dbp.keterangan_barang, dbp.kota_penerima from DataBarangPelanggan dbp"
                     + " inner join KantorCabang kc on kc.kode_kantor_cabang = dbp.kode_kantor_cabang"
-                    + " where dbp.keterangan_barang = 'Connote barang segera dicetak' and nama_kantor = '"+KantorCabang+"'";
+                    + " where dbp.keterangan_barang = 'Connote barang segera dicetak' and nama_kantor = '"+kantor_cabang+"'";
                     
 
             //   JOptionPane.showMessageDialog(this, query);
