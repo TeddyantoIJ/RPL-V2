@@ -505,7 +505,7 @@ public class KonfirmasiPickUp extends javax.swing.JFrame {
         for(int i = 0 ; i < txtid_pemesanan.size(); i++){
             try {
             DBConnect connection = new DBConnect();
-            String query = "UPDATE DataBarangPelanggan SET status_barang = 'Telah dipickup, sedang diproses' WHERE id_pemesanan=?";
+            String query = "UPDATE DataBarangPelanggan SET status_barang = 'Telah dipickup, sedang diproses', keterangan_pembayaran = 'LUNAS' WHERE id_pemesanan=?";
             connection.pstat = connection.conn.prepareStatement(query);
             connection.pstat.setString(1, txtid_pemesanan.get(i));
 
@@ -552,6 +552,7 @@ public class KonfirmasiPickUp extends javax.swing.JFrame {
         }
         addData();
     }
+    
     private void addRiwayat1() {
         Format formatter = new SimpleDateFormat("yyyyMMdd");
         Format formatterTime = new SimpleDateFormat("hh:mm:ss");
