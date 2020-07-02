@@ -351,9 +351,7 @@ public class KonfirmasiPickUp extends javax.swing.JFrame {
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
         /// Cari nama driver
-        model.getDataVector().removeAllElements();
         
-        model.fireTableDataChanged();
         try {
 
             DBConnect connection = new DBConnect();
@@ -378,6 +376,9 @@ public class KonfirmasiPickUp extends javax.swing.JFrame {
         addData();
     }//GEN-LAST:event_btnRefreshActionPerformed
     private void addData(){
+        model.getDataVector().removeAllElements();
+        
+        model.fireTableDataChanged();
         try {
 
             DBConnect connection = new DBConnect();

@@ -91,7 +91,7 @@ public class cetakTemporaryshipment extends javax.swing.JFrame {
             String query
                     = "select d.id_pemesanan, p.nama_pelanggan, d.jenis_barang, d.keterangan_barang, d.nama_penerima,"
                     + " d.alamat_penerima, d.kota_penerima, d.no_telphone_penerima from DataBarangPelanggan d inner join Pelanggan p on d.id_pelanggan = p.id_pelanggan \n"
-                    + "where d.kode_kantor_cabang = '" + getIDKantor(KantorCabang) + "' and d.status_barang = 'Sedang diproses pada kantor pengirim' or d.status_barang = 'Telah dipickup, sedang diproses'";
+                    + "where d.kode_kantor_cabang = '" + getIDKantor(KantorCabang) + "' and d.status_barang = 'Sedang diproses pada kantor pengirim' or d.status_barang = 'Segera dipickup'";
             System.out.println(query);
             connection.result = connection.stat.executeQuery(query);
 
@@ -485,7 +485,7 @@ public class cetakTemporaryshipment extends javax.swing.JFrame {
         List<String> id_pemesanan = new ArrayList();
         for (int i = count-1; i >= 0; i--) {
             kode = tableTemp.getValueAt(i, 0).toString();
-            //updateStatusBarang();
+            updateStatusBarang();
             id_pemesanan.add(kode);
             modelTemp.removeRow(i);
         }
@@ -519,7 +519,7 @@ public class cetakTemporaryshipment extends javax.swing.JFrame {
             String query;
 
             query = "UPDATE DataBarangPelanggan SET status_barang='Connote barang segera dicetak' WHERE id_pemesanan='" + kode + "'";
-
+            System.out.println(query);
             connection.pstat = connection.conn.prepareStatement(query);
 
             connection.pstat.executeUpdate();

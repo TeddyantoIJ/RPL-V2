@@ -31,7 +31,7 @@ public class Connote extends javax.swing.JFrame {
          Format formatterDate = new SimpleDateFormat("yyyyMMdd");
         Format formatterTime = new SimpleDateFormat("HHmm");
         private String txtkode_kantor_cabang = getIDKantor();;
-        private String KantorCabang = "";
+        
         
         private DefaultTableModel model;
         
@@ -51,7 +51,7 @@ public class Connote extends javax.swing.JFrame {
         
         tableBarang.setModel(model);
         
-        kantor_cabang = KantorCabang;
+        
         txtkode_kantor_cabang = getIDKantor();
         txtIdC.setText(formatterDate.format(new Date())+formatterTime.format(new Date())+autoID());
         tglConnote.setDate(new Date());
@@ -79,7 +79,7 @@ public class Connote extends javax.swing.JFrame {
             connection.stat = connection.conn.createStatement();
             String query = "select dbp.id_pemesanan, dbp.jenis_barang, dbp.keterangan_barang, dbp.kota_penerima from DataBarangPelanggan dbp"
                     + " inner join KantorCabang kc on kc.kode_kantor_cabang = dbp.kode_kantor_cabang"
-                    + " where dbp.keterangan_barang = 'Connote barang segera dicetak' and nama_kantor = '"+kantor_cabang+"'";
+                    + " where dbp.keterangan_barang = 'Connote barang segera dicetak' or dbp.status_barang ='Telah dipickup, sedang diproses' and nama_kantor = '"+kantor_cabang+"'";
                     
 
             //   JOptionPane.showMessageDialog(this, query);
@@ -90,7 +90,7 @@ public class Connote extends javax.swing.JFrame {
                 Object obj[] = new Object[5];
                 obj[0] = i;
                 obj[1] = connection.result.getString("id_pemesanan");
-                obj[2] = connection.result.getString("jenis_baran");
+                obj[2] = connection.result.getString("jenis_barang");
                 obj[3] = connection.result.getString("keterangan_barang");
                 obj[4] = connection.result.getString("kota_penerima");
                 
@@ -499,6 +499,11 @@ public class Connote extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableBarangMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableBarang);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 700, 140));
@@ -742,7 +747,7 @@ public class Connote extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
-        Connote connote = new Connote(KantorCabang);
+        Connote connote = new Connote(kantor_cabang);
         connote.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel29MouseClicked
@@ -756,6 +761,15 @@ public class Connote extends javax.swing.JFrame {
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel25MouseClicked
+
+    private void tableBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBarangMouseClicked
+        // TODO add your handling code here:
+        int i = tableBarang.getSelectedRow();
+        if(i == -1){
+            return;
+        }
+        txtIdPemesanan.setText(tableBarang.getValueAt(i, 1).toString());
+    }//GEN-LAST:event_tableBarangMouseClicked
     private void updateStatusBarang() {
         DBConnect connection = new DBConnect();
         try {
