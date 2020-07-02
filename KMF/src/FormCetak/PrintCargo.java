@@ -128,7 +128,7 @@ public class PrintCargo extends javax.swing.JFrame {
                 .addComponent(txtIdCaro))
         );
 
-        jLabel8.setText("NAMA BANDARA");
+        jLabel8.setText("NAMA   BANDARA");
 
         txtNamaBandara.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         txtNamaBandara.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -386,11 +386,11 @@ public class PrintCargo extends javax.swing.JFrame {
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
-        jLabel44.setText("DATA BARANG");
+        jLabel44.setText("DATA     BARANG");
 
-        jLabel46.setText("DATA BANDARA PENGIRIM");
+        jLabel46.setText("DATA    BANDARA    PENGIRIM");
 
-        jLabel47.setText("DATA  BANDARA  PENERIMA");
+        jLabel47.setText("DATA    BANDARA    PENERIMA");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -514,6 +514,7 @@ public class PrintCargo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed

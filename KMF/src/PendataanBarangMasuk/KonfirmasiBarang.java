@@ -301,10 +301,8 @@ public class KonfirmasiBarang extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -376,13 +374,14 @@ public class KonfirmasiBarang extends javax.swing.JFrame {
             }
             if (n == 0) {
                 addRiwayat1();
+                JOptionPane.showMessageDialog(this,
+                    "Konfirmasi berhasil");
             } else if (n == 1) {
                 JOptionPane.showMessageDialog(this,
                         "Batal!");
                 addSource(cmbStatus.getSelectedItem().toString());
             }
-            JOptionPane.showMessageDialog(this,
-                    "Konfirmasi berhasil");
+            
         } else {
             JOptionPane.showMessageDialog(this,
                     "Tidak bisa konfirmasi");
@@ -411,12 +410,13 @@ public class KonfirmasiBarang extends javax.swing.JFrame {
             }
             if (n == 0) {
                 addRiwayat();
+                JOptionPane.showMessageDialog(this,
+                    "Konfirmasi berhasil");
             } else if (n == 1) {
                 JOptionPane.showMessageDialog(this,
                         "Batal!");
             }
-            JOptionPane.showMessageDialog(this,
-                    "Konfirmasi berhasil");
+            
         } else {
             JOptionPane.showMessageDialog(this,
                     "Tidak bisa konfirmasi");
@@ -514,12 +514,12 @@ public class KonfirmasiBarang extends javax.swing.JFrame {
 
     }
 
-    private void updateStatusBarang1() {
+        private void updateStatusBarang1() {
 
         try {
             DBConnect connection = new DBConnect();
             String query = "UPDATE DataBarangPelanggan SET status_barang = 'Tidak sampai kantor di kantor tujuan' WHERE id_pemesanan=?";
-            //System.out.println(query);
+            JOptionPane.showMessageDialog(this, getIDPemesanan());
             connection.pstat = connection.conn.prepareStatement(query);
             connection.pstat.setString(1, getIDPemesanan());
 
@@ -528,7 +528,7 @@ public class KonfirmasiBarang extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Terjadi error saat updateStatusBarang: " + e.toString());
         }
-
+        updateStatusConnote();
     }
 
     private String getKotaKantor() {
@@ -576,7 +576,7 @@ public class KonfirmasiBarang extends javax.swing.JFrame {
                         + "inner join CargoManifest cm on cm.id_cargo_manifest = dc.id_cargo_manifest\n"
                         + "where\n"
                         + "e.singkatan = '" + getKotaKantor() + "' and Connote.status_pengiriman = 'Dikirim' and\n"
-                        +"a.status_barang != 'Sampai di kantor tujuan'";
+                        +"a.status_barang != 'Sampai di kantor tujuan' and a.status_barang != 'Tidak sampai kantor di kantor tujuan'";
             } else {
                 query = "select [Connote].id_connote, [b].nama_pelanggan, [a].jenis_barang, c.jns_nama, a.nama_penerima, a.alamat_penerima, [Connote].status_pengiriman from\n"
                         + "Connote inner join DataBarangPelanggan a on Connote.id_pemesanan = a.id_pemesanan\n"
@@ -590,7 +590,7 @@ public class KonfirmasiBarang extends javax.swing.JFrame {
                         + "where\n"
                         + "e.singkatan = '" + getKotaKantor() + "' and "
                         + "cm.status = '" + status + "' and Connote.status_pengiriman = 'Dikirim' and\n"
-                        + "a.status_barang != 'Sampai di kantor tujuan'";
+                        + "a.status_barang != 'Sampai di kantor tujuan' and a.status_barang != 'Tidak sampai kantor di kantor tujuan'";
                 
             }
 
@@ -616,7 +616,26 @@ public class KonfirmasiBarang extends javax.swing.JFrame {
             System.err.println(e.getMessage());
         }
     }
+    private void updateStatusConnote() {
+        DBConnect connection = new DBConnect();
+        try {
+            String query;
 
+            
+                query = "UPDATE Connote SET status_pengiriman='Gagal' WHERE id_connote='" + txtid_connote + "'";
+            
+
+            connection.pstat = connection.conn.prepareStatement(query);
+
+            connection.pstat.executeUpdate();
+            //connection.result.close();
+            
+            addSource(cmbStatus.getSelectedItem().toString());
+            //JOptionPane.showMessageDialog(this, "Bagging berhasil");
+        } catch (Exception e) {
+            System.out.println("Terjadi error saat update status Connote: " + e.toString());
+        }
+    }
     private void addRiwayat() {
         Format formatter = new SimpleDateFormat("yyyyMMdd");
         Format formatterTime = new SimpleDateFormat("hh:mm:ss");

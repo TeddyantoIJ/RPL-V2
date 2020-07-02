@@ -5,7 +5,7 @@
  */
 package MainMenu;
 
-import ListPickUp.LihatStatusPickUp;
+import TransaksiPengambilanBarang.LihatStatusPickUp;
 import TransaksiPengambilanBarang.TransaksiPemesanan;
 import java.sql.Connection;
 import java.sql.ResultSet;

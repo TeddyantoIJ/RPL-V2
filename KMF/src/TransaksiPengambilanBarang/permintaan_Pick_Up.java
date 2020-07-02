@@ -616,7 +616,7 @@ public class permintaan_Pick_Up extends javax.swing.JFrame {
             try {
                 DBConnect connection = new DBConnect();
                 connection.stat = connection.conn.createStatement();
-                String query = "select * from detailPickUp where ID_Staff = '"+txtid_driver.getText()+"'";
+                String query = "select * from detailPickUp where ID_Staff = '"+txtid_driver.getText()+"' and keterangan = 'Belum'";
                 connection.result = connection.stat.executeQuery(query);
 
                 while (connection.result.next()) {

@@ -149,7 +149,7 @@ public class PrintConnote extends javax.swing.JFrame {
         txtKeterangan_barang.setRows(5);
         jScrollPane1.setViewportView(txtKeterangan_barang);
 
-        jLabel8.setText("JENIS PAKET");
+        jLabel8.setText("JENIS   PAKET");
 
         txtjenis_paket.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         txtjenis_paket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -583,6 +583,7 @@ public class PrintConnote extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed

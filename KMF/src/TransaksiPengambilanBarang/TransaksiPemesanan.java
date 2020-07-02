@@ -5,7 +5,6 @@
  */
 package TransaksiPengambilanBarang;
 
-import ListPickUp.LihatStatusPickUp;
 import MainMenu.Login;
 import MainMenu.MainMenuCS;
 import Pelanggan.Pelanggan;

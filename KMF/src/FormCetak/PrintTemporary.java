@@ -156,7 +156,6 @@ public class PrintTemporary extends javax.swing.JFrame {
         lblPageAkhir = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
         setMinimumSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(930, 661));
@@ -195,7 +194,7 @@ public class PrintTemporary extends javax.swing.JFrame {
         txtKeterangan_barang.setRows(5);
         jScrollPane1.setViewportView(txtKeterangan_barang);
 
-        jLabel8.setText("JENIS PAKET");
+        jLabel8.setText("JENIS   PAKET");
 
         txtjenis_paket.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         txtjenis_paket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -651,7 +650,7 @@ public class PrintTemporary extends javax.swing.JFrame {
                                 .addGap(165, 165, 165)
                                 .addComponent(cbPickUp))
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelPrintLayout.setVerticalGroup(
             panelPrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

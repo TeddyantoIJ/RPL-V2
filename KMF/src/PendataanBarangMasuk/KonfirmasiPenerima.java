@@ -632,7 +632,7 @@ public class KonfirmasiPenerima extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -884,7 +884,8 @@ public class KonfirmasiPenerima extends javax.swing.JFrame {
                         + "inner join KantorCabang d on a.kode_kantor_cabang = d.kode_kantor_cabang\n"
                         + "inner join KotaKabupaten e on a.kota_penerima = e.nama_kota\n"
                         + "where\n"
-                        + "e.singkatan = '" + getKotaKantor() + "'";
+                        + "e.singkatan = '" + getKotaKantor()
+                        +"' and a.status_barang != 'Tidak sampai kantor di kantor tujuan'";
             } else {
                 query = "select [Connote].id_connote, [b].nama_pelanggan, [a].jenis_barang, c.jns_nama, a.nama_penerima, a.alamat_penerima, [Connote].status_pengiriman from\n"
                         + "Connote inner join DataBarangPelanggan a on Connote.id_pemesanan = a.id_pemesanan\n"
@@ -893,7 +894,8 @@ public class KonfirmasiPenerima extends javax.swing.JFrame {
                         + "inner join KantorCabang d on a.kode_kantor_cabang = d.kode_kantor_cabang\n"
                         + "inner join KotaKabupaten e on a.kota_penerima = e.nama_kota\n"
                         + "where\n"
-                        + "e.singkatan = '" + getKotaKantor() + "' and [Connote].status_pengiriman = '" + status + "'";
+                        + "e.singkatan = '" + getKotaKantor() + "' and [Connote].status_pengiriman = '" + status + "' and" 
+                        +" a.status_barang != 'Tidak sampai kantor di kantor tujuan'";
             }
 
          //   JOptionPane.showMessageDialog(this, query);

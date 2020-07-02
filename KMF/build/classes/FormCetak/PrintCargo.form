@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -196,7 +196,7 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="NAMA BANDARA"/>
+            <Property name="text" type="java.lang.String" value="NAMA   BANDARA"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="txtNamaBandara">
@@ -642,17 +642,17 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel44">
           <Properties>
-            <Property name="text" type="java.lang.String" value="DATA BARANG"/>
+            <Property name="text" type="java.lang.String" value="DATA     BARANG"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel46">
           <Properties>
-            <Property name="text" type="java.lang.String" value="DATA BANDARA PENGIRIM"/>
+            <Property name="text" type="java.lang.String" value="DATA    BANDARA    PENGIRIM"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel47">
           <Properties>
-            <Property name="text" type="java.lang.String" value="DATA  BANDARA  PENERIMA"/>
+            <Property name="text" type="java.lang.String" value="DATA    BANDARA    PENERIMA"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel6">

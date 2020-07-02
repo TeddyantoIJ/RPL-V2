@@ -91,7 +91,7 @@ public class cetakTemporaryshipment extends javax.swing.JFrame {
             String query
                     = "select d.id_pemesanan, p.nama_pelanggan, d.jenis_barang, d.keterangan_barang, d.nama_penerima,"
                     + " d.alamat_penerima, d.kota_penerima, d.no_telphone_penerima from DataBarangPelanggan d inner join Pelanggan p on d.id_pelanggan = p.id_pelanggan \n"
-                    + "where d.kode_kantor_cabang = '" + getIDKantor(KantorCabang) + "' and d.status_barang = 'Sedang diproses pada kantor pengirim' or d.status_barang = 'Segera dipickup'";
+                    + "where d.kode_kantor_cabang = '" + getIDKantor(KantorCabang) + "' and d.status_barang = 'Sedang diproses pada kantor pengirim' or d.status_barang = 'Telah dipickup, sedang diproses'";
             System.out.println(query);
             connection.result = connection.stat.executeQuery(query);
 

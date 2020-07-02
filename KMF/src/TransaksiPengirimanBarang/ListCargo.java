@@ -5,7 +5,7 @@
  */
 package TransaksiPengirimanBarang;
 
-import ListPickUp.LihatStatusPickUp;
+import TransaksiPengambilanBarang.LihatStatusPickUp;
 import MainMenu.Login;
 import MainMenu.MainMenuCS;
 import TransaksiPengambilanBarang.TransaksiPemesanan;
@@ -366,7 +366,7 @@ public class ListCargo extends javax.swing.JFrame {
                      c.pstat = c.conn.prepareStatement(query);
                      c.pstat.setString(1, formatter.format(new Date()));
                      c.pstat.setString(2, formatterTime.format(new Date()));
-                     c.pstat.setString(3, "Berangkat dari bandara" + bandara.get(i));
+                     c.pstat.setString(3, "Berangkat dari bandara " + bandara.get(i));
                      c.pstat.setString(4, pemesanan.get(i));
 
                       //insert ke dalam database
